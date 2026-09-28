@@ -2,6 +2,7 @@ import { useParams, Navigate, Link } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { projects } from "@/data/projects";
+import { getAudioEmbedUrl } from "@/lib/audioEmbed";
 
 const Project = () => {
   const { id } = useParams();
@@ -10,6 +11,8 @@ const Project = () => {
   if (!project) {
     return <Navigate to="/work" replace />;
   }
+
+  const audioDemos = project.audioDemos ?? [];
 
   return (
     <Layout noPadding headerRevealMode showEchelonFooter>
@@ -21,7 +24,7 @@ const Project = () => {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-background/50" />
-        
+
         {/* Centered Title */}
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <h1 className="font-display text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight text-foreground text-center px-4 animate-fade-in">
@@ -99,6 +102,49 @@ const Project = () => {
           </div>
         </div>
       </section>
+
+      {/* Listen — embedded audio demos */}
+      {audioDemos.length > 0 && (
+        <section className="container-wide pb-24">
+          <h2 className="text-label mb-8">Listen</h2>
+          <div className="space-y-8 max-w-3xl">
+            {audioDemos.map((demo) => {
+              const embedUrl = getAudioEmbedUrl(demo.url);
+              if (!embedUrl) {
+                return (
+                  <a
+                    key={demo.title}
+                    href={demo.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 border border-separator px-5 py-4 text-sm uppercase tracking-widest hover-highlight group"
+                  >
+                    <span>{demo.title}</span>
+                    <ArrowUpRight size={16} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </a>
+                );
+              }
+              return (
+                <div key={demo.title} className="space-y-3">
+                  <p className="text-sm uppercase tracking-widest text-muted-foreground">
+                    {demo.title}
+                  </p>
+                  <div className="border border-separator">
+                    <iframe
+                      src={embedUrl}
+                      title={demo.title}
+                      className="w-full"
+                      height="166"
+                      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       {/* Gallery */}
       <section className="container-wide pb-24">
