@@ -65,16 +65,6 @@ export const site = {
       url: "https://www.linkedin.com/in/strahinja-velickovic-4a2a77305/",
       icon: "linkedin",
     },
-    {
-      label: "itch.io — eaxcy",
-      url: "https://eaxcy.itch.io/",
-      icon: "gamepad",
-    },
-    {
-      label: "Play Bony Tony: The Revenge",
-      url: "https://eaxcy.itch.io/bony-tony",
-      icon: "play",
-    },
   ],
 
   // Text above the contact links on the Contact page.
