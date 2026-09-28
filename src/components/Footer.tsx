@@ -15,10 +15,10 @@ export function Footer({ variant = "default" }: FooterProps) {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {/* Location */}
             <div className="space-y-3">
-              <p className="text-label">Location</p>
+              <p className="text-label">Focus</p>
               <div className="text-sm text-foreground space-y-1">
-                <p>São Paulo, SP</p>
-                <p>Brazil</p>
+                <p>Game Sound Design</p>
+                <p>Music & Audio</p>
               </div>
             </div>
 
@@ -36,10 +36,12 @@ export function Footer({ variant = "default" }: FooterProps) {
             <div className="space-y-3">
               <p className="text-label">Contact</p>
               <div className="text-sm text-foreground space-y-1">
-                <a href="mailto:hello@jordanstudio.com" className="block hover:text-accent transition-colors">
-                  hello@jordanstudio.com
+                <a href="https://www.linkedin.com/in/strahinja-velickovic-4a2a77305/" target="_blank" rel="noopener noreferrer" className="block hover:text-accent transition-colors">
+                  LinkedIn
                 </a>
-                <p>+55 11 9999-9999</p>
+                <a href="https://eaxcy.itch.io/" target="_blank" rel="noopener noreferrer" className="block hover:text-accent transition-colors">
+                  itch.io — eaxcy
+                </a>
               </div>
             </div>
 
@@ -61,7 +63,7 @@ export function Footer({ variant = "default" }: FooterProps) {
                 key={i}
                 className="font-display text-6xl md:text-8xl lg:text-[10rem] font-bold text-foreground mx-12"
               >
-                @JORDANSTUDIO
+                @STRAHINJA
               </span>
             ))}
           </div>
@@ -77,9 +79,9 @@ export function Footer({ variant = "default" }: FooterProps) {
         <div className="flex flex-col md:flex-row justify-between gap-8">
           {/* Left */}
           <div className="space-y-4">
-            <p className="font-display text-xl font-semibold">Jordan Studio</p>
+            <p className="font-display text-xl font-semibold">Strahinja Velickovic</p>
             <p className="text-muted-foreground text-sm">
-              Design & Illustration
+              Game Sound Design
             </p>
           </div>
 
@@ -92,8 +94,8 @@ export function Footer({ variant = "default" }: FooterProps) {
 
           {/* Right */}
           <div className="text-sm text-muted-foreground">
-            <p>© {currentYear} Jordan Studio</p>
-            <p className="mt-1">São Paulo, Brazil</p>
+            <p>© {currentYear} Strahinja Velickovic</p>
+            <p className="mt-1">Game Sound Designer</p>
           </div>
         </div>
       </div>
