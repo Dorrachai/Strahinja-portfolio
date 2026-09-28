@@ -95,3 +95,24 @@ audioDemos: [
   looks broken, undo your last change (GitHub keeps history:
   **History** button → click your commit → **Browse files** shows the
   previous version).
+
+---
+
+## Hosting on GitHub Pages (one-time setup)
+
+The site auto-builds and publishes itself every time something is
+committed to the `main` branch. To switch it on the first time:
+
+1. Open the repo on github.com.
+2. Go to **Settings → Pages**.
+3. Under **Build and deployment**, set **Source** to
+   **GitHub Actions**.
+
+That's it. From now on every commit is live within a couple of
+minutes at:
+
+`https://<your-username>.github.io/<repo-name>/`
+
+You can watch each deployment under the repo's **Actions** tab
+(green tick = live). If a run fails, it's almost always a typo made
+while editing — check the latest commit first.
