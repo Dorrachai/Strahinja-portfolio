@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
+import { site } from "@/data/site";
 
 const navItems = [
   { label: "Projects", path: "/work" },
@@ -57,7 +58,7 @@ export function Header({ revealMode = false }: HeaderProps) {
             to="/" 
             className="font-display text-lg font-semibold tracking-tight text-foreground hover:opacity-70 transition-opacity"
           >
-            Strahinja Velickovic
+            {site.name}
           </Link>
 
           {/* Desktop Navigation - Centered */}

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { site } from "@/data/site";
 
 interface FooterProps {
   variant?: "default" | "echelon";
@@ -36,12 +37,17 @@ export function Footer({ variant = "default" }: FooterProps) {
             <div className="space-y-3">
               <p className="text-label">Contact</p>
               <div className="text-sm text-foreground space-y-1">
-                <a href="https://www.linkedin.com/in/strahinja-velickovic-4a2a77305/" target="_blank" rel="noopener noreferrer" className="block hover:text-accent transition-colors">
-                  LinkedIn
-                </a>
-                <a href="https://eaxcy.itch.io/" target="_blank" rel="noopener noreferrer" className="block hover:text-accent transition-colors">
-                  itch.io — eaxcy
-                </a>
+                {site.contactLinks.map((link) => (
+                  <a
+                    key={link.url}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block hover:text-accent transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ))}
               </div>
             </div>
 
@@ -63,7 +69,7 @@ export function Footer({ variant = "default" }: FooterProps) {
                 key={i}
                 className="font-display text-6xl md:text-8xl lg:text-[10rem] font-bold text-foreground mx-12"
               >
-                @STRAHINJA
+                {site.handle}
               </span>
             ))}
           </div>
@@ -79,9 +85,9 @@ export function Footer({ variant = "default" }: FooterProps) {
         <div className="flex flex-col md:flex-row justify-between gap-8">
           {/* Left */}
           <div className="space-y-4">
-            <p className="font-display text-xl font-semibold">Strahinja Velickovic</p>
+            <p className="font-display text-xl font-semibold">{site.name}</p>
             <p className="text-muted-foreground text-sm">
-              Game Sound Design
+              {site.role}
             </p>
           </div>
 
@@ -94,8 +100,8 @@ export function Footer({ variant = "default" }: FooterProps) {
 
           {/* Right */}
           <div className="text-sm text-muted-foreground">
-            <p>© {currentYear} Strahinja Velickovic</p>
-            <p className="mt-1">Game Sound Designer</p>
+            <p>© {currentYear} {site.name}</p>
+            <p className="mt-1">{site.role}</p>
           </div>
         </div>
       </div>
