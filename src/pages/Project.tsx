@@ -1,5 +1,5 @@
 import { useParams, Navigate, Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { projects } from "@/data/projects";
 
@@ -85,6 +85,17 @@ const Project = () => {
             <p className="text-xl md:text-2xl leading-relaxed text-muted-foreground">
               {project.description}
             </p>
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 mt-10 border border-separator px-5 py-3 text-sm uppercase tracking-widest hover-highlight group"
+              >
+                <span>{project.linkLabel ?? "View project"}</span>
+                <ArrowUpRight size={18} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
+            )}
           </div>
         </div>
       </section>

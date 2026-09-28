@@ -1,5 +1,6 @@
 import { Layout } from "@/components/Layout";
 import { Linkedin, Gamepad2, Play } from "lucide-react";
+import bonyTonyCover from "@/assets/bony-tony-1.png";
 
 const Contact = () => {
   return (
@@ -61,8 +62,8 @@ const Contact = () => {
           <div className="hidden lg:block">
             <div className="aspect-[4/5] bg-secondary overflow-hidden">
               <img
-                src="https://eaxcy.itch.io/bony-tony"
-                alt="Contact"
+                src={bonyTonyCover}
+                alt="Bony Tony: The Revenge"
                 className="w-full h-full object-cover"
               />
             </div>
