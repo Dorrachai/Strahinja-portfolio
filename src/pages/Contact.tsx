@@ -1,5 +1,6 @@
 import { Layout } from "@/components/Layout";
-import { Mail, Phone, Instagram } from "lucide-react";
+import { Linkedin, Gamepad2, Play } from "lucide-react";
+import bonyTonyCover from "@/assets/bony-tony-1.png";
 
 const Contact = () => {
   return (
@@ -10,43 +11,50 @@ const Contact = () => {
           <div className="space-y-12">
             <div>
               <h1 className="text-display mb-6 animate-fade-in-up">
-                Let's work<br />together.
+                Let's make<br />some noise.
               </h1>
               <p className="text-xl text-muted-foreground animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-                Interested in collaborating? Let's talk about your next project.
+                Looking for sound design or music for your game? Let's talk about your next project.
               </p>
             </div>
 
-            {/* Contact Info */}
+            {/* Contact Links */}
             <div className="space-y-6 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
               <a
-                href="mailto:hello@jordanstudio.com"
-                className="flex items-center gap-4 text-lg hover-highlight group"
-              >
-                <Mail size={20} className="text-muted-foreground group-hover:text-accent transition-colors" />
-                <span>hello@jordanstudio.com</span>
-              </a>
-
-              <a
-                href="https://instagram.com/jordanstudio"
+                href="https://www.linkedin.com/in/strahinja-velickovic-4a2a77305/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 text-lg hover-highlight group"
               >
-                <Instagram size={20} className="text-muted-foreground group-hover:text-accent transition-colors" />
-                <span>@jordanstudio</span>
+                <Linkedin size={20} className="text-muted-foreground group-hover:text-accent transition-colors" />
+                <span>LinkedIn</span>
               </a>
 
-              <div className="flex items-center gap-4 text-lg text-muted-foreground">
-                <Phone size={20} />
-                <span>+55 11 9999-9999</span>
-              </div>
+              <a
+                href="https://eaxcy.itch.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 text-lg hover-highlight group"
+              >
+                <Gamepad2 size={20} className="text-muted-foreground group-hover:text-accent transition-colors" />
+                <span>itch.io — eaxcy</span>
+              </a>
+
+              <a
+                href="https://eaxcy.itch.io/bony-tony"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 text-lg hover-highlight group"
+              >
+                <Play size={20} className="text-muted-foreground group-hover:text-accent transition-colors" />
+                <span>Play Bony Tony: The Revenge</span>
+              </a>
             </div>
 
-            {/* Location */}
+            {/* Availability */}
             <div className="animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-              <p className="text-label mb-2">Based in</p>
-              <p className="text-lg">São Paulo, Brazil</p>
+              <p className="text-label mb-2">Availability</p>
+              <p className="text-lg">Open for new game projects</p>
             </div>
           </div>
 
@@ -54,8 +62,8 @@ const Contact = () => {
           <div className="hidden lg:block">
             <div className="aspect-[4/5] bg-secondary overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&h=1000&fit=crop"
-                alt="Contact"
+                src={bonyTonyCover}
+                alt="Bony Tony: The Revenge"
                 className="w-full h-full object-cover"
               />
             </div>
