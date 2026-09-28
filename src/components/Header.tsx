@@ -78,8 +78,16 @@ export function Header({ revealMode = false }: HeaderProps) {
             ))}
           </nav>
 
-          {/* Right - Theme Toggle */}
-          <div className="hidden md:flex items-center">
+          {/* Right - CTA Button & Theme Toggle */}
+          <div className="hidden md:flex items-center gap-4">
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border border-foreground bg-foreground text-background hover:bg-transparent hover:text-foreground transition-all"
+            >
+              <span>Get in touch</span>
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </Link>
+
             <button
               onClick={toggleTheme}
               className="p-2 text-foreground/60 hover:text-foreground transition-colors"
