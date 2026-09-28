@@ -1,13 +1,13 @@
 import { useState, useRef } from "react";
 import { Layout } from "@/components/Layout";
-import { projects } from "@/data/projects";
+import { homeGridImages } from "@/data/projects";
 
 const Index = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Get 8 unique cover images from projects for the grid (4x2)
-  const gridImages = projects.slice(0, 8).map(p => p.coverImage);
+  // 8 unique cover images for the grid (4x2)
+  const gridImages = homeGridImages;
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
@@ -58,15 +58,15 @@ const Index = () => {
 
         {/* Centered Title - Overlaid */}
         <div className="absolute inset-0 flex items-center justify-center z-10">
-          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-bold tracking-tight text-foreground">
-            Jordan Studio
+          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-bold tracking-tight text-foreground text-center leading-none">
+            Strahinja<br />Velickovic
           </h1>
         </div>
 
         {/* Bio - Bottom Left */}
         <div className="absolute bottom-8 md:bottom-12 left-6 md:left-12 z-10 max-w-xs md:max-w-sm">
           <p className="text-sm md:text-base font-sans text-foreground/80 leading-relaxed">
-            Hi! I'm Jordan, an independent artist and designer specializing in brand identity, illustration, and visual design. I help brands tell their stories through thoughtful, distinctive creative work.
+            Hi! I'm Strahinja, a game sound designer. I create the music, sound effects and audio worlds that make games feel alive.
           </p>
         </div>
       </section>
