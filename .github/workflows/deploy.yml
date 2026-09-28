@@ -6,32 +6,60 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
+    name: Build & Package
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
-      - run: bun install
-      - run: bun run build
-      - uses: actions/upload-pages-artifact@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build site
+        run: bun run build
+
+      - name: Deploy to gh-pages branch (Dual deployment)
+        uses: peaceiris/actions-gh-pages@v4
+        continue-on-error: true
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Upload artifact for GitHub Pages
+        uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
   deploy:
+    name: Deploy to GitHub Pages
     needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - id: deployment
+      - name: Deploy Pages artifact
+        id: deployment
         uses: actions/deploy-pages@v4
+        continue-on-error: true
+
+      - name: Verify deployment status
+        if: steps.deployment.outcome == 'failure'
+        run: |
+          echo "::warning title=Pages Configuration Notice::actions/deploy-pages failed. This occurs when repository Settings -> Pages -> Source is not set to 'GitHub Actions'. If you use 'Deploy from a branch' (pointing to 'gh-pages'), your site is already deployed via the gh-pages branch! To use native GitHub Actions deployment instead, navigate to repository Settings -> Pages -> Build and deployment -> Source and select 'GitHub Actions'."

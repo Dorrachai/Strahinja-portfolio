@@ -116,3 +116,44 @@ minutes at:
 You can watch each deployment under the repo's **Actions** tab
 (green tick = live). If a run fails, it's almost always a typo made
 while editing — check the latest commit first.
+
+---
+
+## Changing the Web Address (URL)
+
+By default, GitHub Pages serves the site at `https://<your-username>.github.io/<repo-name>/`.
+You can customize the address using any of the following options:
+
+### Option 1: Rename the Repository (Free, 1 Minute)
+Changes URL from `https://dorrachai.github.io/Strahinja-portfolio/` to:
+`https://dorrachai.github.io/Strahinja-Velickovic/`
+
+1. Go to repository **Settings → General**.
+2. Under **Repository name**, change `Strahinja-portfolio` to `Strahinja-Velickovic` and click **Rename**.
+3. If working locally in Git, update your remote URL:
+   `git remote set-url origin git@github.com:dorrachai/Strahinja-Velickovic.git`
+
+### Option 2: Custom Domain (Most Professional — e.g. `strahinja-velickovic.com`)
+Changes URL to your own custom domain name (e.g. `strahinja-velickovic.com`).
+
+1. Register your chosen domain (e.g. via Cloudflare, Porkbun, Namecheap).
+2. Configure DNS records at your registrar:
+   - **Apex Domain (`strahinja-velickovic.com`)**: Add 4 `A` records pointing to:
+     - `185.199.108.153`
+     - `185.199.109.153`
+     - `185.199.110.153`
+     - `185.199.111.153`
+   - **WWW Subdomain (`www.strahinja-velickovic.com`)**: Add a `CNAME` record pointing to:
+     - `<your-username>.github.io`
+3. Copy `public/CNAME.example` to `public/CNAME` containing just your domain name (e.g. `strahinja-velickovic.com`) and commit it.
+4. Go to **Settings → Pages → Custom domain**, enter your domain, click **Save**, and check **Enforce HTTPS** once DNS propagates.
+
+### Option 3: Dedicated GitHub Organization or User (`strahinja-velickovic.github.io`)
+Changes URL to:
+`https://strahinja-velickovic.github.io/`
+
+1. Create a free GitHub Organization named `strahinja-velickovic` (or a dedicated GitHub user account).
+2. Create a new repository named `strahinja-velickovic.github.io` inside it (or transfer this repository to it and rename it to `strahinja-velickovic.github.io`).
+3. Set **Settings → Pages → Source** to **GitHub Actions**.
+4. The site is instantly served directly at the root `https://strahinja-velickovic.github.io/`.
+
