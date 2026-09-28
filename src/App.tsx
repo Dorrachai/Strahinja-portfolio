@@ -2,7 +2,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { MemoryRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import { ThemeProvider } from "next-themes";
 import Index from "./pages/Index";
 import Work from "./pages/Work";
@@ -13,14 +14,39 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+// Scroll to top on in-place page navigation
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
+// Get initial route from any legacy hash link, then strip hash from the URL bar
+function getInitialRoute(): string {
+  if (typeof window !== "undefined" && window.location.hash) {
+    const raw = window.location.hash.replace(/^#\/?/, "");
+    const cleanedRoute = raw ? `/${raw}` : "/";
+    try {
+      window.history.replaceState(null, "", window.location.pathname);
+    } catch (_) {}
+    return cleanedRoute;
+  }
+  return "/";
+}
+
+const initialRoute = getInitialRoute();
+
 const App = () => (
   <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        {/* HashRouter keeps URLs working on GitHub Pages (no server config needed) */}
-        <HashRouter>
+        {/* MemoryRouter keeps the browser URL 100% static while maintaining full in-place multi-page navigation */}
+        <MemoryRouter initialEntries={[initialRoute]}>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/work" element={<Work />} />
@@ -29,7 +55,7 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </HashRouter>
+        </MemoryRouter>
       </TooltipProvider>
     </QueryClientProvider>
   </ThemeProvider>

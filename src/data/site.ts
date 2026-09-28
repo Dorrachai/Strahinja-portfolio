@@ -51,6 +51,63 @@ export const site = {
     "Music",
     "Audio Implementation",
     "Foley & Field Recording",
+    "Adaptive Music",
+    "Audio Profiling",
+  ],
+
+  // Location and work mode
+  location: "Stockholm, Sweden • On-Site & Remote Worldwide",
+
+  // Audio philosophy statement
+  philosophy:
+    "Great game audio is about player feedback and emotional resonance. Every impact, ambient layer and musical stem should communicate game state clearly while making every interaction feel tactile and alive.",
+
+  // Technical Toolkit & Software Stack
+  toolkit: [
+    {
+      category: "Audio Middleware",
+      items: ["Audiokinetic Wwise", "FMOD Studio"],
+    },
+    {
+      category: "Game Engines",
+      items: ["Unreal Engine 5 (MetaSounds / Blueprints)", "Unity", "Custom C++ Engines"],
+    },
+    {
+      category: "Primary DAWs",
+      items: ["REAPER", "Pro Tools", "Logic Pro", "Ableton Live"],
+    },
+    {
+      category: "Sound Design & Processing",
+      items: ["iZotope RX", "FabFilter", "Soundtoys", "Serum", "Phase Plant"],
+    },
+    {
+      category: "Recording & Hardware",
+      items: ["Field Recorders (Zoom / Sound Devices)", "Shotgun & Condenser Mics", "Contact Mics & Foley"],
+    },
+  ],
+
+  // Core Game Audio Disciplines
+  disciplines: [
+    {
+      title: "Interactive Implementation",
+      description:
+        "Building responsive audio systems with Wwise and FMOD — dynamic RTPCs, state switching, ducking, and spatial attenuation curves.",
+    },
+    {
+      title: "Custom Foley & Field Recording",
+      description:
+        "Capturing fresh, tactile organic textures and impacts rather than relying solely on generic pre-baked sound libraries.",
+    },
+    {
+      title: "In-Engine Optimization & Profiling",
+      description:
+        "Rigorous voice limiting, memory budgeting, real-time profiling, and format compression tailored to target hardware.",
+    },
+    {
+      title: "Standardized Pipelines (UCS)",
+      description:
+        "Universal Category System (UCS) compliant naming and automated batch rendering for seamless handoffs to game programmers.",
+    },
   ],
 
   // -------------------------------------------------------------------

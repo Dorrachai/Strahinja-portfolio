@@ -1,47 +1,93 @@
+import { Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { site } from "@/data/site";
+import { MapPin } from "lucide-react";
 
 const About = () => {
   return (
     <Layout showEchelonFooter>
       <section className="container-wide py-16 md:py-24">
-        <div className="max-w-3xl space-y-12">
-          {/* Content */}
+        <div className="max-w-3xl space-y-16">
+          {/* Header & Bio */}
           <div>
-            <h1 className="text-display mb-8 animate-fade-in-up">About</h1>
+            <h1 className="text-display mb-4 animate-fade-in-up">About</h1>
+
+            {/* Location Pill */}
+            <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground mb-8 animate-fade-in-up" style={{ animationDelay: "0.05s" }}>
+              <MapPin size={14} className="text-foreground/70" />
+              <span>{site.location}</span>
+            </div>
 
             <div className="space-y-6 text-lg md:text-xl leading-relaxed text-muted-foreground animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
               {site.about.map((paragraph, index) => (
                 <p key={index}>{highlightName(paragraph)}</p>
               ))}
             </div>
+
+            {/* Philosophy Callout */}
+            <div className="border-l-2 border-foreground/40 pl-6 py-3 my-8 italic text-lg text-foreground/90 bg-muted/20 animate-fade-in-up" style={{ animationDelay: "0.15s" }}>
+              "{site.philosophy}"
+            </div>
+          </div>
+
+          {/* Technical Toolkit */}
+          <div className="animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+            <h2 className="text-label mb-6">Technical Toolkit</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {site.toolkit.map((group) => (
+                <div key={group.category} className="border border-separator p-5 bg-card/40">
+                  <h3 className="text-xs uppercase tracking-widest text-muted-foreground mb-3 font-semibold">
+                    {group.category}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {group.items.map((item) => (
+                      <span key={item} className="text-xs border border-border px-3 py-1.5 text-foreground/90 bg-background/60">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Core Disciplines */}
+          <div className="animate-fade-in-up" style={{ animationDelay: "0.25s" }}>
+            <h2 className="text-label mb-6">Core Disciplines</h2>
+            <div className="space-y-5">
+              {site.disciplines.map((d) => (
+                <div key={d.title} className="border-b border-separator pb-5">
+                  <h3 className="text-base font-semibold text-foreground mb-1.5">{d.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{d.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Selected Collaborations */}
-          <div className="animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+          <div className="animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
             <h2 className="text-label mb-6">Selected Collaborations</h2>
             <ul className="space-y-3">
               {site.collaborations.map((name) => (
-                <li key={name} className="text-lg">
+                <li key={name} className="text-lg text-foreground/90">
                   {name}
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Expertise */}
-          <div className="animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-            <h2 className="text-label mb-6">Expertise</h2>
-            <div className="flex flex-wrap gap-3">
-              {site.expertise.map((area) => (
-                <span
-                  key={area}
-                  className="text-sm border border-border px-4 py-2"
-                >
-                  {area}
-                </span>
-              ))}
+          {/* CTA Footer */}
+          <div className="pt-8 border-t border-separator flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 animate-fade-in-up" style={{ animationDelay: "0.35s" }}>
+            <div>
+              <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">Status</p>
+              <p className="text-base font-medium text-foreground">{site.availability}</p>
             </div>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-6 py-3 border border-foreground bg-foreground text-background font-semibold text-sm uppercase tracking-wider hover:bg-transparent hover:text-foreground transition-colors"
+            >
+              Get in touch &rarr;
+            </Link>
           </div>
         </div>
       </section>
