@@ -1,3 +1,20 @@
+// =====================================================================
+//  PROJECTS — EDIT THIS FILE TO ADD PROJECTS AND SOUND DEMOS
+//
+//  Every project on the site lives in the list below. To add a new
+//  project, copy the EXAMPLE PROJECT block at the bottom of this
+//  file, paste it just above the line that says  ];
+//  and fill in your own text.
+//
+//  Rules of thumb:
+//  - Keep the quotation marks " " around your text.
+//  - Every project needs a unique "id" (lowercase, dashes instead of
+//    spaces, e.g. "my-new-game"). Never reuse the same id twice.
+//  - The images come from the  src/assets  folder — see README.md
+//    for how to upload new images and point the project at them.
+//  - Lines starting with // are comments and are ignored by the site.
+// =====================================================================
+
 import bonyTony1 from "@/assets/bony-tony-1.png";
 import bonyTony2 from "@/assets/bony-tony-2.png";
 import bonyTony3 from "@/assets/bony-tony-3.png";
@@ -6,17 +23,32 @@ import bonyTony5 from "@/assets/bony-tony-5.png";
 import bonyTony6 from "@/assets/bony-tony-6.jpg";
 
 export interface Project {
-  id: string;
-  title: string;
-  category: string;
-  tags: string[];
-  year: string;
-  client: string;
-  description: string;
-  link?: string;
-  linkLabel?: string;
-  coverImage: string;
-  images: string[];
+  id: string; // unique short name used in the web address, e.g. /project/bony-tony
+  title: string; // full project title
+  category: string; // short category shown on cards, e.g. "Game Audio"
+  tags: string[]; // small labels, UPPERCASE, e.g. "SOUND DESIGN"
+  year: string; // e.g. "2026"
+  client: string; // studio, team or jam name
+  description: string; // 2-4 sentences about your work on it
+  link?: string; // optional: URL to play or listen (itch.io, YouTube, ...)
+  linkLabel?: string; // optional: text on that button, e.g. "Play on itch.io"
+  audioDemos?: AudioDemo[]; // optional: embedded sound players, see below
+  coverImage: string; // main image (from src/assets)
+  images: string[]; // picture gallery, one image per line
+}
+
+// ---------------------------------------------------------------------
+//  AUDIO DEMOS — playable players on the project page.
+//  Works with links from SoundCloud, YouTube and Spotify.
+//  Just paste the normal link you see in the browser address bar:
+//
+//    { title: "Main Theme", url: "https://soundcloud.com/you/track" },
+//    { title: "Weapon Sounds", url: "https://youtu.be/XXXXXXXXXXX" },
+//
+// ---------------------------------------------------------------------
+export interface AudioDemo {
+  title: string; // name shown above the player, e.g. "Main Theme"
+  url: string; // normal SoundCloud / YouTube / Spotify link
 }
 
 export const projects: Project[] = [
@@ -31,12 +63,46 @@ export const projects: Project[] = [
       "Game audio for Bony Tony: The Revenge — a 2.5D action-platformer about blasting your way to the top of a skeleton-filled casino to take revenge on your boss. Music, weapons, ambiences and feedback, created from scratch in a custom-built engine during an 8-week student production, later polished for Swedish Game Awards.",
     link: "https://eaxcy.itch.io/bony-tony",
     linkLabel: "Play on itch.io",
+    // Add sound demos for this project like this (then remove the //):
+    // audioDemos: [
+    //   { title: "Main Theme", url: "https://soundcloud.com/your-link" },
+    //   { title: "Casino Ambience", url: "https://youtu.be/your-link" },
+    // ],
     coverImage: bonyTony1,
     images: [bonyTony1, bonyTony2, bonyTony3, bonyTony4, bonyTony5, bonyTony6],
   },
+
+  // ===================================================================
+  //  EXAMPLE PROJECT — copy everything between START and END,
+  //  paste it right below this comment block, and fill it in.
+  //
+  //  --- START ---------------------------------------------------------
+  //  {
+  //    id: "my-new-game",
+  //    title: "My New Game",
+  //    category: "Game Audio",
+  //    tags: ["SOUND DESIGN", "MUSIC"],
+  //    year: "2026",
+  //    client: "Studio or team name",
+  //    description:
+  //      "A few sentences about the game and what you made: music, effects, ambience, implementation...",
+  //    link: "https://link-to-the-game-or-demo",
+  //    linkLabel: "Play on itch.io",
+  //    audioDemos: [
+  //      { title: "Main Theme", url: "https://soundcloud.com/your-link" },
+  //    ],
+  //    coverImage: myNewGame1,
+  //    images: [myNewGame1, myNewGame2],
+  //  },
+  //  --- END -----------------------------------------------------------
+  // ===================================================================
 ];
 
-// Hero grid on the home page — cycles through real project imagery
+// ---------------------------------------------------------------------
+//  HOME PAGE GRID — the 8 pictures behind the big title on the home
+//  page. They can repeat. Use image names from src/assets (see the
+//  import lines at the top of this file).
+// ---------------------------------------------------------------------
 export const homeGridImages = [
   bonyTony1,
   bonyTony3,
