@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { Layout } from "@/components/Layout";
 import { homeGridImages } from "@/data/projects";
+import { site } from "@/data/site";
 
 const Index = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -11,27 +12,27 @@ const Index = () => {
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
-    
+
     const rect = containerRef.current.getBoundingClientRect();
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    
+
     // Calculate offset from center (normalized to -1 to 1)
     const x = (e.clientX - rect.left - centerX) / centerX;
     const y = (e.clientY - rect.top - centerY) / centerY;
-    
+
     setMousePosition({ x, y });
   };
 
   return (
     <Layout hideFooter noPadding>
-      <section 
+      <section
         ref={containerRef}
         onMouseMove={handleMouseMove}
         className="relative h-screen overflow-hidden"
       >
         {/* Image Grid Background with Parallax - 4 columns x 2 rows */}
-        <div 
+        <div
           className="absolute inset-0 flex items-center justify-center transition-transform duration-700 ease-out"
           style={{
             transform: `translate(${-mousePosition.x * 40}px, ${-mousePosition.y * 40}px)`,
@@ -39,7 +40,7 @@ const Index = () => {
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 p-12 md:p-16 w-full max-w-7xl">
             {gridImages.map((image, index) => (
-              <div 
+              <div
                 key={index}
                 className="aspect-[3/4] overflow-hidden"
               >
@@ -59,14 +60,19 @@ const Index = () => {
         {/* Centered Title - Overlaid */}
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-bold tracking-tight text-foreground text-center leading-none">
-            Strahinja<br />Velickovic
+            {site.heroNameLines.map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < site.heroNameLines.length - 1 && <br />}
+              </span>
+            ))}
           </h1>
         </div>
 
         {/* Bio - Bottom Left */}
         <div className="absolute bottom-8 md:bottom-12 left-6 md:left-12 z-10 max-w-xs md:max-w-sm">
           <p className="text-sm md:text-base font-sans text-foreground/80 leading-relaxed">
-            Hi! I'm Strahinja, a game sound designer. I create the music, sound effects and audio worlds that make games feel alive.
+            {site.heroBio}
           </p>
         </div>
       </section>
