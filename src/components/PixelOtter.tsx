@@ -21,7 +21,7 @@ export function PixelOtter() {
 
   return (
     <div 
-      className="relative w-full h-24 sm:h-28 overflow-hidden bg-gradient-to-b from-secondary/30 via-secondary/60 to-secondary/30 border-y border-separator/60 select-none cursor-pointer group"
+      className="relative w-full h-24 sm:h-28 overflow-hidden bg-gradient-to-b from-secondary/40 via-secondary/70 to-secondary/40 border-y border-separator/60 select-none cursor-pointer group"
       onClick={() => {
         setIsInteracting((prev) => !prev);
         setPhraseIndex((prev) => (prev + 1) % OTTER_PHRASES.length);
@@ -33,15 +33,15 @@ export function PixelOtter() {
       <div className="absolute inset-0 opacity-40 pointer-events-none">
         {/* Animated wave layer 1 */}
         <div className="absolute inset-0 flex items-center justify-around animate-pulse" style={{ animationDuration: "3s" }}>
-          <span className="w-12 h-0.5 bg-earth-blue/60 rounded"></span>
-          <span className="w-20 h-0.5 bg-earth-blue/40 rounded"></span>
-          <span className="w-8 h-0.5 bg-earth-blue/50 rounded"></span>
-          <span className="w-16 h-0.5 bg-earth-blue/60 rounded"></span>
-          <span className="w-10 h-0.5 bg-earth-blue/30 rounded"></span>
-          <span className="w-24 h-0.5 bg-earth-blue/50 rounded"></span>
+          <span className="w-12 h-0.5 bg-[#519CAB]/70 rounded"></span>
+          <span className="w-20 h-0.5 bg-[#C3E7F1]/50 rounded"></span>
+          <span className="w-8 h-0.5 bg-[#519CAB]/60 rounded"></span>
+          <span className="w-16 h-0.5 bg-[#519CAB]/70 rounded"></span>
+          <span className="w-10 h-0.5 bg-[#C3E7F1]/40 rounded"></span>
+          <span className="w-24 h-0.5 bg-[#519CAB]/60 rounded"></span>
         </div>
         {/* Water surface glint */}
-        <div className="absolute bottom-4 inset-x-0 h-px bg-gradient-to-r from-transparent via-earth-blue/40 to-transparent"></div>
+        <div className="absolute bottom-4 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#519CAB]/50 to-transparent"></div>
       </div>
 
       {/* Swimming Otter Container (smooth horizontal swim loop) */}
@@ -54,7 +54,7 @@ export function PixelOtter() {
           >
             {/* Thought / Music bubble on interaction or hover */}
             <div 
-              className={`absolute -top-7 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded text-[10px] font-mono tracking-wider bg-earth-dark/95 text-earth-orange border border-earth-orange/40 shadow-xl whitespace-nowrap transition-all duration-300 ${
+              className={`absolute -top-7 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded text-[10px] font-mono tracking-wider bg-[#20373B] text-[#FFC64F] border border-[#FFC64F]/50 shadow-xl whitespace-nowrap transition-all duration-300 ${
                 isInteracting ? "opacity-100 scale-100 -translate-y-1" : "opacity-0 scale-90 pointer-events-none group-hover:opacity-100 group-hover:scale-100"
               }`}
             >
@@ -62,10 +62,10 @@ export function PixelOtter() {
             </div>
 
             {/* Ripple effects behind the swimming otter */}
-            <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 flex items-center gap-1.5 opacity-60">
-              <span className="w-2 h-1 rounded-full bg-earth-blue-light animate-ping" style={{ animationDuration: "1.8s" }}></span>
-              <span className="w-3 h-1 rounded-full bg-earth-blue/60"></span>
-              <span className="w-5 h-1 rounded-full bg-earth-blue/40"></span>
+            <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 flex items-center gap-1.5 opacity-70">
+              <span className="w-2 h-1 rounded-full bg-[#C3E7F1] animate-ping" style={{ animationDuration: "1.8s" }}></span>
+              <span className="w-3 h-1 rounded-full bg-[#519CAB]/80"></span>
+              <span className="w-5 h-1 rounded-full bg-[#519CAB]/50"></span>
             </div>
 
             {/* Pixel Art Otter SVG */}
@@ -88,10 +88,10 @@ export function PixelOtter() {
               <rect x="8" y="7" width="11" height="2" fill="#543017" />
               <rect x="8" y="13" width="11" height="2" fill="#4A2E1B" />
 
-              {/* --- Cream Underbelly (Floating on back) --- */}
+              {/* --- Cream Underbelly with Warm Amber Sun Highlight (#FFC64F) --- */}
               <rect x="9" y="8" width="9" height="4" fill="#D4A373" />
               <rect x="10" y="7" width="7" height="2" fill="#E8C39E" />
-              <rect x="11" y="9" width="5" height="2" fill="#F4DEC9" />
+              <rect x="11" y="9" width="5" height="2" fill="#FFC64F" opacity="0.85" />
 
               {/* --- Cute Little Paws resting on belly --- */}
               <rect x="12" y="6" width="2" height="2" fill="#543017" />
@@ -118,8 +118,8 @@ export function PixelOtter() {
 
               {/* --- Cute Eye --- */}
               <rect x="23" y="7" width="1" height="2" fill="#1C130D" />
-              {/* Eye sparkle */}
-              <rect x="23" y="7" width="1" height="1" fill="#FFFFFF" />
+              {/* Eye sparkle (#C3E7F1 ice reflection) */}
+              <rect x="23" y="7" width="1" height="1" fill="#C3E7F1" />
 
               {/* --- Dark Cute Nose --- */}
               <rect x="27" y="8" width="2" height="2" fill="#1C130D" />
@@ -130,19 +130,19 @@ export function PixelOtter() {
               <rect x="27" y="11" width="3" height="1" fill="#E8C39E" opacity="0.8" />
               <rect x="26" y="12" width="3" height="1" fill="#E8C39E" opacity="0.6" />
 
-              {/* --- Waterline ripples around the otter --- */}
-              <rect x="2" y="13" width="4" height="1" fill="#78A5C8" opacity="0.8" />
-              <rect x="8" y="14" width="16" height="1" fill="#9CC5E6" opacity="0.9" />
-              <rect x="25" y="13" width="5" height="1" fill="#78A5C8" opacity="0.8" />
+              {/* --- Waterline ripples around the otter (#519CAB & #C3E7F1) --- */}
+              <rect x="2" y="13" width="4" height="1" fill="#519CAB" opacity="0.85" />
+              <rect x="8" y="14" width="16" height="1" fill="#C3E7F1" opacity="0.9" />
+              <rect x="25" y="13" width="5" height="1" fill="#519CAB" opacity="0.85" />
               {/* Little water foam front and back */}
-              <rect x="0" y="14" width="2" height="1" fill="#D4E7F5" />
-              <rect x="30" y="13" width="2" height="1" fill="#D4E7F5" />
+              <rect x="0" y="14" width="2" height="1" fill="#C3E7F1" />
+              <rect x="30" y="13" width="2" height="1" fill="#C3E7F1" />
             </svg>
 
             {/* Front ripples spreading forward */}
-            <div className="absolute left-full top-1/2 -translate-y-1/2 ml-1 flex items-center gap-1 opacity-70">
-              <span className="w-2 h-0.5 rounded bg-earth-blue-light"></span>
-              <span className="w-1 h-0.5 rounded bg-white"></span>
+            <div className="absolute left-full top-1/2 -translate-y-1/2 ml-1 flex items-center gap-1 opacity-80">
+              <span className="w-2 h-0.5 rounded bg-[#519CAB]"></span>
+              <span className="w-1 h-0.5 rounded bg-[#C3E7F1]"></span>
             </div>
           </div>
         </div>
