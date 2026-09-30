@@ -26,7 +26,7 @@ export function ProjectListItem({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="container-wide py-5 md:py-6">
+      <div className="container-wide py-4 md:py-5">
         <div className="flex items-center justify-between gap-4">
           {/* Title */}
           <h3 className="flex-1 text-base sm:text-lg md:text-xl lg:text-2xl font-sans uppercase tracking-wide text-foreground group-hover:text-earth-orange group-hover:translate-x-1 transition-all duration-200">
@@ -50,9 +50,9 @@ export function ProjectListItem({
             {year}
           </span>
 
-          {/* Hover Image */}
+          {/* Hover Image — Desktop Only */}
           <div 
-            className={`fixed right-8 lg:right-32 top-1/2 -translate-y-1/2 w-64 lg:w-80 aspect-[3/4] pointer-events-none z-40 transition-all duration-300 will-change-[transform,opacity] ${
+            className={`hidden lg:block fixed right-12 xl:right-32 top-1/2 -translate-y-1/2 w-64 xl:w-80 aspect-[3/4] pointer-events-none z-40 transition-all duration-300 will-change-[transform,opacity] ${
               isHovered 
                 ? "opacity-100 translate-x-0 scale-100" 
                 : "opacity-0 translate-x-6 scale-95"

@@ -13,7 +13,7 @@ export function Footer({ variant = "default" }: FooterProps) {
     return (
       <footer className="border-t border-separator mt-auto">
         {/* Main Footer Content */}
-        <div className="container-wide py-12 md:py-16">
+        <div className="container-wide py-8 md:py-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {/* Location */}
             <div className="space-y-3">

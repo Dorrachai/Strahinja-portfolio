@@ -18,7 +18,7 @@ export function Layout({
   headerRevealMode = false,
 }: LayoutProps) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col overflow-x-hidden w-full">
       <Header revealMode={headerRevealMode} />
       <main className={`flex-1 ${noPadding ? '' : 'pt-20 md:pt-24'}`}>
         {children}
