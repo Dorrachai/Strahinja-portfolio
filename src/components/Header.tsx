@@ -103,8 +103,8 @@ export function Header({ revealMode = false }: HeaderProps) {
                   to={item.path}
                   className={`text-xs font-sans tracking-widest uppercase transition-all duration-300 hover:tracking-[0.2em] ${
                     isActive
-                      ? "text-foreground font-semibold"
-                      : "text-foreground/70 hover:text-foreground"
+                      ? "text-earth-orange font-semibold"
+                      : "text-foreground/75 hover:text-earth-orange"
                   }`}
                 >
                   {item.label}
@@ -117,7 +117,7 @@ export function Header({ revealMode = false }: HeaderProps) {
           <div className="hidden md:flex items-center gap-4">
             <Link
               to="/contact"
-              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border border-foreground bg-foreground text-background hover:bg-transparent hover:text-foreground transition-all"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border border-earth-orange/40 bg-earth-orange text-white hover:bg-earth-orange-light shadow-sm transition-all"
             >
               <span>Get in touch</span>
               <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
@@ -125,7 +125,7 @@ export function Header({ revealMode = false }: HeaderProps) {
 
             <button
               onClick={toggleTheme}
-              className="p-2 text-foreground/60 hover:text-foreground transition-colors"
+              className="p-2 text-foreground/60 hover:text-earth-orange transition-colors"
               aria-label="Toggle theme"
             >
               {mounted && (theme === "dark" ? <Sun size={18} /> : <Moon size={18} />)}
@@ -136,13 +136,13 @@ export function Header({ revealMode = false }: HeaderProps) {
           <div className="md:hidden flex items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="p-2 text-foreground/60 hover:text-foreground transition-colors"
+              className="p-2 text-foreground/60 hover:text-earth-orange transition-colors"
               aria-label="Toggle theme"
             >
               {mounted && (theme === "dark" ? <Sun size={18} /> : <Moon size={18} />)}
             </button>
             <button
-              className="p-2 -mr-2 text-foreground"
+              className="p-2 -mr-2 text-foreground hover:text-earth-orange transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -154,14 +154,14 @@ export function Header({ revealMode = false }: HeaderProps) {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-20 bg-background z-40 animate-fade-in">
+        <div className="md:hidden fixed inset-0 top-20 bg-background/98 backdrop-blur-lg z-40 animate-fade-in border-b border-separator">
           <nav className="container-wide py-12 flex flex-col gap-8">
             {navItems.map((item, index) => (
               <Link
                 key={item.path}
                 to={item.path}
                 onClick={() => setIsMenuOpen(false)}
-                className="text-4xl font-display text-foreground animate-fade-in-up"
+                className="text-3xl font-display text-foreground hover:text-earth-orange transition-colors animate-fade-in-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {item.label}

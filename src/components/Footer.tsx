@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { site } from "@/data/site";
+import { PixelOtter } from "@/components/PixelOtter";
 
 interface FooterProps {
   variant?: "default" | "echelon";
@@ -19,23 +20,24 @@ export function Footer({ variant = "default" }: FooterProps) {
               <p className="text-label">Focus</p>
               <div className="text-sm text-foreground space-y-1">
                 <p>Game Sound Design</p>
-                <p>Music & Audio</p>
+                <p>Music & Audio Systems</p>
               </div>
             </div>
 
             {/* Gallery */}
             <div className="space-y-3">
-              <p className="text-label">Gallery</p>
+              <p className="text-label">Navigation</p>
               <div className="text-sm space-y-1">
-                <Link to="/work" className="block text-foreground hover:text-accent transition-colors">Projects</Link>
-                <Link to="/about" className="block text-foreground hover:text-accent transition-colors">About</Link>
-                <Link to="/contact" className="block text-foreground hover:text-accent transition-colors">Contact</Link>
+                <Link to="/work" className="block text-foreground hover:text-earth-orange transition-colors">Projects</Link>
+                <Link to="/work?tab=implementation" className="block text-foreground hover:text-earth-orange transition-colors">Implementation</Link>
+                <Link to="/about" className="block text-foreground hover:text-earth-orange transition-colors">About</Link>
+                <Link to="/contact" className="block text-foreground hover:text-earth-orange transition-colors">Contact</Link>
               </div>
             </div>
 
             {/* Contact */}
             <div className="space-y-3">
-              <p className="text-label">Contact</p>
+              <p className="text-label">Connect</p>
               <div className="text-sm text-foreground space-y-1">
                 {site.contactLinks.map((link) => (
                   <a
@@ -43,7 +45,7 @@ export function Footer({ variant = "default" }: FooterProps) {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block hover:text-accent transition-colors"
+                    className="block hover:text-earth-orange transition-colors"
                   >
                     {link.label}
                   </a>
@@ -55,18 +57,15 @@ export function Footer({ variant = "default" }: FooterProps) {
             <div className="space-y-3">
               <p className="text-label">Legal</p>
               <div className="text-sm text-muted-foreground space-y-1">
-                <p>© {currentYear} All Rights Reserved</p>
+                <p>© {currentYear} {site.name}</p>
+                <p className="text-xs text-muted-foreground/80">Stockholm, Sweden</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Handle Display */}
-        <div className="border-t border-separator/60 py-8 md:py-12 text-center overflow-hidden">
-          <p className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight text-foreground/15 uppercase select-none">
-            {site.handle}
-          </p>
-        </div>
+        {/* Swimming Pixel Art Otter Stream replacing rolling handle text */}
+        <PixelOtter />
       </footer>
     );
   }
@@ -86,9 +85,10 @@ export function Footer({ variant = "default" }: FooterProps) {
 
           {/* Center */}
           <div className="flex gap-8 text-sm text-muted-foreground">
-            <Link to="/work" className="hover-highlight">Work</Link>
-            <Link to="/about" className="hover-highlight">About</Link>
-            <Link to="/contact" className="hover-highlight">Contact</Link>
+            <Link to="/work" className="hover:text-earth-orange transition-colors">Work</Link>
+            <Link to="/work?tab=implementation" className="hover:text-earth-orange transition-colors">Implementation</Link>
+            <Link to="/about" className="hover:text-earth-orange transition-colors">About</Link>
+            <Link to="/contact" className="hover:text-earth-orange transition-colors">Contact</Link>
           </div>
 
           {/* Right */}
@@ -98,6 +98,7 @@ export function Footer({ variant = "default" }: FooterProps) {
           </div>
         </div>
       </div>
+      <PixelOtter />
     </footer>
   );
 }

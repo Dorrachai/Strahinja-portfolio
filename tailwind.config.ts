@@ -61,6 +61,18 @@ export default {
           bg: "hsl(var(--hover-bg))",
         },
         separator: "hsl(var(--separator))",
+        earth: {
+          orange: "#D96B27",
+          "orange-light": "#E88A4E",
+          "orange-dark": "#B85315",
+          blue: "#385A80",
+          "blue-light": "#54789E",
+          "blue-dark": "#233A54",
+          white: "#F7F4EE",
+          parchment: "#EAE5D9",
+          slate: "#1C2734",
+          dark: "#0D1117",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

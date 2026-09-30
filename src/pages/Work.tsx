@@ -27,12 +27,12 @@ const Work = () => {
   return (
     <Layout showEchelonFooter>
       {/* Header with Switchable Tabs */}
-      <section className="container-wide pt-16 md:pt-24 pb-12 md:pb-16">
-        <div className="flex items-baseline gap-4 sm:gap-6 md:gap-8 flex-wrap">
+      <section className="container-wide pt-12 sm:pt-16 md:pt-24 pb-10 md:pb-16">
+        <div className="flex items-baseline gap-3 sm:gap-6 md:gap-8 flex-wrap">
           <button
             type="button"
             onClick={() => handleTabChange("projects")}
-            className={`font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight transition-all duration-300 text-left select-none ${
+            className={`font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight transition-all duration-300 text-left select-none ${
               activeTab === "projects"
                 ? "text-foreground opacity-100"
                 : "text-muted-foreground opacity-35 hover:opacity-75 cursor-pointer"
@@ -41,14 +41,14 @@ const Work = () => {
             Projects
           </button>
 
-          <span className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light text-muted-foreground/30 select-none">
+          <span className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-earth-orange/40 select-none">
             /
           </span>
 
           <button
             type="button"
             onClick={() => handleTabChange("implementation")}
-            className={`font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight transition-all duration-300 text-left select-none ${
+            className={`font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight transition-all duration-300 text-left select-none ${
               activeTab === "implementation"
                 ? "text-foreground opacity-100"
                 : "text-muted-foreground opacity-35 hover:opacity-75 cursor-pointer"
@@ -59,13 +59,14 @@ const Work = () => {
         </div>
 
         {/* Dynamic Subtitle / Indicator */}
-        <div className="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-separator/40 pb-6">
+        <div className="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-separator/60 pb-6">
           <p className="text-sm md:text-base text-muted-foreground font-mono">
             {activeTab === "projects"
               ? "01 — Game audio, original scoring, creature & weapon SFX"
               : "02 — In-engine architecture, Wwise / FMOD middleware & bespoke C++ systems"}
           </p>
-          <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground/60">
+          <div className="inline-flex items-center gap-2 self-start sm:self-auto px-3 py-1 rounded-full border border-earth-orange/30 bg-earth-orange/10 text-earth-orange font-mono text-[11px] uppercase tracking-wider">
+            <span className="h-1.5 w-1.5 rounded-full bg-earth-orange animate-pulse"></span>
             {activeTab === "projects" ? "Mode: Sound Design" : "Mode: Technical Audio"}
           </div>
         </div>

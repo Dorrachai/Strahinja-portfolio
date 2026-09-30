@@ -22,18 +22,14 @@ export function ProjectListItem({
   return (
     <Link
       to={`/work/${id}`}
-      className={`group block border-b border-separator transition-colors duration-300 ${
-        isHovered ? 'bg-accent' : ''
-      }`}
+      className="group block border-b border-separator hover:bg-card/50 hover:border-earth-orange/40 transition-all duration-200"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="container-wide py-5 md:py-6">
         <div className="flex items-center justify-between gap-4">
           {/* Title */}
-          <h3 className={`flex-1 text-lg md:text-xl lg:text-2xl font-sans uppercase tracking-wide transition-colors duration-300 ${
-            isHovered ? 'text-accent-foreground' : 'text-foreground'
-          }`}>
+          <h3 className="flex-1 text-base sm:text-lg md:text-xl lg:text-2xl font-sans uppercase tracking-wide text-foreground group-hover:text-earth-orange group-hover:translate-x-1 transition-all duration-200">
             {title}
           </h3>
 
@@ -42,11 +38,7 @@ export function ProjectListItem({
             {tags.map((tag) => (
               <span
                 key={tag}
-                className={`text-[10px] md:text-xs uppercase tracking-widest px-3 py-1 border transition-colors duration-300 ${
-                  isHovered 
-                    ? 'border-accent-foreground text-accent-foreground' 
-                    : 'border-separator text-muted-foreground'
-                }`}
+                className="text-[10px] md:text-xs uppercase tracking-widest px-2.5 py-1 border border-separator/80 bg-background/60 text-muted-foreground group-hover:border-earth-orange/30 group-hover:text-foreground transition-colors duration-200"
               >
                 {tag}
               </span>
@@ -54,25 +46,23 @@ export function ProjectListItem({
           </div>
 
           {/* Year */}
-          <span className={`text-xs md:text-sm uppercase tracking-widest transition-colors duration-300 ${
-            isHovered ? 'text-accent-foreground' : 'text-muted-foreground'
-          }`}>
+          <span className="font-mono text-xs md:text-sm uppercase tracking-widest text-muted-foreground group-hover:text-earth-orange transition-colors duration-200">
             {year}
           </span>
 
           {/* Hover Image */}
           <div 
-            className={`fixed right-8 lg:right-32 top-1/2 -translate-y-1/2 w-64 lg:w-80 aspect-[3/4] pointer-events-none z-40 transition-all duration-200 will-change-[transform,opacity] ${
+            className={`fixed right-8 lg:right-32 top-1/2 -translate-y-1/2 w-64 lg:w-80 aspect-[3/4] pointer-events-none z-40 transition-all duration-300 will-change-[transform,opacity] ${
               isHovered 
-                ? "opacity-100 translate-x-0" 
-                : "opacity-0 translate-x-4"
+                ? "opacity-100 translate-x-0 scale-100" 
+                : "opacity-0 translate-x-6 scale-95"
             }`}
           >
             <img
               src={image}
               alt={title}
               loading="lazy"
-              className="w-full h-full object-cover rounded-lg shadow-2xl border border-separator"
+              className="w-full h-full object-cover rounded-xl shadow-2xl border border-separator/80"
             />
           </div>
         </div>

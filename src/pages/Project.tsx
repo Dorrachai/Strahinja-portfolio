@@ -27,7 +27,7 @@ const Project = () => {
 
         {/* Centered Title */}
         <div className="absolute inset-0 flex items-center justify-center z-10">
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight text-foreground text-center px-4 animate-fade-in">
+          <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight text-foreground text-center px-4 animate-fade-in">
             {project.title}
           </h1>
         </div>
@@ -36,16 +36,16 @@ const Project = () => {
         <div className="absolute bottom-8 left-0 right-0 z-10 container-wide">
           <div className="flex justify-between items-end">
             {/* Date */}
-            <div className="text-label">
+            <div className="text-label text-muted-foreground font-mono">
               {project.year}
             </div>
 
             {/* Tags */}
-            <div className="flex gap-3">
+            <div className="flex gap-2 sm:gap-3 flex-wrap justify-end">
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="text-[10px] md:text-xs uppercase tracking-widest px-3 py-1 border border-foreground/30 text-foreground/80"
+                  className="text-[10px] md:text-xs uppercase tracking-widest px-3 py-1 rounded-full border border-foreground/30 bg-background/40 backdrop-blur-sm text-foreground/90"
                 >
                   {tag}
                 </span>
@@ -61,20 +61,20 @@ const Project = () => {
           {/* Details */}
           <div className="space-y-8">
             <div>
-              <p className="text-label mb-2">Client</p>
-              <p>{project.client}</p>
+              <p className="text-label text-earth-orange font-semibold mb-2">Client</p>
+              <p className="font-medium text-foreground">{project.client}</p>
             </div>
             <div>
-              <p className="text-label mb-2">Year</p>
-              <p>{project.year}</p>
+              <p className="text-label text-earth-orange font-semibold mb-2">Year</p>
+              <p className="font-mono text-muted-foreground">{project.year}</p>
             </div>
             <div>
-              <p className="text-label mb-2">Categories</p>
+              <p className="text-label text-earth-orange font-semibold mb-2">Categories</p>
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-sm border border-separator px-3 py-1"
+                    className="text-xs border border-separator rounded px-3 py-1 bg-card/60"
                   >
                     {tag}
                   </span>
@@ -85,13 +85,13 @@ const Project = () => {
 
           {/* Description */}
           <div className="md:col-span-2">
-            <p className="text-xl md:text-2xl leading-relaxed text-muted-foreground">
+            <p className="text-lg sm:text-xl md:text-2xl leading-relaxed text-muted-foreground">
               {project.description}
             </p>
 
             {project.implementation && (
               <div className="mt-10 pt-8 border-t border-separator/60 space-y-4">
-                <span className="text-label text-muted-foreground block">
+                <span className="text-label text-earth-orange font-semibold block">
                   Technical Audio &amp; Implementation
                 </span>
                 <h3 className="font-display text-2xl font-bold text-foreground">
@@ -104,7 +104,7 @@ const Project = () => {
                   {project.implementation.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-[10px] sm:text-xs font-mono uppercase tracking-widest px-3 py-1 border border-separator/80 bg-card/40 text-foreground/90"
+                      className="text-[10px] sm:text-xs font-mono uppercase tracking-widest px-3 py-1 rounded border border-earth-orange/30 bg-earth-orange/5 text-foreground/90"
                     >
                       {tag}
                     </span>
@@ -118,10 +118,10 @@ const Project = () => {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 mt-10 border border-separator px-5 py-3 text-sm uppercase tracking-widest hover-highlight group"
+                className="inline-flex items-center gap-2 mt-10 rounded-full border border-earth-orange/40 bg-earth-orange/10 px-6 py-3 text-xs uppercase tracking-widest text-earth-orange hover:bg-earth-orange hover:text-white transition-all duration-200 group shadow-sm font-semibold"
               >
                 <span>{project.linkLabel ?? "View project"}</span>
-                <ArrowUpRight size={18} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                <ArrowUpRight size={16} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </a>
             )}
           </div>
