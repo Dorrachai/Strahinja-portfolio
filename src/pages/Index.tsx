@@ -3,7 +3,8 @@ import { Layout } from "@/components/Layout";
 import { site } from "@/data/site";
 import { projects } from "@/data/projects";
 import { getVideoEmbedUrl } from "@/lib/audioEmbed";
-import { ArrowUpRight, Volume2, Sliders, Layers, Play } from "lucide-react";
+import { ContactForm } from "@/components/ContactForm";
+import { ArrowUpRight, Sliders, Layers } from "lucide-react";
 
 const Index = () => {
   const featuredProject = projects[0]; // Bony Tony: The Revenge
@@ -88,64 +89,13 @@ const Index = () => {
         </section>
 
         {/* ========================================================= */}
-        {/* 4. "HELLO —" SPOTLIGHT INTRO CARD                         */}
-        {/* ========================================================= */}
-        <section className="container-wide">
-          <div className="relative rounded-3xl border border-separator bg-gradient-to-br from-card/90 via-card/60 to-secondary/30 p-6 sm:p-10 md:p-14 overflow-hidden shadow-lg">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center relative z-10">
-              {/* Left: Avatar / Audio Icon badge */}
-              <div className="md:col-span-3 flex justify-center md:justify-start">
-                <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full border border-earth-orange/30 bg-background/80 flex items-center justify-center p-2 shadow-inner">
-                  <div className="w-full h-full rounded-full bg-card flex flex-col items-center justify-center text-foreground gap-1 border border-border">
-                    <Volume2 size={30} className="text-earth-orange" />
-                    <span className="text-[9px] uppercase tracking-widest font-mono text-muted-foreground">AUDIO</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right: Intro copy & buttons */}
-              <div className="md:col-span-9 space-y-6 text-center md:text-left">
-                <div>
-                  <span className="text-label text-earth-orange mb-2 block font-semibold">Hello —</span>
-                  <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground">
-                    Strahinja Velickovic, <span className="font-serif italic font-normal text-muted-foreground">Sound Designer.</span>
-                  </h3>
-                </div>
-
-                <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-2xl mx-auto md:mx-0">
-                  Based in Stockholm. I design audio for games and interactive media —
-                  shaping the textures, transitions and audio systems that pull players in.
-                  Curious to hear what you're building? Let's talk.
-                </p>
-
-                <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2">
-                  <Link
-                    to="/about"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-earth-orange text-white font-semibold text-xs uppercase tracking-wider hover:bg-earth-orange-light shadow-md hover:shadow-lg transition-all"
-                  >
-                    <span>About me</span>
-                  </Link>
-
-                  <Link
-                    to="/work"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full border border-separator text-foreground font-medium text-xs uppercase tracking-wider hover:bg-secondary hover:border-earth-orange/40 transition-all"
-                  >
-                    <span>See works</span>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ========================================================= */}
-        {/* 5. SELECTED WORK / COLLABORATIONS SECTION                 */}
+        {/* 4. SELECTED WORK / COLLABORATIONS SECTION                 */}
         {/* ========================================================= */}
         <section className="container-wide space-y-8">
           {/* Section Header */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-separator pb-6">
             <div>
-              <span className="text-label text-earth-orange font-semibold block mb-2">02 — Selected work</span>
+              <span className="text-label text-earth-orange font-semibold block mb-2">01 — Selected work</span>
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground">
                 Recent collaborations.
               </h2>
@@ -235,6 +185,75 @@ const Index = () => {
                 </p>
               </div>
             </Link>
+          </div>
+        </section>
+
+        {/* ========================================================= */}
+        {/* 5. "HELLO —" GET IN TOUCH & PROJECT INQUIRY FORM          */}
+        {/* ========================================================= */}
+        <section className="container-wide">
+          <div className="relative rounded-3xl border border-separator bg-gradient-to-br from-card/95 via-card/75 to-secondary/30 p-6 sm:p-10 md:p-14 overflow-hidden shadow-2xl">
+            {/* Subtle brand ambient accents */}
+            <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-[#519CAB]/10 blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-[#FFC64F]/10 blur-3xl pointer-events-none" />
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 relative z-10 items-start">
+              {/* Left Column: Hello intro, bio, and availability */}
+              <div className="lg:col-span-5 space-y-6">
+                <div>
+                  <span className="text-label text-earth-orange mb-2 block font-semibold">02 — Say hello</span>
+                  <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+                    Let's make <br />
+                    <span className="font-serif italic font-normal text-muted-foreground">some noise.</span>
+                  </h3>
+                </div>
+
+                <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+                  Based in Stockholm. I design audio for games and interactive media —
+                  shaping the textures, transitions and audio systems that pull players in.
+                  Curious to hear what you're building? Let's talk.
+                </p>
+
+                <div className="space-y-3 pt-4 border-t border-separator/80">
+                  <div className="flex items-center gap-3 text-sm text-foreground/90">
+                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse flex-shrink-0" />
+                    <span className="font-medium text-xs sm:text-sm">{site.availability}</span>
+                  </div>
+
+                  <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground">
+                    <span className="text-earth-orange font-mono">📍</span>
+                    <span>{site.location.split("•")[0].trim()}</span>
+                  </div>
+
+                  <div className="flex items-center gap-4 pt-2">
+                    <Link
+                      to="/about"
+                      className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-earth-orange hover:underline"
+                    >
+                      <span>About Strahinja</span>
+                      <ArrowUpRight size={13} />
+                    </Link>
+
+                    {site.contactLinks[0] && (
+                      <a
+                        href={site.contactLinks[0].url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-muted-foreground hover:text-earth-orange transition-colors"
+                      >
+                        <span>LinkedIn</span>
+                        <ArrowUpRight size={13} />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: Interactive Form */}
+              <div className="lg:col-span-7">
+                <ContactForm />
+              </div>
+            </div>
           </div>
         </section>
       </div>

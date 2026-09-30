@@ -133,4 +133,7 @@ export const site = {
 
   // Availability line on the Contact page.
   availability: "Open for new game projects",
+
+  // Direct contact email used for inquiry forms and mail links.
+  email: "strahinjavelickovic00@gmail.com",
 };
