@@ -61,18 +61,11 @@ export function Footer({ variant = "default" }: FooterProps) {
           </div>
         </div>
 
-        {/* Large Scrolling Text */}
-        <div className="border-t border-separator overflow-hidden py-6 md:py-8">
-          <div className="flex whitespace-nowrap animate-marquee">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <span
-                key={i}
-                className="font-display text-6xl md:text-8xl lg:text-[10rem] font-bold text-foreground mx-12"
-              >
-                {site.handle}
-              </span>
-            ))}
-          </div>
+        {/* Bottom Handle Display */}
+        <div className="border-t border-separator/60 py-8 md:py-12 text-center overflow-hidden">
+          <p className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight text-foreground/15 uppercase select-none">
+            {site.handle}
+          </p>
         </div>
       </footer>
     );

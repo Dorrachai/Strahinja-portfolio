@@ -62,7 +62,7 @@ export function ProjectListItem({
 
           {/* Hover Image */}
           <div 
-            className={`fixed right-8 lg:right-32 top-1/2 -translate-y-1/2 w-64 lg:w-80 aspect-[3/4] pointer-events-none z-40 transition-all duration-300 ${
+            className={`fixed right-8 lg:right-32 top-1/2 -translate-y-1/2 w-64 lg:w-80 aspect-[3/4] pointer-events-none z-40 transition-all duration-200 will-change-[transform,opacity] ${
               isHovered 
                 ? "opacity-100 translate-x-0" 
                 : "opacity-0 translate-x-4"
@@ -71,7 +71,8 @@ export function ProjectListItem({
             <img
               src={image}
               alt={title}
-              className="w-full h-full object-cover"
+              loading="lazy"
+              className="w-full h-full object-cover rounded-lg shadow-2xl border border-separator"
             />
           </div>
         </div>

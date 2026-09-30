@@ -1,10 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { ProjectListItem } from "@/components/ProjectListItem";
 import { projects } from "@/data/projects";
 
 const Work = () => {
-  const [activeTab, setActiveTab] = useState<"projects" | "implementation">("projects");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const tabParam = searchParams.get("tab");
+  const [activeTab, setActiveTab] = useState<"projects" | "implementation">(
+    tabParam === "implementation" ? "implementation" : "projects"
+  );
+
+  useEffect(() => {
+    if (tabParam === "implementation") {
+      setActiveTab("implementation");
+    } else if (tabParam === "projects") {
+      setActiveTab("projects");
+    }
+  }, [tabParam]);
+
+  const handleTabChange = (tab: "projects" | "implementation") => {
+    setActiveTab(tab);
+    setSearchParams(tab === "implementation" ? { tab: "implementation" } : {});
+  };
 
   return (
     <Layout showEchelonFooter>
@@ -13,7 +31,7 @@ const Work = () => {
         <div className="flex items-baseline gap-4 sm:gap-6 md:gap-8 flex-wrap">
           <button
             type="button"
-            onClick={() => setActiveTab("projects")}
+            onClick={() => handleTabChange("projects")}
             className={`font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight transition-all duration-300 text-left select-none ${
               activeTab === "projects"
                 ? "text-foreground opacity-100"
@@ -29,7 +47,7 @@ const Work = () => {
 
           <button
             type="button"
-            onClick={() => setActiveTab("implementation")}
+            onClick={() => handleTabChange("implementation")}
             className={`font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight transition-all duration-300 text-left select-none ${
               activeTab === "implementation"
                 ? "text-foreground opacity-100"

@@ -183,6 +183,7 @@
 
   .animate-marquee {
     animation: marquee 30s linear infinite;
+    will-change: transform;
   }
 
   @keyframes fade-in {

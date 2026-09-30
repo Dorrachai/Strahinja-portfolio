@@ -6,6 +6,7 @@ import { site } from "@/data/site";
 
 const navItems = [
   { label: "Projects", path: "/work" },
+  { label: "Implementation", path: "/work?tab=implementation" },
   { label: "About", path: "/about" },
   { label: "Contact", path: "/contact" },
 ];
@@ -16,7 +17,6 @@ interface HeaderProps {
 
 export function Header({ revealMode = false }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(!revealMode);
   const [mounted, setMounted] = useState(false);
   const location = useLocation();
   const { theme, setTheme } = useTheme();
@@ -25,32 +25,12 @@ export function Header({ revealMode = false }: HeaderProps) {
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-    if (!revealMode) {
-      setIsVisible(true);
-      return;
-    }
-
-    const handleMouseMove = (e: MouseEvent) => {
-      setIsVisible(e.clientY < 100);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [revealMode]);
-
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isVisible 
-          ? 'opacity-100 translate-y-0' 
-          : 'opacity-0 -translate-y-full pointer-events-none'
-      }`}
-    >
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-separator/40">
       <div className="container-wide relative">
         <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
@@ -62,20 +42,30 @@ export function Header({ revealMode = false }: HeaderProps) {
           </Link>
 
           {/* Desktop Navigation - Centered */}
-          <nav className="hidden md:flex items-center gap-10 absolute left-1/2 -translate-x-1/2">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`text-xs font-sans tracking-widest uppercase transition-all duration-300 hover:tracking-[0.2em] ${
-                  location.pathname === item.path
-                    ? "text-foreground"
-                    : "text-foreground/80 hover:text-foreground"
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
+          <nav className="hidden md:flex items-center gap-8 lg:gap-10 absolute left-1/2 -translate-x-1/2">
+            {navItems.map((item) => {
+              const currentFull = location.pathname + location.search;
+              const isActive =
+                item.path === "/work?tab=implementation"
+                  ? currentFull.includes("implementation")
+                  : item.path === "/work"
+                  ? location.pathname === "/work" && !currentFull.includes("implementation")
+                  : location.pathname === item.path;
+
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`text-xs font-sans tracking-widest uppercase transition-all duration-300 hover:tracking-[0.2em] ${
+                    isActive
+                      ? "text-foreground font-semibold"
+                      : "text-foreground/70 hover:text-foreground"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Right - CTA Button & Theme Toggle */}

@@ -43,92 +43,41 @@ const Index = () => {
         {/* ========================================================= */}
         {/* 2. LARGE CENTERED SHOWREEL / VIDEO PLAYER                 */}
         {/* ========================================================= */}
-        <section className="container-wide animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-          <div className="max-w-5xl mx-auto space-y-4">
+        <section className="container-wide animate-fade-in-up">
+          <div className="max-w-5xl mx-auto space-y-3">
             {/* Reel Header / Meta */}
             <div className="flex items-center justify-between text-label px-1">
               <span className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
                 Showreel · 2026
               </span>
               <span className="text-[11px] font-mono text-muted-foreground uppercase tracking-widest hidden sm:inline">
-                Sound Design &amp; Implementation
+                Sound Design &amp; Implementation Reel
               </span>
             </div>
 
-            {/* Video Player Frame */}
-            <div className="relative aspect-video w-full rounded-2xl md:rounded-3xl overflow-hidden border border-separator bg-card/70 shadow-2xl backdrop-blur-md group">
-              {videoEmbedUrl ? (
-                <iframe
-                  src={videoEmbedUrl}
-                  title="Strahinja Velickovic — Showreel"
-                  className="w-full h-full border-0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                />
-              ) : (
-                <Link
-                  to={`/work/${featuredProject.id}`}
-                  className="relative block w-full h-full overflow-hidden"
-                >
-                  {/* Background Image */}
-                  <img
-                    src={featuredProject.coverImage}
-                    alt={featuredProject.title}
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
-                  {/* Vignette Gradients */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-background/20" />
-
-                  {/* Centered Play Button */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="relative flex items-center justify-center">
-                      <span className="absolute -inset-4 rounded-full bg-foreground/10 animate-ping opacity-60"></span>
-                      <div className="relative h-20 w-20 sm:h-24 sm:w-24 rounded-full bg-foreground text-background flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:bg-accent group-hover:text-accent-foreground">
-                        <Play size={32} className="fill-current ml-1" />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Bottom Overlay Meta */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 flex items-end justify-between gap-4">
-                    <div className="space-y-2">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="inline-block px-3 py-1 rounded-full text-[10px] uppercase tracking-widest bg-foreground/20 backdrop-blur-md border border-foreground/30 text-foreground font-mono">
-                          Featured Production
-                        </span>
-                        <span className="text-xs font-mono text-muted-foreground hidden sm:inline">
-                          {featuredProject.tags.join(" · ")}
-                        </span>
-                      </div>
-                      <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground group-hover:text-accent transition-colors">
-                        {featuredProject.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-muted-foreground line-clamp-1 max-w-xl">
-                        {featuredProject.description}
-                      </p>
-                    </div>
-
-                    <div className="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-full border border-foreground/20 bg-background/60 backdrop-blur-md text-foreground font-medium text-xs uppercase tracking-wider group-hover:bg-foreground group-hover:text-background transition-all shrink-0">
-                      <span>Watch Reel</span>
-                      <ArrowUpRight size={14} />
-                    </div>
-                  </div>
-                </Link>
-              )}
+            {/* Centered Large Video Frame (16:9) */}
+            <div className="relative aspect-video w-full rounded-2xl md:rounded-3xl overflow-hidden border border-separator bg-card shadow-2xl">
+              <iframe
+                src={videoEmbedUrl || "https://www.youtube.com/embed/h7Bbli-7d1A"}
+                title="Strahinja Velickovic — Sound Design Showreel"
+                className="w-full h-full border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
             </div>
           </div>
         </section>
 
         {/* ========================================================= */}
-        {/* 3. INFINITE AUDIO TECH MARQUEE                            */}
+        {/* 3. AUDIO TECH MARQUEE (Optimized 2-track)                 */}
         {/* ========================================================= */}
-        <section className="border-y border-separator py-6 overflow-hidden relative select-none bg-card/20">
+        <section className="border-y border-separator py-5 overflow-hidden relative select-none bg-card/20">
           <div className="flex whitespace-nowrap animate-marquee">
-            {Array.from({ length: 4 }).map((_, loopIdx) => (
+            {Array.from({ length: 2 }).map((_, loopIdx) => (
               <div key={loopIdx} className="flex items-center gap-8 mx-4">
                 {marqueeItems.map((item, idx) => (
-                  <span key={idx} className="flex items-center gap-8 font-display text-lg sm:text-xl font-semibold tracking-wide text-foreground/80 uppercase">
+                  <span key={idx} className="flex items-center gap-8 font-display text-base sm:text-lg font-semibold tracking-wide text-foreground/80 uppercase">
                     <span>{item}</span>
                     <span className="text-muted-foreground/30 text-xs">●</span>
                   </span>
@@ -143,15 +92,10 @@ const Index = () => {
         {/* ========================================================= */}
         <section className="container-wide">
           <div className="relative rounded-3xl border border-separator bg-gradient-to-br from-card/80 to-secondary/40 p-8 sm:p-12 md:p-16 overflow-hidden shadow-xl">
-            {/* Ambient background glow */}
-            <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-accent/5 blur-3xl pointer-events-none" />
-
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center relative z-10">
               {/* Left: Avatar / Audio Icon badge */}
               <div className="md:col-span-3 flex justify-start md:justify-center">
                 <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full border border-separator bg-background flex items-center justify-center p-2 shadow-inner">
-                  {/* Subtle pulsing ring */}
-                  <span className="absolute inset-0 rounded-full border border-foreground/30 animate-ping opacity-25"></span>
                   <div className="w-full h-full rounded-full bg-card flex flex-col items-center justify-center text-foreground gap-1 border border-border">
                     <Volume2 size={32} className="text-foreground/80" />
                     <span className="text-[9px] uppercase tracking-widest font-mono text-muted-foreground">AUDIO</span>
