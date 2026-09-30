@@ -28,11 +28,12 @@ const Work = () => {
     <Layout showEchelonFooter>
       {/* Header with Switchable Tabs */}
       <section className="container-wide pt-12 sm:pt-16 md:pt-24 pb-10 md:pb-16">
-        <div className="flex items-baseline gap-3 sm:gap-6 md:gap-8 flex-wrap">
+        <span className="text-label text-earth-orange font-semibold block mb-2 sm:mb-3">Works</span>
+        <div className="flex items-baseline gap-2 sm:gap-4 md:gap-6 flex-nowrap whitespace-nowrap overflow-x-auto no-scrollbar py-1">
           <button
             type="button"
             onClick={() => handleTabChange("projects")}
-            className={`font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight transition-all duration-300 text-left select-none ${
+            className={`font-display text-xl xs:text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-none transition-all duration-300 text-left select-none shrink-0 ${
               activeTab === "projects"
                 ? "text-foreground opacity-100"
                 : "text-muted-foreground opacity-35 hover:opacity-75 cursor-pointer"
@@ -41,14 +42,14 @@ const Work = () => {
             Projects
           </button>
 
-          <span className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-earth-orange/40 select-none">
+          <span className="font-display text-lg xs:text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-earth-orange/40 select-none shrink-0">
             /
           </span>
 
           <button
             type="button"
             onClick={() => handleTabChange("implementation")}
-            className={`font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight transition-all duration-300 text-left select-none ${
+            className={`font-display text-xl xs:text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-none transition-all duration-300 text-left select-none shrink-0 ${
               activeTab === "implementation"
                 ? "text-foreground opacity-100"
                 : "text-muted-foreground opacity-35 hover:opacity-75 cursor-pointer"

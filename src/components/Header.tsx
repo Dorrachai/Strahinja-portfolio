@@ -5,8 +5,7 @@ import { useTheme } from "next-themes";
 import { site } from "@/data/site";
 
 const navItems = [
-  { label: "Projects", path: "/work" },
-  { label: "Implementation", path: "/work?tab=implementation" },
+  { label: "Works", path: "/work" },
   { label: "About", path: "/about" },
   { label: "Contact", path: "/contact" },
 ];
@@ -89,12 +88,9 @@ export function Header({ revealMode = false }: HeaderProps) {
           {/* Desktop Navigation - Centered */}
           <nav className="hidden md:flex items-center gap-8 lg:gap-10 absolute left-1/2 -translate-x-1/2">
             {navItems.map((item) => {
-              const currentFull = location.pathname + location.search;
               const isActive =
-                item.path === "/work?tab=implementation"
-                  ? currentFull.includes("implementation")
-                  : item.path === "/work"
-                  ? location.pathname === "/work" && !currentFull.includes("implementation")
+                item.path === "/work"
+                  ? location.pathname.startsWith("/work")
                   : location.pathname === item.path;
 
               return (

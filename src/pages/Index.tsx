@@ -130,7 +130,7 @@ const Index = () => {
                     to="/work"
                     className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full border border-separator text-foreground font-medium text-xs uppercase tracking-wider hover:bg-secondary hover:border-earth-orange/40 transition-all"
                   >
-                    <span>See projects</span>
+                    <span>See works</span>
                   </Link>
                 </div>
               </div>
@@ -155,7 +155,7 @@ const Index = () => {
               to="/work"
               className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-foreground hover:text-earth-orange transition-colors self-start sm:self-auto"
             >
-              <span>All projects</span>
+              <span>All works</span>
               <ArrowUpRight size={15} className="text-earth-orange" />
             </Link>
           </div>

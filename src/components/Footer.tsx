@@ -24,12 +24,11 @@ export function Footer({ variant = "default" }: FooterProps) {
               </div>
             </div>
 
-            {/* Gallery */}
+            {/* Gallery / Navigation */}
             <div className="space-y-3">
               <p className="text-label">Navigation</p>
               <div className="text-sm space-y-1">
-                <Link to="/work" className="block text-foreground hover:text-earth-orange transition-colors">Projects</Link>
-                <Link to="/work?tab=implementation" className="block text-foreground hover:text-earth-orange transition-colors">Implementation</Link>
+                <Link to="/work" className="block text-foreground hover:text-earth-orange transition-colors">Works</Link>
                 <Link to="/about" className="block text-foreground hover:text-earth-orange transition-colors">About</Link>
                 <Link to="/contact" className="block text-foreground hover:text-earth-orange transition-colors">Contact</Link>
               </div>
@@ -85,8 +84,7 @@ export function Footer({ variant = "default" }: FooterProps) {
 
           {/* Center */}
           <div className="flex gap-8 text-sm text-muted-foreground">
-            <Link to="/work" className="hover:text-earth-orange transition-colors">Work</Link>
-            <Link to="/work?tab=implementation" className="hover:text-earth-orange transition-colors">Implementation</Link>
+            <Link to="/work" className="hover:text-earth-orange transition-colors">Works</Link>
             <Link to="/about" className="hover:text-earth-orange transition-colors">About</Link>
             <Link to="/contact" className="hover:text-earth-orange transition-colors">Contact</Link>
           </div>
