@@ -53,7 +53,7 @@ export function RubberDuck() {
 
   return (
     <div
-      className="relative w-full h-32 sm:h-36 overflow-hidden bg-gradient-to-b from-secondary/40 via-secondary/70 to-secondary/40 border-y border-separator/60 select-none cursor-pointer group"
+      className="relative w-full h-24 sm:h-28 overflow-hidden bg-gradient-to-b from-secondary/40 via-secondary/70 to-secondary/40 border-y border-separator/60 select-none cursor-pointer group"
       onClick={() => {
         setIsInteracting((prev) => !prev);
         setPhraseIndex((prev) => (prev + 1) % DUCK_PHRASES.length);
@@ -77,7 +77,7 @@ export function RubberDuck() {
           <span className="w-32 h-0.5 bg-[#519CAB]/60 rounded"></span>
         </div>
         {/* Water surface glint */}
-        <div className="absolute bottom-5 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#519CAB]/50 to-transparent"></div>
+        <div className="absolute bottom-4 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#519CAB]/50 to-transparent"></div>
       </div>
 
       {/* Floating Rubber Duck Container (smooth slow horizontal float loop) */}
@@ -90,7 +90,7 @@ export function RubberDuck() {
           >
             {/* Thought / Squeak bubble on interaction or hover */}
             <div
-              className={`absolute -top-10 sm:-top-11 left-1/2 -translate-x-1/2 px-3 py-1 rounded-md text-xs sm:text-sm font-mono tracking-wide bg-[#20373B] text-[#FFC64F] border border-[#FFC64F]/60 shadow-2xl whitespace-nowrap transition-all duration-300 z-10 ${
+              className={`absolute -top-8 sm:-top-9 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded text-[11px] font-mono tracking-wide bg-[#20373B] text-[#FFC64F] border border-[#FFC64F]/60 shadow-xl whitespace-nowrap transition-all duration-300 z-10 ${
                 isInteracting
                   ? "opacity-100 scale-100 -translate-y-1"
                   : "opacity-0 scale-90 pointer-events-none group-hover:opacity-100 group-hover:scale-100"
@@ -101,24 +101,24 @@ export function RubberDuck() {
             </div>
 
             {/* Ripple effects behind the floating duck */}
-            <div className="absolute right-full top-1/2 -translate-y-1/2 mr-2 flex items-center gap-2 opacity-80">
+            <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1.5 flex items-center gap-1.5 opacity-75">
               <span
-                className="w-3 h-1.5 rounded-full bg-[#C3E7F1] animate-ping"
-                style={{ animationDuration: "2.4s" }}
+                className="w-2 h-1 rounded-full bg-[#C3E7F1] animate-ping"
+                style={{ animationDuration: "2s" }}
               ></span>
-              <span className="w-6 h-2 rounded-full bg-[#519CAB]/85"></span>
-              <span className="w-10 h-2.5 rounded-full bg-[#519CAB]/50"></span>
-              <span className="w-4 h-1.5 rounded-full bg-[#C3E7F1]/70"></span>
+              <span className="w-4 h-1.5 rounded-full bg-[#519CAB]/85"></span>
+              <span className="w-6 h-2 rounded-full bg-[#519CAB]/50"></span>
+              <span className="w-3 h-1 rounded-full bg-[#C3E7F1]/70"></span>
             </div>
 
-            {/* Pixel Art Rubber Duck SVG */}
+            {/* Pixel Art Rubber Duck SVG (Compact, cute sizing) */}
             <svg
-              width="144"
-              height="99"
+              width="80"
+              height="55"
               viewBox="0 0 32 22"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="w-28 h-[86px] sm:w-36 sm:h-[110px] drop-shadow-lg select-none transform transition-transform group-hover:scale-105"
+              className="w-16 h-[44px] sm:w-20 sm:h-[55px] drop-shadow-md select-none transform transition-transform group-hover:scale-110"
               style={{
                 shapeRendering: "crispEdges",
                 imageRendering: "pixelated",
@@ -186,9 +186,9 @@ export function RubberDuck() {
             </svg>
 
             {/* Front ripples spreading forward */}
-            <div className="absolute left-full top-1/2 -translate-y-1/2 ml-2 flex items-center gap-1.5 opacity-80">
-              <span className="w-4 h-1 rounded bg-[#519CAB]"></span>
-              <span className="w-2.5 h-1 rounded bg-[#C3E7F1]"></span>
+            <div className="absolute left-full top-1/2 -translate-y-1/2 ml-1.5 flex items-center gap-1 opacity-75">
+              <span className="w-2.5 h-0.5 rounded bg-[#519CAB]"></span>
+              <span className="w-1.5 h-0.5 rounded bg-[#C3E7F1]"></span>
             </div>
           </div>
         </div>
