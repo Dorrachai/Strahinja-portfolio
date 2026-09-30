@@ -17,6 +17,7 @@ interface HeaderProps {
 
 export function Header({ revealMode = false }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [mounted, setMounted] = useState(false);
   const location = useLocation();
   const { theme, setTheme } = useTheme();
@@ -25,12 +26,56 @@ export function Header({ revealMode = false }: HeaderProps) {
     setMounted(true);
   }, []);
 
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Always show when near top of the page
+      if (currentScrollY < 60) {
+        setIsVisible(true);
+        lastScrollY = Math.max(0, currentScrollY);
+        ticking = false;
+        return;
+      }
+
+      // Hide when scrolling down, show when scrolling up
+      if (Math.abs(currentScrollY - lastScrollY) > 8) {
+        if (currentScrollY > lastScrollY) {
+          setIsVisible(false); // scrolling down
+        } else {
+          setIsVisible(true);  // scrolling up
+        }
+        lastScrollY = Math.max(0, currentScrollY);
+      }
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(handleScroll);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-separator/40">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 bg-background/85 backdrop-blur-md border-b border-separator/40 transition-all duration-300 ${
+        isVisible || isMenuOpen
+          ? "translate-y-0 opacity-100"
+          : "-translate-y-full opacity-0 pointer-events-none"
+      }`}
+    >
       <div className="container-wide relative">
         <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
