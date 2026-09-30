@@ -28,6 +28,9 @@ export const site = {
   // Job title, shown under the name in the footer.
   role: "Game Sound Designer",
 
+  // Optional video showreel link (paste YouTube or Vimeo URL here, e.g. https://www.youtube.com/watch?v=...)
+  showreelUrl: "",
+
   // The big scrolling text at the bottom of the footer.
   handle: "@STRAHINJA",
 

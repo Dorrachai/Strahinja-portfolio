@@ -88,6 +88,31 @@ const Project = () => {
             <p className="text-xl md:text-2xl leading-relaxed text-muted-foreground">
               {project.description}
             </p>
+
+            {project.implementation && (
+              <div className="mt-10 pt-8 border-t border-separator/60 space-y-4">
+                <span className="text-label text-muted-foreground block">
+                  Technical Audio &amp; Implementation
+                </span>
+                <h3 className="font-display text-2xl font-bold text-foreground">
+                  {project.implementation.title}
+                </h3>
+                <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
+                  {project.implementation.description}
+                </p>
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {project.implementation.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[10px] sm:text-xs font-mono uppercase tracking-widest px-3 py-1 border border-separator/80 bg-card/40 text-foreground/90"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {project.link && (
               <a
                 href={project.link}

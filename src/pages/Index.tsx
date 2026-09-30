@@ -2,10 +2,12 @@ import { Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { site } from "@/data/site";
 import { projects } from "@/data/projects";
-import { ArrowUpRight, Volume2, Sliders, Layers, Gamepad2 } from "lucide-react";
+import { getVideoEmbedUrl } from "@/lib/audioEmbed";
+import { ArrowUpRight, Volume2, Sliders, Layers, Play } from "lucide-react";
 
 const Index = () => {
   const featuredProject = projects[0]; // Bony Tony: The Revenge
+  const videoEmbedUrl = getVideoEmbedUrl(site.showreelUrl || "");
 
   const marqueeItems = [
     "Wwise",
@@ -23,110 +25,97 @@ const Index = () => {
 
   return (
     <Layout showEchelonFooter>
-      <div className="space-y-24 md:space-y-32 pb-24">
+      <div className="space-y-16 md:space-y-24 pb-24">
         {/* ========================================================= */}
-        {/* 1. TOP NAME DISPLAY                                       */}
+        {/* 1. CENTERED TOP NAME DISPLAY                              */}
         {/* ========================================================= */}
-        <section className="container-wide pt-8 md:pt-14 text-center">
-          {/* Status pill with animated pulsing dot */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-separator bg-card/60 text-[11px] uppercase tracking-widest text-muted-foreground mb-6 animate-fade-in">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            <span>Available for game projects · Stockholm, SE</span>
-          </div>
-
-          {/* Massive Display Title */}
-          <h1 className="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-none uppercase text-foreground animate-fade-in-up">
+        <section className="container-wide pt-10 md:pt-18 text-center animate-fade-in-up">
+          <h1 className="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl tracking-tight leading-none uppercase text-foreground">
             <span>{site.heroNameLines[0] || "STRAHINJA"}</span>
             <span className="mx-3 md:mx-6 text-muted-foreground/40 font-light select-none">·</span>
             <span className="text-foreground/90">{site.heroNameLines[1] || "VELICKOVIC"}</span>
           </h1>
+          <p className="mt-4 md:mt-5 text-xs sm:text-sm md:text-base font-mono uppercase tracking-[0.25em] text-muted-foreground">
+            {site.role || "Game Sound Designer"}
+          </p>
         </section>
 
         {/* ========================================================= */}
-        {/* 2. HERO SPLIT SECTION                                     */}
+        {/* 2. LARGE CENTERED SHOWREEL / VIDEO PLAYER                 */}
         {/* ========================================================= */}
-        <section className="container-wide">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* Left: Text & Actions */}
-            <div className="lg:col-span-7 space-y-8 animate-fade-in-up">
-              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.08] text-foreground">
-                <span className="block">Worldbuilding</span>
-                <span className="block text-foreground/80 font-normal italic font-serif">
-                  through <span className="text-foreground not-italic font-sans font-bold">sound design</span>
-                </span>
-                <span className="block">&amp; implementation.</span>
-              </h2>
-
-              <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed">
-                Sound Designer &amp; Audio Implementer crafting immersive audio worlds,
-                visceral gameplay feedback, and adaptive music systems for games and motion.
-              </p>
-
-              {/* Actions */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <Link
-                  to="/work"
-                  className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-foreground text-background font-semibold text-sm tracking-wide uppercase hover:opacity-90 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-                >
-                  <span>View work</span>
-                  <ArrowUpRight size={16} />
-                </Link>
-
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-separator bg-card/40 text-foreground font-medium text-sm tracking-wide uppercase hover:bg-accent/10 hover:border-foreground/40 transition-all"
-                >
-                  <span>Get in touch</span>
-                </Link>
-              </div>
+        <section className="container-wide animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+          <div className="max-w-5xl mx-auto space-y-4">
+            {/* Reel Header / Meta */}
+            <div className="flex items-center justify-between text-label px-1">
+              <span className="flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                Showreel · 2026
+              </span>
+              <span className="text-[11px] font-mono text-muted-foreground uppercase tracking-widest hidden sm:inline">
+                Sound Design &amp; Implementation
+              </span>
             </div>
 
-            {/* Right: Featured Project Showcase Reel */}
-            <div className="lg:col-span-5 animate-fade-in-up" style={{ animationDelay: "0.15s" }}>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between text-label">
-                  <span className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-foreground"></span>
-                    Featured Production · 2026
-                  </span>
-                  <span className="text-[11px] font-mono text-muted-foreground">{featuredProject.category}</span>
-                </div>
-
-                {/* Showcase Card */}
+            {/* Video Player Frame */}
+            <div className="relative aspect-video w-full rounded-2xl md:rounded-3xl overflow-hidden border border-separator bg-card/70 shadow-2xl backdrop-blur-md group">
+              {videoEmbedUrl ? (
+                <iframe
+                  src={videoEmbedUrl}
+                  title="Strahinja Velickovic — Showreel"
+                  className="w-full h-full border-0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              ) : (
                 <Link
                   to={`/work/${featuredProject.id}`}
-                  className="group relative block aspect-[16/10] sm:aspect-[16/9] rounded-2xl overflow-hidden border border-separator bg-secondary shadow-2xl transition-all duration-500 hover:border-foreground/50 hover:-translate-y-1"
+                  className="relative block w-full h-full overflow-hidden"
                 >
+                  {/* Background Image */}
                   <img
                     src={featuredProject.coverImage}
                     alt={featuredProject.title}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/30 to-transparent" />
+                  {/* Vignette Gradients */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-background/20" />
 
-                  {/* Overlay Meta */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between gap-4">
-                    <div className="space-y-1.5">
-                      <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] uppercase tracking-widest bg-foreground/15 backdrop-blur-md border border-foreground/20 text-foreground font-mono">
-                        {featuredProject.tags.join(" · ")}
-                      </span>
-                      <h3 className="font-display text-xl sm:text-2xl font-bold text-foreground group-hover:text-accent transition-colors">
+                  {/* Centered Play Button */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="relative flex items-center justify-center">
+                      <span className="absolute -inset-4 rounded-full bg-foreground/10 animate-ping opacity-60"></span>
+                      <div className="relative h-20 w-20 sm:h-24 sm:w-24 rounded-full bg-foreground text-background flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:bg-accent group-hover:text-accent-foreground">
+                        <Play size={32} className="fill-current ml-1" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Bottom Overlay Meta */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 flex items-end justify-between gap-4">
+                    <div className="space-y-2">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="inline-block px-3 py-1 rounded-full text-[10px] uppercase tracking-widest bg-foreground/20 backdrop-blur-md border border-foreground/30 text-foreground font-mono">
+                          Featured Production
+                        </span>
+                        <span className="text-xs font-mono text-muted-foreground hidden sm:inline">
+                          {featuredProject.tags.join(" · ")}
+                        </span>
+                      </div>
+                      <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground group-hover:text-accent transition-colors">
                         {featuredProject.title}
                       </h3>
-                      <p className="text-xs text-muted-foreground line-clamp-1 max-w-sm">
+                      <p className="text-xs sm:text-sm text-muted-foreground line-clamp-1 max-w-xl">
                         {featuredProject.description}
                       </p>
                     </div>
 
-                    <div className="h-10 w-10 rounded-full bg-foreground/10 border border-foreground/20 flex items-center justify-center text-foreground group-hover:bg-foreground group-hover:text-background transition-all shrink-0">
-                      <ArrowUpRight size={18} />
+                    <div className="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-full border border-foreground/20 bg-background/60 backdrop-blur-md text-foreground font-medium text-xs uppercase tracking-wider group-hover:bg-foreground group-hover:text-background transition-all shrink-0">
+                      <span>Watch Reel</span>
+                      <ArrowUpRight size={14} />
                     </div>
                   </div>
                 </Link>
-              </div>
+              )}
             </div>
           </div>
         </section>

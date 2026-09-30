@@ -35,6 +35,15 @@ export interface Project {
   audioDemos?: AudioDemo[]; // optional: embedded sound players, see below
   coverImage: string; // main image (from src/assets)
   images: string[]; // picture gallery, one image per line
+
+  // Implementation mode alternative titles and metadata:
+  implementation?: {
+    title: string;
+    category: string;
+    tags: string[];
+    client?: string;
+    description?: string;
+  };
 }
 
 // ---------------------------------------------------------------------
@@ -63,13 +72,60 @@ export const projects: Project[] = [
       "Game audio for Bony Tony: The Revenge — a 2.5D action-platformer about blasting your way to the top of a skeleton-filled casino to take revenge on your boss. Music, weapons, ambiences and feedback, created from scratch in a custom-built engine during an 8-week student production, later polished for Swedish Game Awards.",
     link: "https://eaxcy.itch.io/bony-tony",
     linkLabel: "Play on itch.io",
-    // Add sound demos for this project like this (then remove the //):
-    // audioDemos: [
-    //   { title: "Main Theme", url: "https://soundcloud.com/your-link" },
-    //   { title: "Casino Ambience", url: "https://youtu.be/your-link" },
-    // ],
     coverImage: bonyTony1,
     images: [bonyTony1, bonyTony2, bonyTony3, bonyTony4, bonyTony5, bonyTony6],
+    implementation: {
+      title: "Bony Tony: Custom C++ Audio Architecture",
+      category: "Audio Implementation",
+      tags: ["CUSTOM C++ ENGINE", "EVENT HOOKS", "STATE SWITCHES", "PROFILING"],
+      client: "Custom Engine Audio Systems",
+      description:
+        "Technical audio integration in a bespoke C++ engine for Bony Tony. Engineered event bus triggers, dynamic RTPC parameters, weapon acoustics, surface-dependent Foley matrix, and real-time voice priority limiting under tight memory budgets.",
+    },
+  },
+  {
+    id: "foley-sfx-showcase",
+    title: "Tactile Foley & Weapon SFX",
+    category: "Sound Design",
+    tags: ["FOLEY RECORDING", "WEAPON SFX", "AUDIO CLEANUP"],
+    year: "2026",
+    client: "Sound Design & Field Recording",
+    description:
+      "Original field recordings, mechanical Foley, and synthesized impact layers designed for high-impact game feel. Recorded with custom shotgun and contact microphones, cleaned and batch-rendered via REAPER.",
+    link: "https://eaxcy.itch.io/bony-tony",
+    linkLabel: "View Details",
+    coverImage: bonyTony3,
+    images: [bonyTony3, bonyTony4],
+    implementation: {
+      title: "Foley & Weapon SFX: Modular Surface Matrix",
+      category: "Audio Implementation",
+      tags: ["WWISE", "RAYCAST SURFACE DETECT", "OCCLUSION", "UCS NAMING"],
+      client: "Wwise / Engine Integration",
+      description:
+        "Modular weapon sound design integrated into Wwise. Implemented multi-position raycast occlusion, physical surface switch containers, and automated UCS asset naming pipelines for programmer handoffs.",
+    },
+  },
+  {
+    id: "adaptive-music-systems",
+    title: "Interactive Combat & Ambient Scoring",
+    category: "Music & Audio",
+    tags: ["ADAPTIVE MUSIC", "COMPOSITION", "MULTI-TRACK STEMS"],
+    year: "2026",
+    client: "Interactive Composition",
+    description:
+      "Dynamic interactive music composition featuring seamless horizontal re-sequencing and vertical stem layering that responds organically to player health, enemy proximity, and combat intensity.",
+    link: "https://eaxcy.itch.io/bony-tony",
+    linkLabel: "View Details",
+    coverImage: bonyTony5,
+    images: [bonyTony5, bonyTony6],
+    implementation: {
+      title: "Adaptive Music: FMOD Dynamic State Transitions",
+      category: "Audio Implementation",
+      tags: ["FMOD STUDIO", "MULTI-TRACK STEMS", "INTENSITY RTPCS", "DYNAMIC DUCKING"],
+      client: "FMOD Studio Interactive Systems",
+      description:
+        "Interactive music system built in FMOD Studio. Parameter-driven crossfades and quantized transitions between ambient, tension, and high-intensity boss fight states with automated sidechain ducking.",
+    },
   },
 
   // ===================================================================
