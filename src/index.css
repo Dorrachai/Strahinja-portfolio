@@ -232,30 +232,30 @@
   }
 
   .animate-otter-swim {
-    animation: otter-swim 22s linear infinite;
+    animation: otter-swim 48s linear infinite;
     will-change: transform;
   }
 
   .animate-otter-bob {
-    animation: otter-bob 2.4s ease-in-out infinite;
+    animation: otter-bob 3.6s ease-in-out infinite;
     will-change: transform;
   }
 
   @keyframes otter-swim {
     0% {
-      transform: translateX(-120px);
+      transform: translateX(-240px);
     }
     100% {
-      transform: translateX(calc(100vw + 120px));
+      transform: translateX(calc(100vw + 240px));
     }
   }
 
   @keyframes otter-bob {
     0%, 100% {
-      transform: translateY(-2px) rotate(1deg);
+      transform: translateY(-3px) rotate(1deg);
     }
     50% {
-      transform: translateY(3px) rotate(-1.5deg);
+      transform: translateY(4px) rotate(-1.5deg);
     }
   }
 }

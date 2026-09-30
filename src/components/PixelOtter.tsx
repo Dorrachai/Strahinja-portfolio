@@ -21,7 +21,7 @@ export function PixelOtter() {
 
   return (
     <div 
-      className="relative w-full h-24 sm:h-28 overflow-hidden bg-gradient-to-b from-secondary/40 via-secondary/70 to-secondary/40 border-y border-separator/60 select-none cursor-pointer group"
+      className="relative w-full h-32 sm:h-36 overflow-hidden bg-gradient-to-b from-secondary/40 via-secondary/70 to-secondary/40 border-y border-separator/60 select-none cursor-pointer group"
       onClick={() => {
         setIsInteracting((prev) => !prev);
         setPhraseIndex((prev) => (prev + 1) % OTTER_PHRASES.length);
@@ -31,20 +31,20 @@ export function PixelOtter() {
     >
       {/* Background Pixel Water Stream & Wave Highlights */}
       <div className="absolute inset-0 opacity-40 pointer-events-none">
-        {/* Animated wave layer 1 */}
-        <div className="absolute inset-0 flex items-center justify-around animate-pulse" style={{ animationDuration: "3s" }}>
-          <span className="w-12 h-0.5 bg-[#519CAB]/70 rounded"></span>
-          <span className="w-20 h-0.5 bg-[#C3E7F1]/50 rounded"></span>
-          <span className="w-8 h-0.5 bg-[#519CAB]/60 rounded"></span>
+        {/* Animated wave layer */}
+        <div className="absolute inset-0 flex items-center justify-around animate-pulse" style={{ animationDuration: "4s" }}>
           <span className="w-16 h-0.5 bg-[#519CAB]/70 rounded"></span>
-          <span className="w-10 h-0.5 bg-[#C3E7F1]/40 rounded"></span>
-          <span className="w-24 h-0.5 bg-[#519CAB]/60 rounded"></span>
+          <span className="w-28 h-0.5 bg-[#C3E7F1]/50 rounded"></span>
+          <span className="w-14 h-0.5 bg-[#519CAB]/60 rounded"></span>
+          <span className="w-24 h-0.5 bg-[#519CAB]/70 rounded"></span>
+          <span className="w-16 h-0.5 bg-[#C3E7F1]/40 rounded"></span>
+          <span className="w-32 h-0.5 bg-[#519CAB]/60 rounded"></span>
         </div>
         {/* Water surface glint */}
-        <div className="absolute bottom-4 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#519CAB]/50 to-transparent"></div>
+        <div className="absolute bottom-5 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#519CAB]/50 to-transparent"></div>
       </div>
 
-      {/* Swimming Otter Container (smooth horizontal swim loop) */}
+      {/* Swimming Otter Container (smooth slow horizontal swim loop) */}
       <div className="absolute top-1/2 -translate-y-1/2 w-full pointer-events-none">
         <div className="animate-otter-swim flex items-center will-change-transform">
           {/* Bobbing and tilted otter wrapper */}
@@ -54,28 +54,30 @@ export function PixelOtter() {
           >
             {/* Thought / Music bubble on interaction or hover */}
             <div 
-              className={`absolute -top-7 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded text-[10px] font-mono tracking-wider bg-[#20373B] text-[#FFC64F] border border-[#FFC64F]/50 shadow-xl whitespace-nowrap transition-all duration-300 ${
+              className={`absolute -top-10 sm:-top-11 left-1/2 -translate-x-1/2 px-3 py-1 rounded-md text-xs sm:text-sm font-mono tracking-wide bg-[#20373B] text-[#FFC64F] border border-[#FFC64F]/60 shadow-2xl whitespace-nowrap transition-all duration-300 z-10 ${
                 isInteracting ? "opacity-100 scale-100 -translate-y-1" : "opacity-0 scale-90 pointer-events-none group-hover:opacity-100 group-hover:scale-100"
               }`}
             >
               {OTTER_PHRASES[phraseIndex]}
+              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-[#20373B] border-r border-b border-[#FFC64F]/60"></div>
             </div>
 
             {/* Ripple effects behind the swimming otter */}
-            <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 flex items-center gap-1.5 opacity-70">
-              <span className="w-2 h-1 rounded-full bg-[#C3E7F1] animate-ping" style={{ animationDuration: "1.8s" }}></span>
-              <span className="w-3 h-1 rounded-full bg-[#519CAB]/80"></span>
-              <span className="w-5 h-1 rounded-full bg-[#519CAB]/50"></span>
+            <div className="absolute right-full top-1/2 -translate-y-1/2 mr-2 flex items-center gap-2 opacity-80">
+              <span className="w-3 h-1.5 rounded-full bg-[#C3E7F1] animate-ping" style={{ animationDuration: "2.4s" }}></span>
+              <span className="w-6 h-2 rounded-full bg-[#519CAB]/85"></span>
+              <span className="w-10 h-2.5 rounded-full bg-[#519CAB]/50"></span>
+              <span className="w-4 h-1.5 rounded-full bg-[#C3E7F1]/70"></span>
             </div>
 
-            {/* Pixel Art Otter SVG */}
+            {/* Pixel Art Otter SVG (Enlarged for clear viewing) */}
             <svg
-              width="64"
-              height="36"
+              width="144"
+              height="81"
               viewBox="0 0 32 18"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="drop-shadow-md select-none transform transition-transform group-hover:scale-110"
+              className="w-28 h-[63px] sm:w-36 sm:h-[81px] drop-shadow-lg select-none transform transition-transform group-hover:scale-105"
               style={{ shapeRendering: "crispEdges", imageRendering: "pixelated" }}
             >
               {/* --- Tail (Left) --- */}
@@ -140,9 +142,9 @@ export function PixelOtter() {
             </svg>
 
             {/* Front ripples spreading forward */}
-            <div className="absolute left-full top-1/2 -translate-y-1/2 ml-1 flex items-center gap-1 opacity-80">
-              <span className="w-2 h-0.5 rounded bg-[#519CAB]"></span>
-              <span className="w-1 h-0.5 rounded bg-[#C3E7F1]"></span>
+            <div className="absolute left-full top-1/2 -translate-y-1/2 ml-2 flex items-center gap-1.5 opacity-80">
+              <span className="w-4 h-1 rounded bg-[#519CAB]"></span>
+              <span className="w-2.5 h-1 rounded bg-[#C3E7F1]"></span>
             </div>
           </div>
         </div>
