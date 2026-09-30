@@ -53,7 +53,7 @@ export function RubberDuck() {
 
   return (
     <div
-      className="relative w-full h-24 sm:h-28 overflow-hidden bg-gradient-to-b from-secondary/40 via-secondary/70 to-secondary/40 border-y border-separator/60 select-none cursor-pointer group"
+      className="relative w-full h-28 sm:h-32 overflow-hidden bg-gradient-to-b from-secondary/40 via-secondary/70 to-secondary/40 border-y border-separator/60 select-none cursor-pointer group"
       onClick={() => {
         setIsInteracting((prev) => !prev);
         setPhraseIndex((prev) => (prev + 1) % DUCK_PHRASES.length);
@@ -77,11 +77,11 @@ export function RubberDuck() {
           <span className="w-32 h-0.5 bg-[#519CAB]/60 rounded"></span>
         </div>
         {/* Water surface glint */}
-        <div className="absolute bottom-4 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#519CAB]/50 to-transparent"></div>
+        <div className="absolute bottom-4 sm:bottom-5 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#519CAB]/50 to-transparent"></div>
       </div>
 
-      {/* Floating Rubber Duck Container (smooth slow horizontal float loop) */}
-      <div className="absolute top-1/2 -translate-y-1/2 w-full pointer-events-none">
+      {/* Floating Rubber Duck Container (positioned down with ample headroom for speech bubble) */}
+      <div className="absolute bottom-3 sm:bottom-4 w-full pointer-events-none">
         <div className="animate-otter-swim flex items-center will-change-transform">
           {/* Bobbing and tilted duck wrapper */}
           <div
@@ -90,7 +90,7 @@ export function RubberDuck() {
           >
             {/* Thought / Squeak bubble on interaction or hover */}
             <div
-              className={`absolute -top-8 sm:-top-9 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded text-[11px] font-mono tracking-wide bg-[#20373B] text-[#FFC64F] border border-[#FFC64F]/60 shadow-xl whitespace-nowrap transition-all duration-300 z-10 ${
+              className={`absolute -top-7 sm:-top-8 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded text-[11px] font-mono tracking-wide bg-[#20373B] text-[#FFC64F] border border-[#FFC64F]/60 shadow-xl whitespace-nowrap transition-all duration-300 z-20 ${
                 isInteracting
                   ? "opacity-100 scale-100 -translate-y-1"
                   : "opacity-0 scale-90 pointer-events-none group-hover:opacity-100 group-hover:scale-100"
