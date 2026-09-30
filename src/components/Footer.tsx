@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { site } from "@/data/site";
-import { PixelOtter } from "@/components/PixelOtter";
+import { RubberDuck } from "@/components/RubberDuck";
 
 interface FooterProps {
   variant?: "default" | "echelon";
@@ -63,8 +63,8 @@ export function Footer({ variant = "default" }: FooterProps) {
           </div>
         </div>
 
-        {/* Swimming Pixel Art Otter Stream replacing rolling handle text */}
-        <PixelOtter />
+        {/* Floating Pixel Art Rubber Duck Bath Stream */}
+        <RubberDuck />
       </footer>
     );
   }
@@ -96,7 +96,7 @@ export function Footer({ variant = "default" }: FooterProps) {
           </div>
         </div>
       </div>
-      <PixelOtter />
+      <RubberDuck />
     </footer>
   );
 }
