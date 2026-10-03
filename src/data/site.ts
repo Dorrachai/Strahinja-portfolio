@@ -232,4 +232,13 @@ export const site = {
 
   // Direct contact email used for inquiry forms and mail links.
   email: "strahinja.velickovic018@gmail.com",
+
+  // -------------------------------------------------------------------
+  //  FORM-TO-EMAIL SERVICE (Free background email delivery)
+  //  To receive emails directly in your inbox without opening a mail client,
+  //  sign up for free at https://formspree.io/ or https://web3forms.com/
+  //  and paste your form endpoint URL here (e.g. "https://formspree.io/f/mqkvygop").
+  //  If left empty "", the form gracefully prepares a pre-filled email draft.
+  // -------------------------------------------------------------------
+  formEndpoint: "",
 };

@@ -8,14 +8,44 @@ export function ContactForm() {
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [sentDirectly, setSentDirectly] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !email.trim() || !message.trim()) return;
 
     setIsSubmitting(true);
 
+    // If a backend endpoint is configured (e.g. Formspree or Web3Forms), send directly in background
+    if (site.formEndpoint && site.formEndpoint.trim() !== "") {
+      try {
+        const response = await fetch(site.formEndpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            message,
+            _subject: `[Game Audio Inquiry] ${name}`,
+          }),
+        });
+
+        if (response.ok) {
+          setIsSubmitting(false);
+          setSentDirectly(true);
+          setIsSubmitted(true);
+          return;
+        }
+      } catch (err) {
+        console.warn("Direct form submission failed, falling back to mail client:", err);
+      }
+    }
+
+    // Default mailto fallback
     const targetEmail = site.email || "strahinja.velickovic018@gmail.com";
     const subject = encodeURIComponent(`[Game Audio Inquiry] ${name}`);
     const body = encodeURIComponent(
@@ -28,6 +58,7 @@ export function ContactForm() {
     setTimeout(() => {
       window.location.href = mailtoUrl;
       setIsSubmitting(false);
+      setSentDirectly(false);
       setIsSubmitted(true);
     }, 400);
   };
@@ -44,6 +75,7 @@ export function ContactForm() {
     setEmail("");
     setMessage("");
     setIsSubmitted(false);
+    setSentDirectly(false);
   };
 
   if (isSubmitted) {
@@ -58,8 +90,19 @@ export function ContactForm() {
             Thank you, {name}!
           </h4>
           <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
-            Your message draft has been prepared for <span className="text-foreground font-medium">{site.email || "strahinja.velickovic018@gmail.com"}</span>.
-            If your email app didn't open automatically, you can copy the text below.
+            {sentDirectly ? (
+              <>
+                Your message has been delivered directly to{" "}
+                <span className="text-foreground font-medium">{site.email || "strahinja.velickovic018@gmail.com"}</span>.
+                I will get back to you soon!
+              </>
+            ) : (
+              <>
+                Your message draft has been prepared for{" "}
+                <span className="text-foreground font-medium">{site.email || "strahinja.velickovic018@gmail.com"}</span>.
+                If your email app didn't open automatically, you can copy the text below.
+              </>
+            )}
           </p>
         </div>
 
