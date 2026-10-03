@@ -1,30 +1,52 @@
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { site } from "@/data/site";
+import aboutPortrait from "@/assets/about-portrait.jpg";
 
 const About = () => {
   return (
     <Layout showEchelonFooter>
       <section className="container-wide py-16 md:py-24">
-        <div className="max-w-3xl space-y-16">
+        <div className="max-w-4xl space-y-16">
           {/* Header & Bio */}
           <div>
-            <h1 className="text-display mb-4 animate-fade-in-up">About</h1>
+            <h1 className="text-display mb-8 animate-fade-in-up">About</h1>
 
-            {/* Tagline Statement */}
-            <div className="mb-8 p-5 sm:p-6 rounded-2xl border border-separator bg-card/60 animate-fade-in-up" style={{ animationDelay: "0.05s" }}>
-              <p className="font-display text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-foreground">
-                Technical, precise, powerful.
-              </p>
-              <p className="text-earth-orange text-sm sm:text-base font-medium mt-1 font-serif italic">
-                Expand visuals through implemented sound design.
-              </p>
-            </div>
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 items-start mb-8">
+              {/* Portrait Photo */}
+              <div className="md:col-span-5 lg:col-span-5 animate-fade-in-up" style={{ animationDelay: "0.05s" }}>
+                <div className="relative max-w-sm mx-auto md:max-w-none rounded-2xl overflow-hidden border border-separator bg-card shadow-xl aspect-square group">
+                  <img
+                    src={aboutPortrait}
+                    alt={site.name}
+                    className="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-background/10 to-transparent opacity-60 pointer-events-none" />
+                  <div className="absolute bottom-3 left-3 right-3 px-3 py-2 rounded-xl bg-background/85 backdrop-blur-md border border-separator/80 text-[11px] font-mono text-muted-foreground flex items-center justify-between shadow-sm">
+                    <span className="text-foreground font-semibold tracking-wide">{site.name}</span>
+                    <span className="text-earth-orange font-medium">{site.role}</span>
+                  </div>
+                </div>
+              </div>
 
-            <div className="space-y-6 text-base sm:text-lg md:text-xl leading-relaxed text-muted-foreground animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-              {site.about.map((paragraph, index) => (
-                <p key={index}>{highlightName(paragraph)}</p>
-              ))}
+              {/* Tagline & Bio Text */}
+              <div className="md:col-span-7 lg:col-span-7 space-y-6">
+                {/* Tagline Statement */}
+                <div className="p-5 sm:p-6 rounded-2xl border border-separator bg-card/60 animate-fade-in-up" style={{ animationDelay: "0.08s" }}>
+                  <p className="font-display text-lg sm:text-xl font-bold tracking-tight text-foreground">
+                    Technical, precise, powerful.
+                  </p>
+                  <p className="text-earth-orange text-sm sm:text-base font-medium mt-1 font-serif italic">
+                    Expand visuals through implemented sound design.
+                  </p>
+                </div>
+
+                <div className="space-y-4 text-base sm:text-lg leading-relaxed text-muted-foreground animate-fade-in-up" style={{ animationDelay: "0.12s" }}>
+                  {site.about.map((paragraph, index) => (
+                    <p key={index}>{highlightName(paragraph)}</p>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Philosophy Callout */}
