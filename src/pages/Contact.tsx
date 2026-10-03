@@ -40,7 +40,7 @@ const Contact = () => {
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 text-base sm:text-lg text-foreground hover:text-earth-orange transition-colors group"
                 >
-                  <span className="p-3 rounded-xl border border-separator bg-card text-muted-foreground group-hover:border-earth-orange/50 group-hover:text-earth-orange transition-all duration-200 shadow-sm">
+                  <span className="p-3 rounded-xl border border-separator/80 bg-gradient-to-br from-card/90 to-secondary/35 text-muted-foreground group-hover:border-earth-orange/50 group-hover:text-earth-orange transition-all duration-200 shadow-sm">
                     {iconMap[link.icon] ?? <Globe size={20} />}
                   </span>
                   <span className="font-medium">{link.label}</span>

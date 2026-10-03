@@ -74,7 +74,7 @@ const Project = () => {
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-xs border border-separator rounded px-3 py-1 bg-card/60"
+                    className="text-xs border border-separator/80 rounded px-3 py-1 bg-gradient-to-r from-secondary/60 to-secondary/30"
                   >
                     {tag}
                   </span>
@@ -90,7 +90,7 @@ const Project = () => {
             </p>
 
             {project.implementation && (
-              <div className="mt-10 pt-8 border-t border-separator/60 space-y-4">
+              <div className="mt-10 p-6 sm:p-8 rounded-2xl border border-separator/80 card-gradient space-y-4 shadow-lg">
                 <span className="text-label text-earth-orange font-semibold block">
                   Technical Audio &amp; Implementation
                 </span>
@@ -104,7 +104,7 @@ const Project = () => {
                   {project.implementation.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-[10px] sm:text-xs font-mono uppercase tracking-widest px-3 py-1 rounded border border-earth-orange/30 bg-earth-orange/5 text-foreground/90"
+                      className="text-[10px] sm:text-xs font-mono uppercase tracking-widest px-3 py-1 rounded border border-earth-orange/30 bg-gradient-to-r from-earth-orange/15 to-transparent text-foreground/90"
                     >
                       {tag}
                     </span>

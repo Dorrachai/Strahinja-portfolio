@@ -31,10 +31,10 @@ const Index = () => {
         {/* 1. CENTERED TOP NAME DISPLAY                              */}
         {/* ========================================================= */}
         <section className="container-wide pt-8 sm:pt-12 md:pt-18 text-center animate-fade-in-up">
-          <h1 className="font-display font-black text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl tracking-tight leading-none uppercase text-foreground flex flex-wrap items-center justify-center gap-x-2 sm:gap-x-6 gap-y-1">
-            <span>{site.heroNameLines[0] || "STRAHINJA"}</span>
-            <span className="text-earth-orange/60 font-light select-none hidden sm:inline">·</span>
-            <span className="text-foreground/90">{site.heroNameLines[1] || "VELICKOVIC"}</span>
+          <h1 className="font-display font-black text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl tracking-tight leading-none uppercase flex flex-wrap items-center justify-center gap-x-2 sm:gap-x-6 gap-y-1">
+            <span className="text-gradient-ocean">{site.heroNameLines[0] || "STRAHINJA"}</span>
+            <span className="text-earth-orange/80 font-light select-none hidden sm:inline">·</span>
+            <span className="text-gradient-ocean">{site.heroNameLines[1] || "VELICKOVIC"}</span>
           </h1>
           <p className="mt-3 md:mt-5 text-xs sm:text-sm md:text-base font-mono uppercase tracking-[0.25em] text-muted-foreground">
             {site.role || "Game Sound Designer"}
@@ -58,7 +58,7 @@ const Index = () => {
             </div>
 
             {/* Centered Large Video Frame (16:9) */}
-            <div className="relative aspect-video w-full rounded-2xl md:rounded-3xl overflow-hidden border border-separator bg-card shadow-2xl">
+            <div className="relative aspect-video w-full rounded-2xl md:rounded-3xl overflow-hidden border border-separator/80 bg-card shadow-2xl">
               <iframe
                 src={videoEmbedUrl || "https://www.youtube.com/embed/h7Bbli-7d1A"}
                 title="Strahinja Velickovic — Sound Design Showreel"
@@ -73,7 +73,7 @@ const Index = () => {
         {/* ========================================================= */}
         {/* 3. AUDIO TECH MARQUEE (Optimized 2-track)                 */}
         {/* ========================================================= */}
-        <section className="border-y border-separator py-4 sm:py-5 overflow-hidden relative select-none bg-card/20">
+        <section className="border-y border-separator py-4 sm:py-5 overflow-hidden relative select-none bg-gradient-to-r from-card/70 via-secondary/40 to-card/70 backdrop-blur-sm">
           <div className="flex whitespace-nowrap animate-marquee">
             {Array.from({ length: 2 }).map((_, loopIdx) => (
               <div key={loopIdx} className="flex items-center gap-8 mx-4">
@@ -115,7 +115,7 @@ const Index = () => {
             {/* Card 1: Bony Tony */}
             <Link
               to={`/work/${featuredProject.id}`}
-              className="group block rounded-2xl overflow-hidden border border-separator bg-card/60 transition-all duration-300 hover:border-earth-orange/50 hover:-translate-y-1.5 shadow-md hover:shadow-xl"
+              className="group block rounded-2xl overflow-hidden card-gradient card-gradient-hover"
             >
               <div className="aspect-[4/3] overflow-hidden relative bg-secondary">
                 <img
@@ -141,7 +141,7 @@ const Index = () => {
             {/* Card 2: Sound Design & Foley */}
             <Link
               to="/about"
-              className="group block rounded-2xl overflow-hidden border border-separator bg-card/60 transition-all duration-300 hover:border-earth-orange/50 hover:-translate-y-1.5 shadow-md hover:shadow-xl"
+              className="group block rounded-2xl overflow-hidden card-gradient card-gradient-hover"
             >
               <div className="aspect-[4/3] overflow-hidden relative bg-secondary flex items-center justify-center p-8">
                 <div className="h-20 w-20 rounded-full border border-earth-blue/40 bg-background/90 flex items-center justify-center text-earth-blue group-hover:scale-110 group-hover:border-earth-orange/50 group-hover:text-earth-orange transition-all duration-300 shadow-md">
@@ -165,7 +165,7 @@ const Index = () => {
             {/* Card 3: Adaptive Audio & Implementation */}
             <Link
               to="/work?tab=implementation"
-              className="group block rounded-2xl overflow-hidden border border-separator bg-card/60 transition-all duration-300 hover:border-earth-orange/50 hover:-translate-y-1.5 shadow-md hover:shadow-xl"
+              className="group block rounded-2xl overflow-hidden card-gradient card-gradient-hover"
             >
               <div className="aspect-[4/3] overflow-hidden relative bg-secondary flex items-center justify-center p-8">
                 <div className="h-20 w-20 rounded-full border border-earth-blue/40 bg-background/90 flex items-center justify-center text-earth-blue group-hover:scale-110 group-hover:border-earth-orange/50 group-hover:text-earth-orange transition-all duration-300 shadow-md">
@@ -192,7 +192,7 @@ const Index = () => {
         {/* 5. "HELLO —" GET IN TOUCH & PROJECT INQUIRY FORM          */}
         {/* ========================================================= */}
         <section className="container-wide">
-          <div className="relative rounded-3xl border border-separator bg-gradient-to-br from-card/95 via-card/75 to-secondary/30 p-6 sm:p-10 md:p-14 overflow-hidden shadow-2xl">
+          <div className="relative rounded-3xl border border-separator/80 bg-gradient-to-br from-card/95 via-card/85 to-secondary/35 p-6 sm:p-10 md:p-14 overflow-hidden shadow-2xl">
             {/* Subtle brand ambient accents */}
             <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-[#519CAB]/10 blur-3xl pointer-events-none" />
             <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-[#FFC64F]/10 blur-3xl pointer-events-none" />

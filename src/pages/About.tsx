@@ -15,7 +15,7 @@ const About = () => {
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 items-start mb-8">
               {/* Portrait Photo */}
               <div className="md:col-span-5 lg:col-span-5 animate-fade-in-up" style={{ animationDelay: "0.05s" }}>
-                <div className="relative max-w-sm mx-auto md:max-w-none rounded-2xl overflow-hidden border border-separator bg-card shadow-xl aspect-square group">
+                <div className="relative max-w-sm mx-auto md:max-w-none rounded-2xl overflow-hidden border border-separator/80 bg-gradient-to-b from-card to-secondary/40 shadow-xl aspect-square group">
                   <img
                     src={aboutPortrait}
                     alt={site.name}
@@ -32,7 +32,7 @@ const About = () => {
               {/* Tagline & Bio Text */}
               <div className="md:col-span-7 lg:col-span-7 space-y-6">
                 {/* Tagline Statement */}
-                <div className="p-5 sm:p-6 rounded-2xl border border-separator bg-card/60 animate-fade-in-up" style={{ animationDelay: "0.08s" }}>
+                <div className="p-5 sm:p-6 rounded-2xl card-gradient animate-fade-in-up" style={{ animationDelay: "0.08s" }}>
                   <p className="font-display text-lg sm:text-xl font-bold tracking-tight text-foreground">
                     Technical, precise, powerful.
                   </p>
@@ -50,7 +50,7 @@ const About = () => {
             </div>
 
             {/* Philosophy Callout */}
-            <div className="border-l-2 border-earth-orange pl-6 py-4 my-8 italic text-base sm:text-lg text-foreground/95 bg-card/50 rounded-r-xl animate-fade-in-up" style={{ animationDelay: "0.15s" }}>
+            <div className="border-l-2 border-earth-orange pl-6 py-4 my-8 italic text-base sm:text-lg text-foreground/95 bg-gradient-to-r from-card/90 via-secondary/35 to-transparent rounded-r-xl animate-fade-in-up shadow-sm" style={{ animationDelay: "0.15s" }}>
               "{site.philosophy}"
             </div>
           </div>
@@ -60,7 +60,7 @@ const About = () => {
             <h2 className="text-label text-earth-orange font-semibold mb-6">Technical Toolkit</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {site.toolkit.map((group) => (
-                <div key={group.category} className="border border-separator p-5 bg-card/60 rounded-xl hover:border-earth-orange/40 transition-colors">
+                <div key={group.category} className="card-gradient p-5 rounded-xl hover:border-earth-orange/40 hover:shadow-lg transition-all">
                   <h3 className="text-xs uppercase tracking-widest text-muted-foreground mb-3 font-semibold">
                     {group.category}
                   </h3>
@@ -109,7 +109,7 @@ const About = () => {
             </p>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-earth-orange text-[#20373B] font-bold text-xs uppercase tracking-wider hover:bg-earth-orange-light shadow-md hover:shadow-lg transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs uppercase tracking-wider btn-gradient-amber"
             >
               Get in touch &rarr;
             </Link>

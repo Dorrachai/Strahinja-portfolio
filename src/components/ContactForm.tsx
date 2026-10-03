@@ -85,7 +85,7 @@ export function ContactForm() {
           <button
             type="button"
             onClick={handleReset}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-earth-orange text-[#20373B] text-xs uppercase tracking-wider font-bold hover:bg-earth-orange-light shadow-md transition-all"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs uppercase tracking-wider btn-gradient-amber"
           >
             <span>Send another message</span>
           </button>
@@ -95,7 +95,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border border-separator/80 bg-card/70 p-6 sm:p-8 shadow-xl">
+    <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border border-separator/80 bg-gradient-to-br from-card/95 via-card/85 to-secondary/35 p-6 sm:p-8 shadow-xl backdrop-blur-sm">
       <div className="flex items-center justify-between pb-1">
         <span className="text-xs uppercase tracking-widest font-mono text-earth-orange font-semibold flex items-center gap-1.5">
           <Sparkles size={13} />
@@ -160,7 +160,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-earth-orange text-[#20373B] text-xs uppercase tracking-wider font-bold hover:bg-earth-orange-light shadow-md hover:shadow-lg transition-all disabled:opacity-50"
+          className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full text-xs uppercase tracking-wider btn-gradient-amber disabled:opacity-50"
         >
           <Send size={14} className={isSubmitting ? "animate-pulse" : ""} />
           <span>{isSubmitting ? "Preparing..." : "Send Message"}</span>

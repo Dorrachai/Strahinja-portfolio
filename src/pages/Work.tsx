@@ -66,7 +66,7 @@ const Work = () => {
               ? "01 — Game audio, original scoring, creature & weapon SFX"
               : "02 — In-engine architecture, Wwise / FMOD middleware & bespoke C++ systems"}
           </p>
-          <div className="inline-flex items-center gap-2 self-start sm:self-auto px-3 py-1 rounded-full border border-earth-orange/30 bg-earth-orange/10 text-earth-orange font-mono text-[11px] uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 self-start sm:self-auto px-3.5 py-1.5 rounded-full border border-earth-orange/30 bg-gradient-to-r from-earth-orange/20 via-earth-orange/10 to-transparent text-earth-orange font-mono text-[11px] uppercase tracking-wider shadow-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-earth-orange animate-pulse"></span>
             {activeTab === "projects" ? "Mode: Sound Design" : "Mode: Technical Audio"}
           </div>

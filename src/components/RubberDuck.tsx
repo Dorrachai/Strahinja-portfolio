@@ -53,7 +53,7 @@ export function RubberDuck() {
 
   return (
     <div
-      className="relative w-full h-28 sm:h-32 overflow-hidden bg-gradient-to-b from-secondary/40 via-secondary/70 to-secondary/40 border-y border-separator/60 select-none cursor-pointer group"
+      className="relative w-full h-28 sm:h-32 overflow-hidden bg-gradient-to-r from-secondary/50 via-earth-blue/20 to-secondary/50 border-y border-separator/80 select-none cursor-pointer group"
       onClick={() => {
         setIsInteracting((prev) => !prev);
         setPhraseIndex((prev) => (prev + 1) % DUCK_PHRASES.length);

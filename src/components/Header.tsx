@@ -113,7 +113,7 @@ export function Header({ revealMode = false }: HeaderProps) {
           <div className="hidden md:flex items-center gap-4">
             <Link
               to="/contact"
-              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border border-earth-orange/40 bg-earth-orange text-[#20373B] hover:bg-earth-orange-light shadow-sm transition-all"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs uppercase tracking-wider btn-gradient-amber"
             >
               <span>Get in touch</span>
               <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>

@@ -22,7 +22,7 @@ export function ProjectListItem({
   return (
     <Link
       to={`/work/${id}`}
-      className="group block border-b border-separator hover:bg-card/50 hover:border-earth-orange/40 transition-all duration-200"
+      className="group block border-b border-separator/80 hover:bg-gradient-to-r hover:from-card/80 hover:via-secondary/40 hover:to-transparent hover:border-earth-orange/40 transition-all duration-200"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -38,7 +38,7 @@ export function ProjectListItem({
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="text-[10px] md:text-xs uppercase tracking-widest px-2.5 py-1 border border-separator/80 bg-background/60 text-muted-foreground group-hover:border-earth-orange/30 group-hover:text-foreground transition-colors duration-200"
+                className="text-[10px] md:text-xs uppercase tracking-widest px-2.5 py-1 border border-separator/80 bg-gradient-to-r from-secondary/60 to-secondary/30 text-muted-foreground group-hover:border-earth-orange/40 group-hover:text-foreground transition-colors duration-200 rounded"
               >
                 {tag}
               </span>
