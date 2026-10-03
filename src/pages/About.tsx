@@ -13,9 +13,28 @@ const About = () => {
             <h1 className="text-display mb-8 animate-fade-in-up">About</h1>
 
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 items-start mb-8">
-              {/* Portrait Photo */}
-              <div className="md:col-span-5 lg:col-span-5 animate-fade-in-up" style={{ animationDelay: "0.05s" }}>
-                <div className="relative max-w-sm mx-auto md:max-w-none rounded-2xl overflow-hidden border border-separator/80 bg-gradient-to-b from-card to-secondary/40 shadow-xl aspect-square group">
+              {/* Left Side: Tagline & Bio Text */}
+              <div className="md:col-span-7 lg:col-span-7 space-y-6">
+                {/* Tagline Statement */}
+                <div className="p-5 sm:p-6 rounded-2xl card-gradient animate-fade-in-up" style={{ animationDelay: "0.05s" }}>
+                  <p className="font-display text-lg sm:text-xl font-bold tracking-tight text-foreground">
+                    Technical, precise, powerful.
+                  </p>
+                  <p className="text-earth-orange text-sm sm:text-base font-medium mt-1 font-serif italic">
+                    Expand visuals through implemented sound design.
+                  </p>
+                </div>
+
+                <div className="space-y-4 text-base sm:text-lg leading-relaxed text-muted-foreground animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+                  {site.about.map((paragraph, index) => (
+                    <p key={index}>{highlightName(paragraph)}</p>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right Side: Portrait Photo */}
+              <div className="md:col-span-5 lg:col-span-5 animate-fade-in-up" style={{ animationDelay: "0.15s" }}>
+                <div className="relative max-w-sm mx-auto md:max-w-none rounded-2xl overflow-hidden border border-separator/80 bg-gradient-to-b from-card to-secondary/40 shadow-xl aspect-[4/5] group">
                   <img
                     src={aboutPortrait}
                     alt={site.name}
@@ -26,25 +45,6 @@ const About = () => {
                     <span className="text-foreground font-semibold tracking-wide">{site.name}</span>
                     <span className="text-earth-orange font-medium">{site.role}</span>
                   </div>
-                </div>
-              </div>
-
-              {/* Tagline & Bio Text */}
-              <div className="md:col-span-7 lg:col-span-7 space-y-6">
-                {/* Tagline Statement */}
-                <div className="p-5 sm:p-6 rounded-2xl card-gradient animate-fade-in-up" style={{ animationDelay: "0.08s" }}>
-                  <p className="font-display text-lg sm:text-xl font-bold tracking-tight text-foreground">
-                    Technical, precise, powerful.
-                  </p>
-                  <p className="text-earth-orange text-sm sm:text-base font-medium mt-1 font-serif italic">
-                    Expand visuals through implemented sound design.
-                  </p>
-                </div>
-
-                <div className="space-y-4 text-base sm:text-lg leading-relaxed text-muted-foreground animate-fade-in-up" style={{ animationDelay: "0.12s" }}>
-                  {site.about.map((paragraph, index) => (
-                    <p key={index}>{highlightName(paragraph)}</p>
-                  ))}
                 </div>
               </div>
             </div>
