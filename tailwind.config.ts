@@ -68,9 +68,9 @@ export default {
           abyss: "#20373B",
         },
         earth: {
-          orange: "#FFC64F",
-          "orange-light": "#FFD57A",
-          "orange-dark": "#E5A827",
+          orange: "hsl(var(--earth-orange) / <alpha-value>)",
+          "orange-light": "hsl(var(--earth-orange-light) / <alpha-value>)",
+          "orange-dark": "hsl(var(--earth-orange-dark) / <alpha-value>)",
           blue: "#519CAB",
           "blue-light": "#72B5C2",
           "blue-dark": "#20373B",

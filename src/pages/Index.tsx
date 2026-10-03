@@ -150,7 +150,7 @@ const Index = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-70" />
               </div>
               <div className="p-6 space-y-2">
-                <span className="text-[10px] uppercase tracking-widest text-earth-blue-light font-mono font-medium">
+                <span className="text-[10px] uppercase tracking-widest text-earth-blue dark:text-earth-blue-light font-mono font-medium">
                   Sound Design · Field Recording
                 </span>
                 <h3 className="font-display text-xl font-bold text-foreground group-hover:text-earth-orange transition-colors">

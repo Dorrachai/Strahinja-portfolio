@@ -118,7 +118,7 @@ const Project = () => {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 mt-10 rounded-full border border-earth-orange/40 bg-earth-orange/10 px-6 py-3 text-xs uppercase tracking-widest text-earth-orange hover:bg-earth-orange hover:text-[#20373B] transition-all duration-200 group shadow-sm font-bold"
+                className="inline-flex items-center gap-2 mt-10 rounded-full px-7 py-3 text-xs uppercase tracking-wider btn-gradient-amber group shadow-md"
               >
                 <span>{project.linkLabel ?? "View project"}</span>
                 <ArrowUpRight size={16} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
