@@ -17,15 +17,20 @@ export function ContactForm() {
 
     setIsSubmitting(true);
 
-    // If a backend endpoint is configured (e.g. Formspree or Web3Forms), send directly in background
+    // If a backend endpoint is configured (Google Apps Script, Formspree, etc.), send directly in background
     if (site.formEndpoint && site.formEndpoint.trim() !== "") {
       try {
+        const isGoogleAppsScript = site.formEndpoint.includes("script.google.com");
+        
         const response = await fetch(site.formEndpoint, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
+          // Google Apps Script requires text/plain to bypass browser CORS OPTIONS preflight
+          headers: isGoogleAppsScript
+            ? { "Content-Type": "text/plain;charset=utf-8" }
+            : {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+              },
           body: JSON.stringify({
             name,
             email,
@@ -34,7 +39,7 @@ export function ContactForm() {
           }),
         });
 
-        if (response.ok) {
+        if (response.ok || (isGoogleAppsScript && response.status === 200)) {
           setIsSubmitting(false);
           setSentDirectly(true);
           setIsSubmitted(true);
