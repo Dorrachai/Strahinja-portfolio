@@ -28,24 +28,23 @@ const Index = () => {
     <Layout showEchelonFooter>
       <div className="space-y-16 md:space-y-24 pb-24">
         {/* ========================================================= */}
-        {/* 1. CENTERED TOP NAME DISPLAY                              */}
+        {/* 1. HERO: REFINED NAME & EXPANDED CINEMATIC SHOWREEL       */}
         {/* ========================================================= */}
-        <section className="container-wide pt-8 sm:pt-12 md:pt-18 text-center animate-fade-in-up">
-          <h1 className="font-display font-black text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl tracking-tight leading-none uppercase flex flex-wrap items-center justify-center gap-x-2 sm:gap-x-6 gap-y-1">
-            <span className="text-gradient-ocean">{site.heroNameLines[0] || "STRAHINJA"}</span>
-            <span className="text-earth-orange/80 font-light select-none hidden sm:inline">·</span>
-            <span className="text-gradient-ocean">{site.heroNameLines[1] || "VELICKOVIC"}</span>
-          </h1>
-          <p className="mt-3 md:mt-5 text-xs sm:text-sm md:text-base font-mono uppercase tracking-[0.25em] text-muted-foreground">
-            {site.role || "Game Sound Designer"}
-          </p>
-        </section>
+        <section className="container-wide pt-4 sm:pt-6 md:pt-8 animate-fade-in-up space-y-5 sm:space-y-7">
+          {/* Centered Name Display */}
+          <div className="text-center">
+            <h1 className="font-display font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl tracking-tight leading-tight uppercase flex flex-wrap items-center justify-center gap-x-2 sm:gap-x-4 gap-y-1">
+              <span className="text-gradient-ocean">{site.heroNameLines[0] || "STRAHINJA"}</span>
+              <span className="text-earth-orange/80 font-light select-none hidden sm:inline">·</span>
+              <span className="text-gradient-ocean">{site.heroNameLines[1] || "VELICKOVIC"}</span>
+            </h1>
+            <p className="mt-2 text-xs sm:text-sm font-mono uppercase tracking-[0.25em] text-muted-foreground">
+              {site.role || "Game Sound Designer"}
+            </p>
+          </div>
 
-        {/* ========================================================= */}
-        {/* 2. LARGE CENTERED SHOWREEL / VIDEO PLAYER                 */}
-        {/* ========================================================= */}
-        <section className="container-wide animate-fade-in-up">
-          <div className="max-w-5xl lg:max-w-6xl mx-auto space-y-3">
+          {/* Cinematic Large Showreel Video Player */}
+          <div className="w-full max-w-[1400px] mx-auto space-y-3">
             {/* Reel Header / Meta */}
             <div className="flex items-center justify-between text-label px-1">
               <span className="flex items-center gap-2">
@@ -57,8 +56,8 @@ const Index = () => {
               </span>
             </div>
 
-            {/* Centered Large Video Frame (16:9) */}
-            <div className="relative aspect-video w-full rounded-2xl md:rounded-3xl overflow-hidden border border-separator/80 bg-card shadow-2xl">
+            {/* Centered Cinematic Large Video Frame (16:9) */}
+            <div className="relative aspect-video w-full rounded-2xl md:rounded-3xl overflow-hidden border border-separator/80 bg-card shadow-2xl ring-1 ring-separator/50">
               <iframe
                 src={videoEmbedUrl || "https://www.youtube.com/embed/h7Bbli-7d1A"}
                 title="Strahinja Velickovic — Sound Design Showreel"
