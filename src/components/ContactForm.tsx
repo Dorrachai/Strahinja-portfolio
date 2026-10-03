@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { site } from "@/data/site";
 import {
   saveInquiryBackup,
@@ -26,6 +26,34 @@ export function ContactForm() {
   const [sentDirectly, setSentDirectly] = useState(false);
   const [copied, setCopied] = useState(false);
   const [showLedgerModal, setShowLedgerModal] = useState(false);
+
+  useEffect(() => {
+    const handleHash = () => {
+      if (window.location.hash === "#inquiries" || window.location.hash === "#ledger") {
+        setShowLedgerModal(true);
+      }
+    };
+    handleHash();
+    window.addEventListener("hashchange", handleHash);
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const activeTag = (document.activeElement?.tagName || "").toLowerCase();
+      if (
+        e.shiftKey &&
+        (e.key === "L" || e.key === "l") &&
+        activeTag !== "input" &&
+        activeTag !== "textarea"
+      ) {
+        setShowLedgerModal((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHash);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   const targetEmail = site.email || "strahinja.velickovic018@gmail.com";
   const emailSubject = `[Game Audio Inquiry] ${name || "New Client"}`;
@@ -170,13 +198,12 @@ export function ContactForm() {
             <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
               {sentDirectly ? (
                 <>
-                  Your inquiry has been delivered to{" "}
-                  <span className="text-foreground font-semibold">{targetEmail}</span> and recorded in the{" "}
-                  <span className="text-foreground font-semibold">Google Sheets</span> ledger. I will get back to you promptly!
+                  Your inquiry has been delivered directly to{" "}
+                  <span className="text-foreground font-semibold">{targetEmail}</span>. I will get back to you promptly!
                 </>
               ) : (
                 <>
-                  Your message has been safely saved in the device's local backup. An adblocker or connection issue paused background cloud sync, so you can deliver your message directly using one of the quick options below:
+                  Your message has been safely saved. An adblocker or connection issue paused background delivery, so you can deliver your message directly using one of the quick options below:
                 </>
               )}
             </p>
@@ -239,7 +266,7 @@ export function ContactForm() {
           {/* Fallback reassurance footnote */}
           <div className="pt-4 border-t border-separator/60 flex items-center justify-center gap-2 text-xs text-muted-foreground font-mono">
             <ShieldCheck size={13} className="text-earth-orange" />
-            <span>A local copy is preserved on this device.</span>
+            <span>Your message details are saved so nothing is lost.</span>
           </div>
         </div>
 
@@ -254,21 +281,11 @@ export function ContactForm() {
         onSubmit={handleSubmit}
         className="space-y-5 rounded-2xl border border-separator/80 bg-gradient-to-br from-card/95 via-card/85 to-secondary/35 p-6 sm:p-8 shadow-xl backdrop-blur-sm"
       >
-        <div className="flex items-center justify-between pb-1">
+        <div className="flex items-center pb-1">
           <span className="text-xs uppercase tracking-widest font-mono text-earth-orange font-semibold flex items-center gap-1.5">
             <Sparkles size={13} />
             <span>Project Inquiry Form</span>
           </span>
-
-          <button
-            type="button"
-            onClick={() => setShowLedgerModal(true)}
-            className="text-[11px] text-muted-foreground hover:text-earth-orange transition-colors flex items-center gap-1 font-mono"
-            title="Inspect Google Sheets Cloud Ledger and local backups"
-          >
-            <ShieldCheck size={13} className="text-earth-orange" />
-            <span>Backup & Ledger</span>
-          </button>
         </div>
 
         {/* Name & Email Fields */}
@@ -346,22 +363,6 @@ export function ContactForm() {
           >
             or direct email: <span className="underline">{targetEmail}</span>
           </a>
-        </div>
-
-        {/* Status Indicator Bar */}
-        <div className="pt-2 border-t border-separator/40 flex items-center justify-between text-[11px] text-muted-foreground/75 font-mono">
-          <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>Dual Sync Active (Google Sheets & Mail)</span>
-          </span>
-
-          <button
-            type="button"
-            onClick={() => setShowLedgerModal(true)}
-            className="hover:text-earth-orange underline transition-colors"
-          >
-            View Backup Storage
-          </button>
         </div>
       </form>
 
