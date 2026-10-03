@@ -38,18 +38,40 @@ export function Footer({ variant = "default" }: FooterProps) {
             <div className="space-y-3">
               <p className="text-label">Connect</p>
               <div className="text-sm text-foreground space-y-1">
-                {site.contactLinks.map((link) => (
-                  <a
-                    key={link.url}
-                    href={link.url}
-                    target={link.url.startsWith("mailto:") ? undefined : "_blank"}
-                    rel={link.url.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-                    className="block hover:text-earth-orange transition-colors truncate"
-                    title={link.label}
-                  >
-                    {link.label}
-                  </a>
-                ))}
+                {site.contactLinks.map((link) => {
+                  const isMail = link.url.startsWith("mailto:");
+                  const href = isMail
+                    ? `https://outlook.live.com/mail/0/deeplink/compose?to=${encodeURIComponent(
+                        site.email || "strahinja.velickovic018@gmail.com"
+                      )}&subject=${encodeURIComponent("[Game Audio Inquiry] New Project")}`
+                    : link.url;
+
+                  const handleClick = isMail
+                    ? () => {
+                        try {
+                          const iframe = document.createElement("iframe");
+                          iframe.style.display = "none";
+                          iframe.src = link.url;
+                          document.body.appendChild(iframe);
+                          setTimeout(() => iframe.remove(), 2500);
+                        } catch {}
+                      }
+                    : undefined;
+
+                  return (
+                    <a
+                      key={link.url}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={handleClick}
+                      className="block hover:text-earth-orange transition-colors truncate"
+                      title={link.label}
+                    >
+                      {link.label}
+                    </a>
+                  );
+                })}
               </div>
             </div>
 

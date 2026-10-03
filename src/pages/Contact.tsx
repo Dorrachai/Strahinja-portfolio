@@ -32,20 +32,42 @@ const Contact = () => {
               <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold">
                 Direct Channels
               </p>
-              {site.contactLinks.map((link) => (
-                <a
-                  key={link.url}
-                  href={link.url}
-                  target={link.url.startsWith("mailto:") ? undefined : "_blank"}
-                  rel={link.url.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-                  className="flex items-center gap-4 text-base sm:text-lg text-foreground hover:text-earth-orange transition-colors group"
-                >
-                  <span className="p-3 rounded-xl border border-separator/80 bg-gradient-to-br from-card/90 to-secondary/35 text-muted-foreground group-hover:border-earth-orange/50 group-hover:text-earth-orange transition-all duration-200 shadow-sm flex-shrink-0">
-                    {iconMap[link.icon] ?? <Globe size={20} />}
-                  </span>
-                  <span className="font-medium break-all">{link.label}</span>
-                </a>
-              ))}
+              {site.contactLinks.map((link) => {
+                const isMail = link.url.startsWith("mailto:");
+                const href = isMail
+                  ? `https://outlook.live.com/mail/0/deeplink/compose?to=${encodeURIComponent(
+                      site.email || "strahinja.velickovic018@gmail.com"
+                    )}&subject=${encodeURIComponent("[Game Audio Inquiry] New Project")}`
+                  : link.url;
+
+                const handleClick = isMail
+                  ? () => {
+                      try {
+                        const iframe = document.createElement("iframe");
+                        iframe.style.display = "none";
+                        iframe.src = link.url;
+                        document.body.appendChild(iframe);
+                        setTimeout(() => iframe.remove(), 2500);
+                      } catch {}
+                    }
+                  : undefined;
+
+                return (
+                  <a
+                    key={link.url}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={handleClick}
+                    className="flex items-center gap-4 text-base sm:text-lg text-foreground hover:text-earth-orange transition-colors group"
+                  >
+                    <span className="p-3 rounded-xl border border-separator/80 bg-gradient-to-br from-card/90 to-secondary/35 text-muted-foreground group-hover:border-earth-orange/50 group-hover:text-earth-orange transition-all duration-200 shadow-sm flex-shrink-0">
+                      {iconMap[link.icon] ?? <Globe size={20} />}
+                    </span>
+                    <span className="font-medium break-all">{link.label}</span>
+                  </a>
+                );
+              })}
             </div>
           </div>
 

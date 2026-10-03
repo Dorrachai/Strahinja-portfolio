@@ -67,6 +67,29 @@ export function ContactForm() {
     emailSubject
   )}&body=${encodeURIComponent(emailBody)}`;
 
+  const outlookComposeUrl = `https://outlook.live.com/mail/0/deeplink/compose?to=${encodeURIComponent(
+    targetEmail
+  )}&subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+
+  const outlookDirectUrl = `https://outlook.live.com/mail/0/deeplink/compose?to=${encodeURIComponent(
+    targetEmail
+  )}&subject=${encodeURIComponent("[Game Audio Inquiry] New Project")}`;
+
+  const handleOpenOutlook = () => {
+    // Also trigger desktop mail client (Outlook Desktop) via invisible iframe
+    try {
+      const iframe = document.createElement("iframe");
+      iframe.style.display = "none";
+      iframe.src = `mailto:${targetEmail}?subject=${encodeURIComponent(
+        emailSubject || "[Game Audio Inquiry] New Project"
+      )}`;
+      document.body.appendChild(iframe);
+      setTimeout(() => iframe.remove(), 2500);
+    } catch {
+      // ignore
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !email.trim() || !message.trim()) return;
@@ -214,18 +237,30 @@ export function ContactForm() {
             {!sentDirectly && (
               <>
                 <a
-                  href={gmailComposeUrl}
+                  href={outlookComposeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={handleOpenOutlook}
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs uppercase tracking-wider font-semibold btn-gradient-amber shadow-md"
                 >
                   <Mail size={14} />
-                  <span>Send via Gmail</span>
+                  <span>Send via Outlook</span>
+                  <ExternalLink size={12} />
+                </a>
+
+                <a
+                  href={gmailComposeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-separator text-xs uppercase tracking-wider font-semibold text-foreground hover:bg-secondary hover:border-earth-orange/40 transition-all"
+                >
+                  <span>Gmail</span>
                   <ExternalLink size={12} />
                 </a>
 
                 <a
                   href={mailtoUrl}
+                  onClick={handleOpenOutlook}
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-separator text-xs uppercase tracking-wider font-semibold text-foreground hover:bg-secondary hover:border-earth-orange/40 transition-all"
                 >
                   <Send size={14} />
@@ -358,10 +393,16 @@ export function ContactForm() {
           </button>
 
           <a
-            href={`mailto:${targetEmail}`}
-            className="text-xs text-muted-foreground hover:text-earth-orange transition-colors font-mono"
+            href={outlookDirectUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleOpenOutlook}
+            className="text-xs text-muted-foreground hover:text-earth-orange transition-colors font-mono inline-flex items-center gap-1.5 group"
+            title="Open Outlook with Strahinja's email pre-filled"
           >
-            or direct email: <span className="underline">{targetEmail}</span>
+            <Mail size={13} className="text-earth-orange group-hover:scale-110 transition-transform" />
+            <span>or email via Outlook:</span>
+            <span className="underline">{targetEmail}</span>
           </a>
         </div>
       </form>
