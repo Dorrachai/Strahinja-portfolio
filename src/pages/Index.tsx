@@ -219,7 +219,7 @@ const Index = () => {
                     to="/about"
                     className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-earth-orange hover:underline"
                   >
-                    <span>About Strahinja</span>
+                    <span>About me</span>
                     <ArrowUpRight size={13} />
                   </Link>
 
