@@ -63,18 +63,6 @@ const About = () => {
           {/* Instruments & Sound Sources */}
           <InstrumentsSection />
 
-          {/* Core Disciplines */}
-          <div className="animate-fade-in-up" style={{ animationDelay: "0.25s" }}>
-            <h2 className="text-label text-earth-orange font-semibold mb-6">Core Disciplines</h2>
-            <div className="space-y-5">
-              {site.disciplines.map((d) => (
-                <div key={d.title} className="border-b border-separator pb-5">
-                  <h3 className="text-base font-semibold text-foreground mb-1.5">{d.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{d.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
 
           {/* Selected Collaborations */}
           <div className="animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
