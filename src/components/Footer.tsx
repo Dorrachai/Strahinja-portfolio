@@ -42,9 +42,10 @@ export function Footer({ variant = "default" }: FooterProps) {
                   <a
                     key={link.url}
                     href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block hover:text-earth-orange transition-colors"
+                    target={link.url.startsWith("mailto:") ? undefined : "_blank"}
+                    rel={link.url.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                    className="block hover:text-earth-orange transition-colors truncate"
+                    title={link.label}
                   >
                     {link.label}
                   </a>

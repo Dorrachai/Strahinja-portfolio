@@ -214,7 +214,7 @@ const Index = () => {
                   Curious to hear what you're building? Let's talk.
                 </p>
 
-                <div className="pt-4 border-t border-separator/80 flex items-center gap-5">
+                <div className="pt-4 border-t border-separator/80 flex flex-wrap items-center gap-4 sm:gap-5">
                   <Link
                     to="/about"
                     className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-earth-orange hover:underline"
@@ -223,17 +223,18 @@ const Index = () => {
                     <ArrowUpRight size={13} />
                   </Link>
 
-                  {site.contactLinks[0] && (
+                  {site.contactLinks.map((link) => (
                     <a
-                      href={site.contactLinks[0].url}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      key={link.url}
+                      href={link.url}
+                      target={link.url.startsWith("mailto:") ? undefined : "_blank"}
+                      rel={link.url.startsWith("mailto:") ? undefined : "noopener noreferrer"}
                       className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-muted-foreground hover:text-earth-orange transition-colors"
                     >
-                      <span>LinkedIn</span>
+                      <span>{link.icon === "mail" ? "Email" : link.label}</span>
                       <ArrowUpRight size={13} />
                     </a>
-                  )}
+                  ))}
                 </div>
               </div>
 

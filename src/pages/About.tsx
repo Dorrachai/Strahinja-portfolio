@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { site } from "@/data/site";
 import aboutPortrait from "@/assets/about-portrait.jpg";
+import { InstrumentsSection } from "@/components/InstrumentsSection";
 
 const About = () => {
   return (
@@ -54,6 +55,9 @@ const About = () => {
               "{site.philosophy}"
             </div>
           </div>
+
+          {/* Instruments & Sound Sources */}
+          <InstrumentsSection />
 
           {/* Technical Toolkit */}
           <div className="animate-fade-in-up" style={{ animationDelay: "0.2s" }}>

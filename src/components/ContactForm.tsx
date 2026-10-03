@@ -16,7 +16,7 @@ export function ContactForm() {
 
     setIsSubmitting(true);
 
-    const targetEmail = site.email || "strahinjavelickovic00@gmail.com";
+    const targetEmail = site.email || "strahinja.velickovic018@gmail.com";
     const subject = encodeURIComponent(`[Game Audio Inquiry] ${name}`);
     const body = encodeURIComponent(
       `Hello Strahinja,\n\nMy name is ${name} (${email}).\n\nProject details:\n${message}\n\n---\nSent from ${site.name} portfolio`
@@ -33,7 +33,7 @@ export function ContactForm() {
   };
 
   const handleCopyMessage = () => {
-    const textToCopy = `To: ${site.email || "strahinjavelickovic00@gmail.com"}\nSubject: [Game Audio Inquiry] ${name}\n\nHello Strahinja,\n\nMy name is ${name} (${email}).\n\nProject details:\n${message}`;
+    const textToCopy = `To: ${site.email || "strahinja.velickovic018@gmail.com"}\nSubject: [Game Audio Inquiry] ${name}\n\nHello Strahinja,\n\nMy name is ${name} (${email}).\n\nProject details:\n${message}`;
     navigator.clipboard.writeText(textToCopy);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
@@ -58,7 +58,7 @@ export function ContactForm() {
             Thank you, {name}!
           </h4>
           <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
-            Your message draft has been prepared for <span className="text-foreground font-medium">{site.email || "strahinjavelickovic00@gmail.com"}</span>.
+            Your message draft has been prepared for <span className="text-foreground font-medium">{site.email || "strahinja.velickovic018@gmail.com"}</span>.
             If your email app didn't open automatically, you can copy the text below.
           </p>
         </div>
@@ -164,10 +164,10 @@ export function ContactForm() {
         </button>
 
         <a
-          href={`mailto:${site.email || "strahinjavelickovic00@gmail.com"}`}
+          href={`mailto:${site.email || "strahinja.velickovic018@gmail.com"}`}
           className="text-xs text-muted-foreground hover:text-earth-orange transition-colors font-mono"
         >
-          or direct email: <span className="underline">{site.email || "strahinjavelickovic00@gmail.com"}</span>
+          or direct email: <span className="underline">{site.email || "strahinja.velickovic018@gmail.com"}</span>
         </a>
       </div>
     </form>
