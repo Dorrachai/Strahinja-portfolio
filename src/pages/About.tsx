@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { site } from "@/data/site";
-import { MapPin } from "lucide-react";
 
 const About = () => {
   return (
@@ -12,10 +11,14 @@ const About = () => {
           <div>
             <h1 className="text-display mb-4 animate-fade-in-up">About</h1>
 
-            {/* Location Pill */}
-            <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground mb-8 animate-fade-in-up" style={{ animationDelay: "0.05s" }}>
-              <MapPin size={14} className="text-earth-orange" />
-              <span>{site.location}</span>
+            {/* Tagline Statement */}
+            <div className="mb-8 p-5 sm:p-6 rounded-2xl border border-separator bg-card/60 animate-fade-in-up" style={{ animationDelay: "0.05s" }}>
+              <p className="font-display text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-foreground">
+                Technical, precise, powerful.
+              </p>
+              <p className="text-earth-orange text-sm sm:text-base font-medium mt-1 font-serif italic">
+                Expand visuals through implemented sound design.
+              </p>
             </div>
 
             <div className="space-y-6 text-base sm:text-lg md:text-xl leading-relaxed text-muted-foreground animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
@@ -79,16 +82,12 @@ const About = () => {
 
           {/* CTA Footer */}
           <div className="pt-8 border-t border-separator flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 animate-fade-in-up" style={{ animationDelay: "0.35s" }}>
-            <div>
-              <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">Status</p>
-              <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <p className="text-base font-medium text-foreground">{site.availability}</p>
-              </div>
-            </div>
+            <p className="text-sm text-muted-foreground font-mono">
+              Sound Design &amp; Interactive Systems
+            </p>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-earth-orange text-white font-semibold text-xs uppercase tracking-wider hover:bg-earth-orange-light shadow-md hover:shadow-lg transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-earth-orange text-[#20373B] font-bold text-xs uppercase tracking-wider hover:bg-earth-orange-light shadow-md hover:shadow-lg transition-all"
             >
               Get in touch &rarr;
             </Link>

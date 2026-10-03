@@ -57,7 +57,6 @@ export function Footer({ variant = "default" }: FooterProps) {
               <p className="text-label">Legal</p>
               <div className="text-sm text-muted-foreground space-y-1">
                 <p>© {currentYear} {site.name}</p>
-                <p className="text-xs text-muted-foreground/80">Stockholm, Sweden</p>
               </div>
             </div>
           </div>

@@ -58,8 +58,8 @@ export const site = {
     "Audio Profiling",
   ],
 
-  // Location and work mode
-  location: "Stockholm, Sweden • On-Site & Remote Worldwide",
+  // Location and work mode (blanked per request)
+  location: "",
 
   // Audio philosophy statement
   philosophy:
@@ -131,8 +131,8 @@ export const site = {
   contactIntro:
     "Looking for sound design or music for your game? Let's talk about your next project.",
 
-  // Availability line on the Contact page.
-  availability: "Open for new game projects",
+  // Availability line on the Contact page (blanked per request)
+  availability: "",
 
   // Direct contact email used for inquiry forms and mail links.
   email: "strahinjavelickovic00@gmail.com",

@@ -2,18 +2,9 @@ import React, { useState } from "react";
 import { site } from "@/data/site";
 import { Send, CheckCircle2, Copy, Check, Sparkles } from "lucide-react";
 
-const TOPIC_OPTIONS = [
-  "Game Sound Design",
-  "Audio Implementation (Wwise / FMOD)",
-  "Foley & Custom SFX",
-  "Adaptive Music",
-  "General Inquiry",
-];
-
 export function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [topic, setTopic] = useState(TOPIC_OPTIONS[0]);
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -26,9 +17,9 @@ export function ContactForm() {
     setIsSubmitting(true);
 
     const targetEmail = site.email || "strahinjavelickovic00@gmail.com";
-    const subject = encodeURIComponent(`[Game Audio Inquiry] ${topic} — ${name}`);
+    const subject = encodeURIComponent(`[Game Audio Inquiry] ${name}`);
     const body = encodeURIComponent(
-      `Hello Strahinja,\n\nMy name is ${name} (${email}).\n\nI'm reaching out regarding: ${topic}\n\nProject details:\n${message}\n\n---\nSent from ${site.name} portfolio`
+      `Hello Strahinja,\n\nMy name is ${name} (${email}).\n\nProject details:\n${message}\n\n---\nSent from ${site.name} portfolio`
     );
 
     const mailtoUrl = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
@@ -42,7 +33,7 @@ export function ContactForm() {
   };
 
   const handleCopyMessage = () => {
-    const textToCopy = `To: ${site.email || "strahinjavelickovic00@gmail.com"}\nSubject: [Game Audio Inquiry] ${topic} — ${name}\n\nHello Strahinja,\n\nMy name is ${name} (${email}).\nI'm reaching out regarding: ${topic}\n\nProject details:\n${message}`;
+    const textToCopy = `To: ${site.email || "strahinjavelickovic00@gmail.com"}\nSubject: [Game Audio Inquiry] ${name}\n\nHello Strahinja,\n\nMy name is ${name} (${email}).\n\nProject details:\n${message}`;
     navigator.clipboard.writeText(textToCopy);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
@@ -94,7 +85,7 @@ export function ContactForm() {
           <button
             type="button"
             onClick={handleReset}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-earth-orange text-white text-xs uppercase tracking-wider font-semibold hover:bg-earth-orange-light shadow-md transition-all"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-earth-orange text-[#20373B] text-xs uppercase tracking-wider font-bold hover:bg-earth-orange-light shadow-md transition-all"
           >
             <span>Send another message</span>
           </button>
@@ -148,32 +139,6 @@ export function ContactForm() {
         </div>
       </div>
 
-      {/* Topic selection pills */}
-      <div className="space-y-2">
-        <label className="text-xs uppercase tracking-wider font-semibold text-foreground/80 block">
-          Audio Needs
-        </label>
-        <div className="flex flex-wrap gap-2">
-          {TOPIC_OPTIONS.map((item) => {
-            const isSelected = topic === item;
-            return (
-              <button
-                key={item}
-                type="button"
-                onClick={() => setTopic(item)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
-                  isSelected
-                    ? "bg-earth-orange/15 border-earth-orange text-earth-orange shadow-sm font-semibold"
-                    : "bg-background/60 border-separator/80 text-muted-foreground hover:text-foreground hover:border-separator"
-                }`}
-              >
-                {item}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
       {/* Message textarea */}
       <div className="space-y-1.5">
         <label htmlFor="contact-message" className="text-xs uppercase tracking-wider font-semibold text-foreground/80 block">
@@ -182,7 +147,7 @@ export function ContactForm() {
         <textarea
           id="contact-message"
           required
-          rows={4}
+          rows={5}
           placeholder="Tell me about your project, target platforms, timeline, or audio vision..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
@@ -195,7 +160,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-earth-orange text-white text-xs uppercase tracking-wider font-semibold hover:bg-earth-orange-light shadow-md hover:shadow-lg transition-all disabled:opacity-50"
+          className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-earth-orange text-[#20373B] text-xs uppercase tracking-wider font-bold hover:bg-earth-orange-light shadow-md hover:shadow-lg transition-all disabled:opacity-50"
         >
           <Send size={14} className={isSubmitting ? "animate-pulse" : ""} />
           <span>{isSubmitting ? "Preparing..." : "Send Message"}</span>

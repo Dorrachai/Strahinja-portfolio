@@ -209,43 +209,31 @@ const Index = () => {
                 </div>
 
                 <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-                  Based in Stockholm. I design audio for games and interactive media —
+                  I design audio for games and interactive media —
                   shaping the textures, transitions and audio systems that pull players in.
                   Curious to hear what you're building? Let's talk.
                 </p>
 
-                <div className="space-y-3 pt-4 border-t border-separator/80">
-                  <div className="flex items-center gap-3 text-sm text-foreground/90">
-                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse flex-shrink-0" />
-                    <span className="font-medium text-xs sm:text-sm">{site.availability}</span>
-                  </div>
+                <div className="pt-4 border-t border-separator/80 flex items-center gap-5">
+                  <Link
+                    to="/about"
+                    className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-earth-orange hover:underline"
+                  >
+                    <span>About Strahinja</span>
+                    <ArrowUpRight size={13} />
+                  </Link>
 
-                  <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground">
-                    <span className="text-earth-orange font-mono">📍</span>
-                    <span>{site.location.split("•")[0].trim()}</span>
-                  </div>
-
-                  <div className="flex items-center gap-4 pt-2">
-                    <Link
-                      to="/about"
-                      className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-earth-orange hover:underline"
+                  {site.contactLinks[0] && (
+                    <a
+                      href={site.contactLinks[0].url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-muted-foreground hover:text-earth-orange transition-colors"
                     >
-                      <span>About Strahinja</span>
+                      <span>LinkedIn</span>
                       <ArrowUpRight size={13} />
-                    </Link>
-
-                    {site.contactLinks[0] && (
-                      <a
-                        href={site.contactLinks[0].url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-muted-foreground hover:text-earth-orange transition-colors"
-                      >
-                        <span>LinkedIn</span>
-                        <ArrowUpRight size={13} />
-                      </a>
-                    )}
-                  </div>
+                    </a>
+                  )}
                 </div>
               </div>
 

@@ -1,6 +1,6 @@
 import { Layout } from "@/components/Layout";
-import { projects } from "@/data/projects";
 import { site } from "@/data/site";
+import { ContactForm } from "@/components/ContactForm";
 import { Linkedin, Gamepad2, Play, Mail, Globe } from "lucide-react";
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -15,20 +15,23 @@ const Contact = () => {
   return (
     <Layout showEchelonFooter>
       <section className="container-wide py-16 md:py-24 min-h-[calc(100vh-200px)]">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Content */}
-          <div className="space-y-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Content & Direct Links */}
+          <div className="lg:col-span-5 space-y-10">
             <div>
               <h1 className="text-display mb-6 animate-fade-in-up">
                 Let's make<br />some noise.
               </h1>
-              <p className="text-xl text-muted-foreground animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
                 {site.contactIntro}
               </p>
             </div>
 
             {/* Contact Links */}
-            <div className="space-y-6 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+            <div className="space-y-4 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+              <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold">
+                Direct Channels
+              </p>
               {site.contactLinks.map((link) => (
                 <a
                   key={link.url}
@@ -44,26 +47,11 @@ const Contact = () => {
                 </a>
               ))}
             </div>
-
-            {/* Availability */}
-            <div className="animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-              <p className="text-label text-earth-orange font-semibold mb-2">Availability</p>
-              <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <p className="text-base sm:text-lg font-medium">{site.availability}</p>
-              </div>
-            </div>
           </div>
 
-          {/* Image — automatically uses the newest project's cover */}
-          <div className="hidden lg:block">
-            <div className="aspect-[4/5] bg-secondary rounded-2xl overflow-hidden border border-separator shadow-2xl">
-              <img
-                src={projects[0].coverImage}
-                alt={projects[0].title}
-                className="w-full h-full object-cover"
-              />
-            </div>
+          {/* Interactive Form */}
+          <div className="lg:col-span-7 animate-fade-in-up" style={{ animationDelay: "0.15s" }}>
+            <ContactForm />
           </div>
         </div>
       </section>
