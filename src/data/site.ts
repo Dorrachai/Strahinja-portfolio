@@ -240,5 +240,5 @@ export const site = {
   //  and paste your form endpoint URL here (e.g. "https://formspree.io/f/mqkvygop").
   //  If left empty "", the form gracefully prepares a pre-filled email draft.
   // -------------------------------------------------------------------
-  formEndpoint: "",
+  formEndpoint: "https://script.google.com/macros/s/AKfycbx6NDzG7ZR8P_2Qb9Zg4b15qBw0dKeaBVwkNnBj8eNXxd-jUesf9wWAdInD_XDhqKaAGA/exec",
 };
