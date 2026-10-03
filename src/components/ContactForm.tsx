@@ -96,13 +96,10 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border border-separator/80 bg-gradient-to-br from-card/95 via-card/85 to-secondary/35 p-6 sm:p-8 shadow-xl backdrop-blur-sm">
-      <div className="flex items-center justify-between pb-1">
+      <div className="flex items-center pb-1">
         <span className="text-xs uppercase tracking-widest font-mono text-earth-orange font-semibold flex items-center gap-1.5">
           <Sparkles size={13} />
           <span>Project Inquiry Form</span>
-        </span>
-        <span className="text-[11px] font-mono text-muted-foreground/70 hidden sm:inline">
-          Response within 24-48h
         </span>
       </div>
 
