@@ -231,6 +231,51 @@
     will-change: transform;
   }
 
+  .animate-tab-content {
+    animation: tab-content 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-tab-item {
+    animation: tab-item 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-indicator-slide {
+    animation: indicator-slide 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes tab-content {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes tab-item {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.99);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes indicator-slide {
+    from {
+      opacity: 0;
+      transform: scaleX(0.3);
+    }
+    to {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  }
+
   @keyframes fade-in {
     from {
       opacity: 0;
