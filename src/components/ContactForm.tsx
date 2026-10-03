@@ -1,6 +1,21 @@
 import React, { useState } from "react";
 import { site } from "@/data/site";
-import { Send, CheckCircle2, Copy, Check, Sparkles } from "lucide-react";
+import {
+  saveInquiryBackup,
+  updateInquiryStatus,
+} from "@/lib/inquiryBackup";
+import { InquiryLedgerModal } from "@/components/InquiryLedgerModal";
+import {
+  Send,
+  CheckCircle2,
+  Copy,
+  Check,
+  Sparkles,
+  ShieldCheck,
+  Mail,
+  ExternalLink,
+  AlertTriangle,
+} from "lucide-react";
 
 export function ContactForm() {
   const [name, setName] = useState("");
@@ -10,6 +25,19 @@ export function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [sentDirectly, setSentDirectly] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [showLedgerModal, setShowLedgerModal] = useState(false);
+
+  const targetEmail = site.email || "strahinja.velickovic018@gmail.com";
+  const emailSubject = `[Game Audio Inquiry] ${name || "New Client"}`;
+  const emailBody = `Hello Strahinja,\n\nMy name is ${name} (${email}).\n\nProject details:\n${message}\n\n---\nSent from ${site.name} portfolio`;
+
+  const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+    targetEmail
+  )}&su=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+
+  const mailtoUrl = `mailto:${targetEmail}?subject=${encodeURIComponent(
+    emailSubject
+  )}&body=${encodeURIComponent(emailBody)}`;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,14 +45,22 @@ export function ContactForm() {
 
     setIsSubmitting(true);
 
-    // If a backend endpoint is configured (Google Apps Script, Formspree, etc.), send directly in background
+    // 1. Immediate local backup in browser storage so message is NEVER lost
+    const localRecord = saveInquiryBackup({
+      name: name.trim(),
+      email: email.trim(),
+      message: message.trim(),
+      status: "attempted",
+    });
+
+    let successfullyDelivered = false;
+
+    // 2. Primary Tier: Google Apps Script Web App
     if (site.formEndpoint && site.formEndpoint.trim() !== "") {
       try {
         const isGoogleAppsScript = site.formEndpoint.includes("script.google.com");
-        
         const response = await fetch(site.formEndpoint, {
           method: "POST",
-          // Google Apps Script requires text/plain to bypass browser CORS OPTIONS preflight
           headers: isGoogleAppsScript
             ? { "Content-Type": "text/plain;charset=utf-8" }
             : {
@@ -32,44 +68,73 @@ export function ContactForm() {
                 Accept: "application/json",
               },
           body: JSON.stringify({
-            name,
-            email,
-            message,
-            _subject: `[Game Audio Inquiry] ${name}`,
+            name: name.trim(),
+            email: email.trim(),
+            message: message.trim(),
+            _subject: emailSubject,
           }),
         });
 
         if (response.ok || (isGoogleAppsScript && response.status === 200)) {
+          successfullyDelivered = true;
+          updateInquiryStatus(localRecord.id, "synced", {
+            endpointUsed: site.formEndpoint,
+          });
           setIsSubmitting(false);
           setSentDirectly(true);
           setIsSubmitted(true);
           return;
         }
       } catch (err) {
-        console.warn("Direct form submission failed, falling back to mail client:", err);
+        console.warn("Primary endpoint submission failed:", err);
       }
     }
 
-    // Default mailto fallback
-    const targetEmail = site.email || "strahinja.velickovic018@gmail.com";
-    const subject = encodeURIComponent(`[Game Audio Inquiry] ${name}`);
-    const body = encodeURIComponent(
-      `Hello Strahinja,\n\nMy name is ${name} (${email}).\n\nProject details:\n${message}\n\n---\nSent from ${site.name} portfolio`
-    );
+    // 3. Secondary Tier: Optional Fallback Endpoint (if configured in site.ts)
+    const fallbackEndpoint = (site as { formFallbackEndpoint?: string }).formFallbackEndpoint;
+    if (!successfullyDelivered && fallbackEndpoint && fallbackEndpoint.trim() !== "") {
+      try {
+        const res = await fetch(fallbackEndpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name: name.trim(),
+            email: email.trim(),
+            message: message.trim(),
+            _subject: emailSubject,
+          }),
+        });
 
-    const mailtoUrl = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
+        if (res.ok) {
+          successfullyDelivered = true;
+          updateInquiryStatus(localRecord.id, "synced", {
+            endpointUsed: fallbackEndpoint,
+          });
+          setIsSubmitting(false);
+          setSentDirectly(true);
+          setIsSubmitted(true);
+          return;
+        }
+      } catch (err) {
+        console.warn("Secondary fallback endpoint failed:", err);
+      }
+    }
 
-    // Small delay for smooth button feedback
-    setTimeout(() => {
-      window.location.href = mailtoUrl;
-      setIsSubmitting(false);
-      setSentDirectly(false);
-      setIsSubmitted(true);
-    }, 400);
+    // 4. Offline/Blocker Fallback: Update backup status & display comprehensive mail options
+    updateInquiryStatus(localRecord.id, "backup_fallback", {
+      error: "Cloud submission blocked or network unreachable",
+    });
+
+    setIsSubmitting(false);
+    setSentDirectly(false);
+    setIsSubmitted(true);
   };
 
   const handleCopyMessage = () => {
-    const textToCopy = `To: ${site.email || "strahinja.velickovic018@gmail.com"}\nSubject: [Game Audio Inquiry] ${name}\n\nHello Strahinja,\n\nMy name is ${name} (${email}).\n\nProject details:\n${message}`;
+    const textToCopy = `To: ${targetEmail}\nSubject: ${emailSubject}\n\nHello Strahinja,\n\nMy name is ${name} (${email}).\n\nProject details:\n${message}`;
     navigator.clipboard.writeText(textToCopy);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
@@ -85,139 +150,222 @@ export function ContactForm() {
 
   if (isSubmitted) {
     return (
-      <div className="rounded-2xl border border-earth-orange/40 bg-card/90 p-8 sm:p-10 text-center space-y-6 animate-fade-in shadow-xl">
-        <div className="mx-auto w-14 h-14 rounded-full bg-earth-orange/15 border border-earth-orange/50 flex items-center justify-center text-earth-orange">
-          <CheckCircle2 size={30} />
-        </div>
+      <>
+        <div className="rounded-2xl border border-earth-orange/40 bg-card/95 p-8 sm:p-10 text-center space-y-6 animate-fade-in shadow-xl backdrop-blur-sm">
+          <div
+            className={`mx-auto w-14 h-14 rounded-full flex items-center justify-center ${
+              sentDirectly
+                ? "bg-earth-orange/15 border border-earth-orange/50 text-earth-orange"
+                : "bg-amber-500/15 border border-amber-500/50 text-amber-500"
+            }`}
+          >
+            {sentDirectly ? <CheckCircle2 size={30} /> : <AlertTriangle size={30} />}
+          </div>
 
-        <div className="space-y-2">
-          <h4 className="font-display text-2xl font-bold text-foreground">
-            Thank you, {name}!
-          </h4>
-          <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
-            {sentDirectly ? (
+          <div className="space-y-2">
+            <h4 className="font-display text-2xl font-bold text-foreground">
+              {sentDirectly ? `Thank you, ${name}!` : "Message Saved & Ready to Send!"}
+            </h4>
+
+            <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
+              {sentDirectly ? (
+                <>
+                  Your inquiry has been delivered to{" "}
+                  <span className="text-foreground font-semibold">{targetEmail}</span> and recorded in the{" "}
+                  <span className="text-foreground font-semibold">Google Sheets</span> ledger. I will get back to you promptly!
+                </>
+              ) : (
+                <>
+                  Your message has been safely saved in the device's local backup. An adblocker or connection issue paused background cloud sync, so you can deliver your message directly using one of the quick options below:
+                </>
+              )}
+            </p>
+          </div>
+
+          {/* Action options */}
+          <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 pt-2">
+            {!sentDirectly && (
               <>
-                Your message has been delivered directly to{" "}
-                <span className="text-foreground font-medium">{site.email || "strahinja.velickovic018@gmail.com"}</span>.
-                I will get back to you soon!
-              </>
-            ) : (
-              <>
-                Your message draft has been prepared for{" "}
-                <span className="text-foreground font-medium">{site.email || "strahinja.velickovic018@gmail.com"}</span>.
-                If your email app didn't open automatically, you can copy the text below.
+                <a
+                  href={gmailComposeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs uppercase tracking-wider font-semibold btn-gradient-amber shadow-md"
+                >
+                  <Mail size={14} />
+                  <span>Send via Gmail</span>
+                  <ExternalLink size={12} />
+                </a>
+
+                <a
+                  href={mailtoUrl}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-separator text-xs uppercase tracking-wider font-semibold text-foreground hover:bg-secondary hover:border-earth-orange/40 transition-all"
+                >
+                  <Send size={14} />
+                  <span>Default Mail App</span>
+                </a>
               </>
             )}
-          </p>
+
+            <button
+              type="button"
+              onClick={handleCopyMessage}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-separator text-xs uppercase tracking-wider font-semibold text-foreground hover:bg-secondary hover:border-earth-orange/40 transition-all"
+            >
+              {copied ? (
+                <>
+                  <Check size={14} className="text-emerald-400" />
+                  <span>Copied to clipboard</span>
+                </>
+              ) : (
+                <>
+                  <Copy size={14} className="text-earth-orange" />
+                  <span>Copy details</span>
+                </>
+              )}
+            </button>
+
+            <button
+              type="button"
+              onClick={handleReset}
+              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs uppercase tracking-wider ${
+                sentDirectly ? "btn-gradient-amber" : "border border-separator text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <span>Send another</span>
+            </button>
+          </div>
+
+          {/* Fallback reassurance footnote */}
+          <div className="pt-4 border-t border-separator/60 flex items-center justify-center gap-2 text-xs text-muted-foreground font-mono">
+            <ShieldCheck size={13} className="text-earth-orange" />
+            <span>A local copy is preserved on this device.</span>
+          </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-          <button
-            type="button"
-            onClick={handleCopyMessage}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-separator text-xs uppercase tracking-wider font-semibold text-foreground hover:bg-secondary hover:border-earth-orange/40 transition-all"
-          >
-            {copied ? (
-              <>
-                <Check size={14} className="text-emerald-400" />
-                <span>Copied to clipboard</span>
-              </>
-            ) : (
-              <>
-                <Copy size={14} className="text-earth-orange" />
-                <span>Copy draft to clipboard</span>
-              </>
-            )}
-          </button>
-
-          <button
-            type="button"
-            onClick={handleReset}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs uppercase tracking-wider btn-gradient-amber"
-          >
-            <span>Send another message</span>
-          </button>
-        </div>
-      </div>
+        <InquiryLedgerModal open={showLedgerModal} onOpenChange={setShowLedgerModal} />
+      </>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border border-separator/80 bg-gradient-to-br from-card/95 via-card/85 to-secondary/35 p-6 sm:p-8 shadow-xl backdrop-blur-sm">
-      <div className="flex items-center pb-1">
-        <span className="text-xs uppercase tracking-widest font-mono text-earth-orange font-semibold flex items-center gap-1.5">
-          <Sparkles size={13} />
-          <span>Project Inquiry Form</span>
-        </span>
-      </div>
+    <>
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-5 rounded-2xl border border-separator/80 bg-gradient-to-br from-card/95 via-card/85 to-secondary/35 p-6 sm:p-8 shadow-xl backdrop-blur-sm"
+      >
+        <div className="flex items-center justify-between pb-1">
+          <span className="text-xs uppercase tracking-widest font-mono text-earth-orange font-semibold flex items-center gap-1.5">
+            <Sparkles size={13} />
+            <span>Project Inquiry Form</span>
+          </span>
 
-      {/* Name & Email Fields */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <button
+            type="button"
+            onClick={() => setShowLedgerModal(true)}
+            className="text-[11px] text-muted-foreground hover:text-earth-orange transition-colors flex items-center gap-1 font-mono"
+            title="Inspect Google Sheets Cloud Ledger and local backups"
+          >
+            <ShieldCheck size={13} className="text-earth-orange" />
+            <span>Backup & Ledger</span>
+          </button>
+        </div>
+
+        {/* Name & Email Fields */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="space-y-1.5">
+            <label
+              htmlFor="contact-name"
+              className="text-xs uppercase tracking-wider font-semibold text-foreground/80 block"
+            >
+              Name <span className="text-earth-orange">*</span>
+            </label>
+            <input
+              id="contact-name"
+              type="text"
+              required
+              placeholder="Your name or studio"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full px-4 py-2.5 rounded-xl border border-separator bg-background/80 text-foreground text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-earth-orange focus:ring-1 focus:ring-earth-orange transition-all"
+            />
+          </div>
+
+          <div className="space-y-1.5">
+            <label
+              htmlFor="contact-email"
+              className="text-xs uppercase tracking-wider font-semibold text-foreground/80 block"
+            >
+              Email <span className="text-earth-orange">*</span>
+            </label>
+            <input
+              id="contact-email"
+              type="email"
+              required
+              placeholder="name@company.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-4 py-2.5 rounded-xl border border-separator bg-background/80 text-foreground text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-earth-orange focus:ring-1 focus:ring-earth-orange transition-all"
+            />
+          </div>
+        </div>
+
+        {/* Message textarea */}
         <div className="space-y-1.5">
-          <label htmlFor="contact-name" className="text-xs uppercase tracking-wider font-semibold text-foreground/80 block">
-            Name <span className="text-earth-orange">*</span>
+          <label
+            htmlFor="contact-message"
+            className="text-xs uppercase tracking-wider font-semibold text-foreground/80 block"
+          >
+            Message <span className="text-earth-orange">*</span>
           </label>
-          <input
-            id="contact-name"
-            type="text"
+          <textarea
+            id="contact-message"
             required
-            placeholder="Your name or studio"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="w-full px-4 py-2.5 rounded-xl border border-separator bg-background/80 text-foreground text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-earth-orange focus:ring-1 focus:ring-earth-orange transition-all"
+            rows={5}
+            placeholder="Tell me about your project, target platforms, timeline, or audio vision..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            className="w-full px-4 py-3 rounded-xl border border-separator bg-background/80 text-foreground text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-earth-orange focus:ring-1 focus:ring-earth-orange transition-all resize-none"
           />
         </div>
 
-        <div className="space-y-1.5">
-          <label htmlFor="contact-email" className="text-xs uppercase tracking-wider font-semibold text-foreground/80 block">
-            Email <span className="text-earth-orange">*</span>
-          </label>
-          <input
-            id="contact-email"
-            type="email"
-            required
-            placeholder="name@company.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-2.5 rounded-xl border border-separator bg-background/80 text-foreground text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-earth-orange focus:ring-1 focus:ring-earth-orange transition-all"
-          />
+        {/* Submit Button & direct mail hint */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full text-xs uppercase tracking-wider btn-gradient-amber disabled:opacity-50"
+          >
+            <Send size={14} className={isSubmitting ? "animate-pulse" : ""} />
+            <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
+          </button>
+
+          <a
+            href={`mailto:${targetEmail}`}
+            className="text-xs text-muted-foreground hover:text-earth-orange transition-colors font-mono"
+          >
+            or direct email: <span className="underline">{targetEmail}</span>
+          </a>
         </div>
-      </div>
 
-      {/* Message textarea */}
-      <div className="space-y-1.5">
-        <label htmlFor="contact-message" className="text-xs uppercase tracking-wider font-semibold text-foreground/80 block">
-          Message <span className="text-earth-orange">*</span>
-        </label>
-        <textarea
-          id="contact-message"
-          required
-          rows={5}
-          placeholder="Tell me about your project, target platforms, timeline, or audio vision..."
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          className="w-full px-4 py-3 rounded-xl border border-separator bg-background/80 text-foreground text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-earth-orange focus:ring-1 focus:ring-earth-orange transition-all resize-none"
-        />
-      </div>
+        {/* Status Indicator Bar */}
+        <div className="pt-2 border-t border-separator/40 flex items-center justify-between text-[11px] text-muted-foreground/75 font-mono">
+          <span className="flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>Dual Sync Active (Google Sheets & Mail)</span>
+          </span>
 
-      {/* Submit Button & direct mail hint */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full text-xs uppercase tracking-wider btn-gradient-amber disabled:opacity-50"
-        >
-          <Send size={14} className={isSubmitting ? "animate-pulse" : ""} />
-          <span>{isSubmitting ? "Preparing..." : "Send Message"}</span>
-        </button>
+          <button
+            type="button"
+            onClick={() => setShowLedgerModal(true)}
+            className="hover:text-earth-orange underline transition-colors"
+          >
+            View Backup Storage
+          </button>
+        </div>
+      </form>
 
-        <a
-          href={`mailto:${site.email || "strahinja.velickovic018@gmail.com"}`}
-          className="text-xs text-muted-foreground hover:text-earth-orange transition-colors font-mono"
-        >
-          or direct email: <span className="underline">{site.email || "strahinja.velickovic018@gmail.com"}</span>
-        </a>
-      </div>
-    </form>
+      <InquiryLedgerModal open={showLedgerModal} onOpenChange={setShowLedgerModal} />
+    </>
   );
 }
