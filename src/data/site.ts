@@ -68,23 +68,53 @@ export const site = {
   // Technical Toolkit & Software Stack
   toolkit: [
     {
+      id: "middleware",
       category: "Audio Middleware",
+      shortLabel: "Middleware",
+      tagline: "Interactive state machines, RTPCs & spatial audio",
+      description:
+        "I author responsive soundscapes and interactive audio architectures with Audiokinetic Wwise and FMOD Studio — implementing dynamic RTPCs, state switching, ducking hierarchies, spatial attenuation curves, and real-time profiling directly against target game builds.",
+      icon: "middleware",
       items: ["Audiokinetic Wwise", "FMOD Studio"],
     },
     {
+      id: "engines",
       category: "Game Engines",
+      shortLabel: "Engines",
+      tagline: "MetaSounds, blueprints & custom C++ integration",
+      description:
+        "I integrate middleware soundbanks and build in-engine audio logic directly inside Unreal Engine 5 (MetaSounds / Blueprints), Unity, and custom C++ game engines. I handle listener orientation, occlusion traces, audio component pools, and game event hooks.",
+      icon: "engine",
       items: ["Unreal Engine 5 (MetaSounds / Blueprints)", "Unity", "Custom C++ Engines"],
     },
     {
+      id: "daws",
       category: "Primary DAWs",
+      shortLabel: "DAWs",
+      tagline: "Batch rendering, UCS scripting & multi-track scoring",
+      description:
+        "REAPER is my daily driver for ultra-fast UCS batch rendering, region matrix exports, and custom Lua scripting for game audio pipelines. Pro Tools, Logic Pro, and Ableton Live provide dedicated environments for linear composition, Foley editing, and electronic production.",
+      icon: "daw",
       items: ["REAPER", "Pro Tools", "Logic Pro", "Ableton Live"],
     },
     {
+      id: "dsp",
       category: "Sound Design & Processing",
+      shortLabel: "DSP & Synths",
+      tagline: "Surgical restoration, analog color & modular sound design",
+      description:
+        "I sculpt custom audio signatures using iZotope RX for spectral repair, FabFilter for surgical EQ and multiband dynamics, Soundtoys for analog color and motion, and Serum & Phase Plant for advanced wavetable sound design.",
+      icon: "dsp",
       items: ["iZotope RX", "FabFilter", "Soundtoys", "Serum", "Phase Plant"],
     },
     {
+      id: "hardware",
       category: "Recording & Hardware",
+      shortLabel: "Hardware",
+      tagline: "High-resolution field recording & custom Foley capture",
+      description:
+        "I capture original organic source materials using Sound Devices and Zoom field recorders, shotgun & small-diaphragm condenser mics for stereo field ambiances, and contact microphones to extract hidden resonant vibrations from physical objects.",
+      icon: "hardware",
       items: ["Field Recorders (Zoom / Sound Devices)", "Shotgun & Condenser Mics", "Contact Mics & Foley"],
     },
   ],

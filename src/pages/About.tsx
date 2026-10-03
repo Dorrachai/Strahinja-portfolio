@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { site } from "@/data/site";
 import aboutPortrait from "@/assets/about-portrait.jpg";
+import { ToolkitSection } from "@/components/ToolkitSection";
 import { InstrumentsSection } from "@/components/InstrumentsSection";
 
 const About = () => {
@@ -56,29 +57,11 @@ const About = () => {
             </div>
           </div>
 
+          {/* Technical Toolkit */}
+          <ToolkitSection />
+
           {/* Instruments & Sound Sources */}
           <InstrumentsSection />
-
-          {/* Technical Toolkit */}
-          <div className="animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-            <h2 className="text-label text-earth-orange font-semibold mb-6">Technical Toolkit</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {site.toolkit.map((group) => (
-                <div key={group.category} className="card-gradient p-5 rounded-xl hover:border-earth-orange/40 hover:shadow-lg transition-all">
-                  <h3 className="text-xs uppercase tracking-widest text-muted-foreground mb-3 font-semibold">
-                    {group.category}
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {group.items.map((item) => (
-                      <span key={item} className="text-xs border border-border/80 px-3 py-1.5 rounded text-foreground/90 bg-background/80 hover:border-earth-orange/40 transition-colors">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
 
           {/* Core Disciplines */}
           <div className="animate-fade-in-up" style={{ animationDelay: "0.25s" }}>
