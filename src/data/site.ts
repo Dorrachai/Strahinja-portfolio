@@ -234,23 +234,15 @@ export const site = {
   email: "strahinja.velickovic018@gmail.com",
 
   // -------------------------------------------------------------------
-  //  FORM-TO-EMAIL SERVICE (Free third-party background email delivery)
-  //
-  //  Primary: FormSubmit.co (100% Free forever & Unlimited, zero signup needed)
-  //  Endpoint: https://formsubmit.co/ajax/strahinja.velickovic018@gmail.com
-  //  (Strahinja just clicks the "Activate Form" button sent to his Gmail once).
-  //
-  //  Optional: Web3Forms (100% Free, 250 submissions/month)
-  //  If you prefer Web3Forms, enter your email at https://web3forms.com/
-  //  and paste the free Access Key into web3formsKey below.
+  //  FORM-TO-EMAIL SERVICE (Web3Forms — Free, safe, zero-maintenance)
+  //  Primary: Web3Forms (verified key configured below)
+  //  Fallback: FormSubmit.co
   // -------------------------------------------------------------------
-  formEndpoint: "https://formsubmit.co/ajax/strahinja.velickovic018@gmail.com",
+  web3formsKey: "3b2d468d-3515-472e-89b5-91709df9c4ae",
+  formEndpoint: "https://api.web3forms.com/submit",
 
-  // Optional: Paste your free Web3Forms access key here if using Web3Forms
-  web3formsKey: "",
-
-  // Optional secondary fallback endpoint
-  formFallbackEndpoint: "",
+  // Fallback endpoint if primary ever encounters network issues
+  formFallbackEndpoint: "https://formsubmit.co/ajax/strahinja.velickovic018@gmail.com",
 
   // Google Sheets database URL (for manual backup check)
   sheetsUrl: "https://sheets.google.com/",
