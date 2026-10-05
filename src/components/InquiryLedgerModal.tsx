@@ -78,7 +78,7 @@ export function InquiryLedgerModal({ open, onOpenChange }: InquiryLedgerModalPro
             </DialogTitle>
           </div>
           <DialogDescription className="text-sm text-muted-foreground leading-relaxed">
-            All inquiries sent through the portfolio are permanently stored in your Google Sheets cloud database, and also cached locally on this device as a fallback.
+            Inquiries are delivered directly to your inbox via a reliable third-party email service (FormSubmit / Web3Forms) with local device caching as a permanent safety backup.
           </DialogDescription>
         </DialogHeader>
 
@@ -88,11 +88,11 @@ export function InquiryLedgerModal({ open, onOpenChange }: InquiryLedgerModalPro
             <div className="flex items-center gap-2">
               <FileSpreadsheet size={18} className="text-earth-orange" />
               <span className="font-semibold text-sm text-foreground">
-                Primary Cloud Ledger (Google Sheets)
+                Email Dispatch & Cloud Backup
               </span>
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed max-w-md">
-              Every message is logged automatically to your <strong className="text-foreground">"Portfolio Inquiries"</strong> Google Sheet before email forwarding.
+              Messages are sent directly to <strong className="text-foreground">{site.email}</strong> with instant delivery and zero maintenance.
             </p>
           </div>
 
@@ -102,7 +102,7 @@ export function InquiryLedgerModal({ open, onOpenChange }: InquiryLedgerModalPro
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs uppercase tracking-wider font-semibold btn-gradient-amber whitespace-nowrap"
           >
-            <span>Open Google Sheets</span>
+            <span>Google Sheets Backup</span>
             <ExternalLink size={13} />
           </a>
         </div>

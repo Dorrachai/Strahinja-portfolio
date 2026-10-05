@@ -106,30 +106,31 @@ export function ContactForm() {
 
     let successfullyDelivered = false;
 
-    // 2. Primary Tier: Google Apps Script Web App
-    if (site.formEndpoint && site.formEndpoint.trim() !== "") {
+    // 2. Primary Tier: Web3Forms (if access key is provided)
+    const web3formsKey = (site as { web3formsKey?: string }).web3formsKey;
+    if (web3formsKey && web3formsKey.trim() !== "") {
       try {
-        const isGoogleAppsScript = site.formEndpoint.includes("script.google.com");
-        const response = await fetch(site.formEndpoint, {
+        const response = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
-          headers: isGoogleAppsScript
-            ? { "Content-Type": "text/plain;charset=utf-8" }
-            : {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-              },
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
           body: JSON.stringify({
+            access_key: web3formsKey.trim(),
             name: name.trim(),
             email: email.trim(),
             message: message.trim(),
-            _subject: emailSubject,
+            subject: emailSubject,
+            from_name: `${name.trim()} (Portfolio)`,
           }),
         });
 
-        if (response.ok || (isGoogleAppsScript && response.status === 200)) {
+        const data = await response.json().catch(() => null);
+        if (response.ok && data?.success) {
           successfullyDelivered = true;
           updateInquiryStatus(localRecord.id, "synced", {
-            endpointUsed: site.formEndpoint,
+            endpointUsed: "Web3Forms",
           });
           setIsSubmitting(false);
           setSentDirectly(true);
@@ -137,20 +138,68 @@ export function ContactForm() {
           return;
         }
       } catch (err) {
-        console.warn("Primary endpoint submission failed:", err);
+        console.warn("Web3Forms submission failed, trying FormSubmit:", err);
       }
     }
 
-    // 3. Secondary Tier: Optional Fallback Endpoint (if configured in site.ts)
-    const fallbackEndpoint = (site as { formFallbackEndpoint?: string }).formFallbackEndpoint;
-    if (!successfullyDelivered && fallbackEndpoint && fallbackEndpoint.trim() !== "") {
+    // 3. Main Tier: FormSubmit.co (100% Free & Unlimited, instant AJAX)
+    const formSubmitEndpoint =
+      site.formEndpoint && site.formEndpoint.includes("formsubmit.co")
+        ? site.formEndpoint
+        : `https://formsubmit.co/ajax/${encodeURIComponent(targetEmail)}`;
+
+    if (!successfullyDelivered) {
       try {
-        const res = await fetch(fallbackEndpoint, {
+        const response = await fetch(formSubmitEndpoint, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
           },
+          body: JSON.stringify({
+            name: name.trim(),
+            email: email.trim(),
+            message: message.trim(),
+            _subject: emailSubject,
+            _captcha: "false",
+            _template: "table",
+          }),
+        });
+
+        const data = await response.json().catch(() => null);
+        if (
+          response.ok &&
+          (data?.success === "true" ||
+            data?.success === true ||
+            (data?.message && data.message.includes("Activation")))
+        ) {
+          successfullyDelivered = true;
+          updateInquiryStatus(localRecord.id, "synced", {
+            endpointUsed: "FormSubmit.co",
+          });
+          setIsSubmitting(false);
+          setSentDirectly(true);
+          setIsSubmitted(true);
+          return;
+        }
+      } catch (err) {
+        console.warn("FormSubmit submission failed, checking fallback:", err);
+      }
+    }
+
+    // 4. Secondary Tier: Optional Fallback Endpoint (if configured in site.ts)
+    const fallbackEndpoint = (site as { formFallbackEndpoint?: string }).formFallbackEndpoint;
+    if (!successfullyDelivered && fallbackEndpoint && fallbackEndpoint.trim() !== "") {
+      try {
+        const isGoogle = fallbackEndpoint.includes("script.google.com");
+        const res = await fetch(fallbackEndpoint, {
+          method: "POST",
+          headers: isGoogle
+            ? { "Content-Type": "text/plain;charset=utf-8" }
+            : {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+              },
           body: JSON.stringify({
             name: name.trim(),
             email: email.trim(),
