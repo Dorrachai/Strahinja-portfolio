@@ -29,7 +29,7 @@ export const site = {
   role: "Technical Sound Designer",
 
   // Optional video showreel link (paste YouTube or Vimeo URL here, e.g. https://www.youtube.com/watch?v=...)
-  showreelUrl: "https://www.youtube.com/watch?v=h7Bbli-7d1A",
+  showreelUrl: "https://www.youtube.com/watch?v=C0TEjgdktdg",
 
   // The big scrolling text at the bottom of the footer.
   handle: "@STRAHINJA",
