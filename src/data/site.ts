@@ -39,9 +39,9 @@ export const site = {
   //  Add or remove paragraphs freely (keep the quotes and the comma).
   // -------------------------------------------------------------------
   about: [
-    "I am a game sound designer creating music, sound effects, and audio worlds that give games their atmosphere and impact.",
-    "Most recently, I created the audio for Bony Tony: The Revenge, an action-platformer produced together with The Game Assembly Stockholm and the Audio Production Academy — every sound and system built from scratch in a custom engine.",
-    "I work on commercial, indie, and student game projects, always looking for games that deserve a soundtrack people remember.",
+    "I am a Technical sound designer focused on making effective sound effects, creating custom sound system and scripts, and compose adaptive music that adds a new level to worlds in videogames.",
+    "Most recently, I created the sound effects for the SGA nominated Bony Tony: The Revenge, an action-platformer produced together with The Game Assembly Stockholm and my team at the Audio Production Academy",
+    "",
   ],
 
   // Companies / teams listed under "Selected Collaborations".
