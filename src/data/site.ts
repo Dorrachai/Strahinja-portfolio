@@ -39,7 +39,7 @@ export const site = {
   //  Add or remove paragraphs freely (keep the quotes and the comma).
   // -------------------------------------------------------------------
   about: [
-    "I am a Technical sound designer focused on making effective sound effects, creating custom sound system and scripts, and compose adaptive music that adds a new level to worlds in videogames.",
+    "I am a Technical sound designer focused on making effective sound effects, creating custom sound systems and scripts, and compose adaptive music that adds a new level to worlds in videogames.",
     "Most recently, I created the sound effects for the SGA nominated Bony Tony: The Revenge, an action-platformer produced together with The Game Assembly Stockholm and my team at the Audio Production Academy",
     "",
   ],
@@ -63,7 +63,7 @@ export const site = {
 
   // Audio philosophy statement
   philosophy:
-    "Great game audio is about player feedback and emotional resonance. Every impact, ambient layer and musical stem should communicate game state clearly while making every interaction feel tactile and alive.",
+    "Great game audio is about creating a painting through sonics, making the world come alive through adaptive sounds and music. Thus creating a connection from player to the game.",
 
   // Technical Toolkit & Software Stack
   toolkit: [
@@ -73,7 +73,7 @@ export const site = {
       shortLabel: "Middleware",
       tagline: "Interactive state machines, RTPCs & spatial audio",
       description:
-        "I author responsive soundscapes and interactive audio architectures with Audiokinetic Wwise and FMOD Studio — implementing dynamic RTPCs, state switching, ducking hierarchies, spatial attenuation curves, and real-time profiling directly against target game builds.",
+        "Implementing dynamic RTPCs, state switching, ducking hierarchies, spatial attenuation curves in Wwise and FMOD to create an adaptive sound world.",
       icon: "middleware",
       items: ["Audiokinetic Wwise", "FMOD Studio"],
     },
@@ -83,7 +83,7 @@ export const site = {
       shortLabel: "Engines",
       tagline: "MetaSounds, blueprints & custom C++ integration",
       description:
-        "I integrate middleware soundbanks and build in-engine audio logic directly inside Unreal Engine 5 (MetaSounds / Blueprints), Unity, and custom C++ game engines. I handle listener orientation, occlusion traces, audio component pools, and game event hooks.",
+        "I integrate middleware soundbanks and build in-engine audio logic directly inside Unreal Engine 5 (MetaSounds / Blueprints), Unity, and custom C++ game engines.",
       icon: "engine",
       items: ["Unreal Engine 5 (MetaSounds / Blueprints)", "Unity", "Custom C++ Engines"],
     },
@@ -91,11 +91,11 @@ export const site = {
       id: "daws",
       category: "Primary DAWs",
       shortLabel: "DAWs",
-      tagline: "Batch rendering, UCS scripting & multi-track scoring",
+      tagline: "Batch rendering, multi-layerd sound design & multi-track scoring",
       description:
-        "REAPER is my daily driver for ultra-fast UCS batch rendering, region matrix exports, and custom Lua scripting for game audio pipelines. Pro Tools, Logic Pro, and Ableton Live provide dedicated environments for linear composition, Foley editing, and electronic production.",
+        "REAPER is my daily driver for creating the sounds, foley editing, and also for  ultra-fast batch rendering using region matrix exports, . Cubase and Logic provide dedicated environments for linear orchestral compositions and electronic production.",
       icon: "daw",
-      items: ["REAPER", "Pro Tools", "Logic Pro", "Ableton Live"],
+      items: ["REAPER", "Cubase", "Logic Pro",],
     },
     {
       id: "dsp",
