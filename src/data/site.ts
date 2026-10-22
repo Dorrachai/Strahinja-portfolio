@@ -103,9 +103,9 @@ export const site = {
       shortLabel: "DSP & Synths",
       tagline: "Surgical restoration, analog color & modular sound design",
       description:
-        "I sculpt custom audio signatures using iZotope RX for spectral repair, FabFilter for surgical EQ and multiband dynamics, Soundtoys for analog color and motion, and Serum & Phase Plant for advanced wavetable sound design.",
+        "I sculpt custom audio signatures using different plugins such as, FabFilter for surgical EQ and multiband dynamics, Soundtoys for analog color and motion, and Serum & Phase Plant for advanced wavetable sound design.",
       icon: "dsp",
-      items: ["iZotope RX", "FabFilter", "Soundtoys", "Serum", "Phase Plant"],
+      items: [, "FabFilter", "Soundtoys", "Serum", "Phase Plant"],
     },
     {
       id: "hardware",
@@ -151,10 +151,10 @@ export const site = {
     {
       id: "trombone",
       name: "Trombone",
-      category: "Brass & Lead Acoustic",
-      tagline: "My core instrument since childhood",
+      category: "Woodwinds",
+      tagline: "My dream instrument since childhood",
       description:
-        "I own a trombone and have been playing it since I was a kid. Its brass dynamics, lip slurs, and expressive slide glissandi make it invaluable for character leitmotifs, dynamic fanfare, and eccentric organic Foley textures.",
+        "I now own a saxophone which has been a dream of mine since early childhood. With it i can create heroic leads, swinging licks or classical motifs depending on the project.",
       icon: "trombone",
     },
     {
@@ -163,16 +163,16 @@ export const site = {
       category: "Synthesis & Sound Design",
       tagline: "Analog, wavetable & modular patching",
       description:
-        "I dive deep into analog modeling, wavetable design, and modular patching to craft alien textures, sci-fi UI stingers, and heavyweight sub-bass rumbles.",
+        "I dive deep into analog modeling, wavetable design, and modular patching to craft alien textures, realistic frog noises, sci-fi UI stingers, and heavyweight sub-bass rumbles.",
       icon: "synth",
     },
     {
       id: "guitar",
       name: "Electric & Bass Guitar",
       category: "Strings & Textured Noise",
-      tagline: "Extended techniques, bowing & heavy pedals",
+      tagline: "Extended techniques, alternate tunigns",
       description:
-        "I use bowing techniques, alternate tunings, and heavy pedalboards to produce gritty distorted combat stingers, moody ambient swells, and kinetic tension drones.",
+        "I use soft fingerstyle playing together with alternate tunings to create melancholy in tracks, or use a pick together with a loose wrist to add some springiness to a song.",
       icon: "guitar",
     },
     {
