@@ -150,7 +150,7 @@ export const site = {
   instruments: [
     {
       id: "trombone",
-      name: "Trombone",
+      name: "Saxohphone",
       category: "Woodwinds",
       tagline: "My dream instrument since childhood",
       description:
