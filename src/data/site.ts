@@ -26,7 +26,7 @@ export const site = {
     "Hi! I'm Strahinja, a game sound designer. I create the music, sound effects and audio worlds that make games feel alive.",
 
   // Job title, shown under the name in the footer.
-  role: "Game Sound Designer",
+  role: "Technical Sound Designer",
 
   // Optional video showreel link (paste YouTube or Vimeo URL here, e.g. https://www.youtube.com/watch?v=...)
   showreelUrl: "https://www.youtube.com/watch?v=h7Bbli-7d1A",
