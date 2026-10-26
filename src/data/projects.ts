@@ -118,7 +118,7 @@ export const projects: Project[] = [
     client: "Sound Design & Field Recording",
     description:
       "Original field recordings, mechanical Foley, and synthesized impact layers designed for high-impact game feel. Recorded with custom shotgun and contact microphones, cleaned and batch-rendered via REAPER.",
-    videoUrl: "https://www.youtube.com/watch?v=C0TEjgdktdg", // stand-in showreel — swap for this project's own video later
+    videoUrl: "https://www.youtube.com/watch?v=_6atS0FDk8o", // Skyline Feline trailer
     coverImage: skylineFeline1, // picture 1 — sits behind the big title
     images: [skylineFeline2, skylineFeline3], // pictures 2 and 3 — the gallery further down the page
     implementation: {
@@ -142,9 +142,9 @@ export const projects: Project[] = [
     videos: [
       // One player per composition. Rename each "title" and swap each
       // "url" for that composition's own YouTube link when ready.
-      { title: "Composition 01", url: "https://www.youtube.com/watch?v=C0TEjgdktdg" },
-      { title: "Composition 02", url: "https://www.youtube.com/watch?v=C0TEjgdktdg" },
-      { title: "Composition 03", url: "https://www.youtube.com/watch?v=C0TEjgdktdg" },
+      { title: "Composition 01", url: "https://www.youtube.com/watch?v=HarwhgKulzY" },
+      { title: "Composition 02", url: "https://www.youtube.com/watch?v=2-WBiPahyuE" },
+      { title: "Composition 03", url: "https://www.youtube.com/watch?v=OmAMr8FthKc" },
     ],
     coverImage: grisPicture, // GrisPicture — the one picture behind the big title
     images: [],
