@@ -97,9 +97,7 @@ export const projects: Project[] = [
     client: "Sound Design & Field Recording",
     description:
       "Original field recordings, mechanical Foley, and synthesized impact layers designed for high-impact game feel. Recorded with custom shotgun and contact microphones, cleaned and batch-rendered via REAPER.",
-    link: "https://eaxcy.itch.io/bony-tony",
-    linkLabel: "View Details",
-    videoUrl: "", // paste the video link here to turn on the player
+    videoUrl: "https://www.youtube.com/watch?v=C0TEjgdktdg", // stand-in showreel — swap for this project's own video later
     coverImage: bonyTony3,
     images: [bonyTony3, bonyTony4],
     implementation: {
@@ -120,9 +118,7 @@ export const projects: Project[] = [
     client: "Interactive Composition",
     description:
       "Dynamic interactive music composition featuring seamless horizontal re-sequencing and vertical stem layering that responds organically to player health, enemy proximity, and combat intensity.",
-    link: "https://eaxcy.itch.io/bony-tony",
-    linkLabel: "View Details",
-    videoUrl: "", // paste the video link here to turn on the player
+    videoUrl: "https://www.youtube.com/watch?v=C0TEjgdktdg", // stand-in showreel — swap for this project's own video later
     coverImage: bonyTony5,
     images: [bonyTony5, bonyTony6],
     implementation: {
