@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { projects } from "@/data/projects";
 import { getAudioEmbedUrl } from "@/lib/audioEmbed";
+import { ProjectVideoPlayer } from "@/components/ProjectVideoPlayer";
 
 const Project = () => {
   const { id } = useParams();
@@ -54,6 +55,19 @@ const Project = () => {
           </div>
         </div>
       </section>
+      {/* Project Video Player — same cinematic player as the landing page showreel */}
+      {project.videoUrl && (
+        <section className="container-wide pt-12 md:pt-16">
+          <ProjectVideoPlayer
+            url={project.videoUrl}
+            title={project.title}
+            year={project.year}
+            coverImage={project.coverImage}
+          />
+        </section>
+      )}
+
+
 
       {/* Project Info */}
       <section className="container-wide py-16 md:py-24">
