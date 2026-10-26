@@ -94,20 +94,12 @@ export const projects: Project[] = [
     year: "2026",
     client: "The Game Assembly × Audio Production Academy",
     description:
-      "Game audio for Bony Tony: The Revenge — a 2.5D action-platformer about blasting your way to the top of a skeleton-filled casino to take revenge on your boss. Music, weapons, ambiences and feedback, created from scratch in a custom-built engine during an 8-week student production, later polished for Swedish Game Awards.",
+      "Game audio for Bony Tony: The Revenge, a 2.5D action-platformer about blasting your way to the top of a skeleton-filled casino to take revenge on your boss. Music, weapons, ambiences and feedback, created from scratch in a custom-built engine during an 8-week student production, later polished for Swedish Game Awards. All music is performed on real, live recorded instruments.",
     link: "https://eaxcy.itch.io/bony-tony",
     linkLabel: "Play on itch.io",
-    videoUrl: "https://www.youtube.com/watch?v=C0TEjgdktdg", // TODO: replace with the Bony Tony video link
+    videoUrl: "https://www.youtube.com/watch?v=h7Bbli-7d1A", // Bony Tony trailer
     coverImage: bonyTony1,
     images: [bonyTony1, bonyTony2, bonyTony3, bonyTony4, bonyTony5, bonyTony6],
-    implementation: {
-      title: "Bony Tony: Custom C++ Audio Architecture",
-      category: "Audio Implementation",
-      tags: ["CUSTOM C++ ENGINE", "EVENT HOOKS", "STATE SWITCHES", "PROFILING"],
-      client: "Custom Engine Audio Systems",
-      description:
-        "Technical audio integration in a bespoke C++ engine for Bony Tony. Engineered event bus triggers, dynamic RTPC parameters, weapon acoustics, surface-dependent Foley matrix, and real-time voice priority limiting under tight memory budgets.",
-    },
   },
   {
     id: "skyline-feline",
@@ -167,7 +159,7 @@ export const projects: Project[] = [
     client: "In-Engine Audio Systems",
     description:
       "A custom audio system built in Unreal Engine 5: in-engine sound architecture, event-driven cues and mixing, designed and implemented directly in the engine.",
-    videoUrl: "https://www.youtube.com/watch?v=C0TEjgdktdg", // stand-in showreel — swap for this project's own video later
+    videoUrl: "https://www.youtube.com/watch?v=BcwoX3IQEq0", // Unreal sound system video
     coverImage: unrealPicture, // unreal picture — sits behind the big title
     images: [],
     isImplementation: true,
@@ -181,7 +173,7 @@ export const projects: Project[] = [
     client: "Interactive Music Systems",
     description:
       "An interactive jazz music system: improvised score material arranged into a reactive music setup that shifts with gameplay while keeping the live, swinging feel of the performances.",
-    videoUrl: "https://www.youtube.com/watch?v=C0TEjgdktdg", // stand-in showreel — swap for this project's own video later
+    videoUrl: "https://www.youtube.com/watch?v=gTeM8LSuB4A", // Jazz music system video
     coverImage: wwisePicture, // wwise picture — sits behind the big title
     images: [],
     isImplementation: true,
