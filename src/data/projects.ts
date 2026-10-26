@@ -25,6 +25,8 @@ import skylineFeline1 from "@/assets/picture 1.png";
 import grisPicture from "@/assets/GrisPicture.png";
 import skylineFeline2 from "@/assets/picture 2.png";
 import skylineFeline3 from "@/assets/picture 3.png";
+import unrealPicture from "@/assets/unreal picture.png";
+import wwisePicture from "@/assets/wwise picture.png";
 
 export interface Project {
   id: string; // unique short name used in the web address, e.g. /project/bony-tony
@@ -49,6 +51,10 @@ export interface Project {
                      //   ],
   coverImage: string; // main image (from src/assets)
   images: string[]; // picture gallery, one image per line
+
+  // Set to true for projects that belong in the "Implementation" tab
+  // instead of the "Projects" tab on the Work page.
+  isImplementation?: boolean;
 
   // Implementation mode alternative titles and metadata:
   implementation?: {
@@ -150,6 +156,35 @@ export const projects: Project[] = [
       description:
         "Interactive music system built in FMOD Studio. Parameter-driven crossfades and quantized transitions between ambient, tension, and high-intensity boss fight states with automated sidechain ducking.",
     },
+  },
+
+  {
+    id: "custom-sound-system-ue5",
+    title: "Custom Sound System — Unreal Engine 5",
+    category: "Audio Implementation",
+    tags: ["UNREAL ENGINE 5", "CUSTOM AUDIO SYSTEM", "AUDIO PROGRAMMING"],
+    year: "2026",
+    client: "In-Engine Audio Systems",
+    description:
+      "A custom audio system built in Unreal Engine 5: in-engine sound architecture, event-driven cues and mixing, designed and implemented directly in the engine.",
+    videoUrl: "https://www.youtube.com/watch?v=C0TEjgdktdg", // stand-in showreel — swap for this project's own video later
+    coverImage: unrealPicture, // unreal picture — sits behind the big title
+    images: [],
+    isImplementation: true,
+  },
+  {
+    id: "jazz-music-system",
+    title: "Jazz Music System",
+    category: "Audio Implementation",
+    tags: ["WWISE", "MUSIC SYSTEM", "INTERACTIVE MUSIC"],
+    year: "2026",
+    client: "Interactive Music Systems",
+    description:
+      "An interactive jazz music system: improvised score material arranged into a reactive music setup that shifts with gameplay while keeping the live, swinging feel of the performances.",
+    videoUrl: "https://www.youtube.com/watch?v=C0TEjgdktdg", // stand-in showreel — swap for this project's own video later
+    coverImage: wwisePicture, // wwise picture — sits behind the big title
+    images: [],
+    isImplementation: true,
   },
 
   // ===================================================================
