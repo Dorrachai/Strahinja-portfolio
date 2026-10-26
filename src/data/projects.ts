@@ -22,6 +22,7 @@ import bonyTony4 from "@/assets/bony-tony-4.png";
 import bonyTony5 from "@/assets/bony-tony-5.png";
 import bonyTony6 from "@/assets/bony-tony-6.jpg";
 import skylineFeline1 from "@/assets/picture 1.png";
+import grisPicture from "@/assets/GrisPicture.png";
 import skylineFeline2 from "@/assets/picture 2.png";
 import skylineFeline3 from "@/assets/picture 3.png";
 
@@ -114,16 +115,16 @@ export const projects: Project[] = [
   },
   {
     id: "adaptive-music-systems",
-    title: "Interactive Combat & Ambient Scoring",
+    title: "Composition Re-Design",
     category: "Music & Audio",
-    tags: ["ADAPTIVE MUSIC", "COMPOSITION", "MULTI-TRACK STEMS"],
+    tags: ["COMPOSITION", "LINEAR WRITING", "MUSICAL TEMPLATE"],
     year: "2026",
     client: "Interactive Composition",
     description:
-      "Dynamic interactive music composition featuring seamless horizontal re-sequencing and vertical stem layering that responds organically to player health, enemy proximity, and combat intensity.",
+      "Composition re-design work: existing score material reworked through linear writing and a reusable musical template, with themes and arrangements restructured for new instrumentation and context while keeping the identity of the original music.",
     videoUrl: "https://www.youtube.com/watch?v=C0TEjgdktdg", // stand-in showreel — swap for this project's own video later
-    coverImage: bonyTony5,
-    images: [bonyTony5, bonyTony6],
+    coverImage: grisPicture, // GrisPicture — the one picture behind the big title
+    images: [],
     implementation: {
       title: "Adaptive Music: FMOD Dynamic State Transitions",
       category: "Audio Implementation",
