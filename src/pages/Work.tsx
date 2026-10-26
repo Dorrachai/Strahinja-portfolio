@@ -19,6 +19,13 @@ const Work = () => {
     }
   }, [tabParam]);
 
+  // Projects tab: the main projects. Implementation tab: only the
+  // entries marked with "isImplementation: true" in projects.ts.
+  const visibleProjects =
+    activeTab === "implementation"
+      ? projects.filter((project) => project.isImplementation)
+      : projects.filter((project) => !project.isImplementation);
+
   const handleTabChange = (tab: "projects" | "implementation") => {
     setActiveTab(tab);
     setSearchParams(tab === "implementation" ? { tab: "implementation" } : {});
@@ -75,7 +82,7 @@ const Work = () => {
           <p className="text-sm md:text-base text-muted-foreground font-mono">
             {activeTab === "projects"
               ? "01 — Game audio, original scoring, creature & weapon SFX"
-              : "02 — In-engine architecture, Wwise / FMOD middleware & bespoke C++ systems"}
+              : "02 — In-engine architecture, Unreal Engine 5 & Wwise audio systems"}
           </p>
           <div className="inline-flex items-center gap-2 self-start sm:self-auto px-3.5 py-1.5 rounded-full border border-earth-orange/30 bg-gradient-to-r from-earth-orange/20 via-earth-orange/10 to-transparent text-earth-orange font-mono text-[11px] uppercase tracking-wider shadow-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-earth-orange animate-pulse"></span>
@@ -86,7 +93,7 @@ const Work = () => {
 
       {/* Project List with Animated Stagger Transition */}
       <section key={`list-${activeTab}`} className="pb-12 md:pb-16">
-        {projects.map((project, index) => {
+        {visibleProjects.map((project, index) => {
           const isImplementation = activeTab === "implementation";
           const displayTitle =
             isImplementation && project.implementation?.title
