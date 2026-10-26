@@ -4,10 +4,12 @@ import { site } from "@/data/site";
 import { projects } from "@/data/projects";
 import { getVideoEmbedUrl } from "@/lib/audioEmbed";
 import { ContactForm } from "@/components/ContactForm";
-import { ArrowUpRight, Sliders, Layers } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 const Index = () => {
   const featuredProject = projects[0]; // Bony Tony: The Revenge
+  const soundSystemProject = projects.find((p) => p.id === "custom-sound-system-ue5");
+  const jazzSystemProject = projects.find((p) => p.id === "jazz-music-system");
   const videoEmbedUrl = getVideoEmbedUrl(site.showreelUrl || "");
 
   const marqueeItems = [
@@ -137,53 +139,58 @@ const Index = () => {
               </div>
             </Link>
 
-            {/* Card 2: Sound Design & Foley */}
+            {/* Card 2: Custom Sound System — Unreal Engine 5 */}
             <Link
-              to="/about"
+              to={`/work/${soundSystemProject?.id}`}
               className="group block rounded-2xl overflow-hidden card-gradient card-gradient-hover"
             >
-              <div className="aspect-[4/3] overflow-hidden relative bg-secondary flex items-center justify-center p-8">
-                <div className="h-20 w-20 rounded-full border border-earth-blue/40 bg-background/90 flex items-center justify-center text-earth-blue group-hover:scale-110 group-hover:border-earth-orange/50 group-hover:text-earth-orange transition-all duration-300 shadow-md">
-                  <Sliders size={30} />
-                </div>
+              <div className="aspect-[4/3] overflow-hidden relative bg-secondary">
+                <img
+                  src={soundSystemProject?.coverImage}
+                  alt={soundSystemProject?.title}
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-70" />
               </div>
               <div className="p-6 space-y-2">
                 <span className="text-[10px] uppercase tracking-widest text-earth-blue dark:text-earth-blue-light font-mono font-medium">
-                  Sound Design · Field Recording
+                  Audio Implementation · Unreal Engine 5
                 </span>
                 <h3 className="font-display text-xl font-bold text-foreground group-hover:text-earth-orange transition-colors">
-                  Foley &amp; SFX Pipeline
+                  {soundSystemProject?.title}
                 </h3>
                 <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
-                  Custom field recording, tactile impacts, weapon acoustics, and UCS-standardized asset delivery.
+                  {soundSystemProject?.description}
                 </p>
               </div>
             </Link>
 
-            {/* Card 3: Adaptive Audio & Implementation */}
+            {/* Card 3: Jazz Music System */}
             <Link
-              to="/work?tab=implementation"
+              to={`/work/${jazzSystemProject?.id}`}
               className="group block rounded-2xl overflow-hidden card-gradient card-gradient-hover"
             >
-              <div className="aspect-[4/3] overflow-hidden relative bg-secondary flex items-center justify-center p-8">
-                <div className="h-20 w-20 rounded-full border border-earth-blue/40 bg-background/90 flex items-center justify-center text-earth-blue group-hover:scale-110 group-hover:border-earth-orange/50 group-hover:text-earth-orange transition-all duration-300 shadow-md">
-                  <Layers size={30} />
-                </div>
+              <div className="aspect-[4/3] overflow-hidden relative bg-secondary">
+                <img
+                  src={jazzSystemProject?.coverImage}
+                  alt={jazzSystemProject?.title}
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-70" />
               </div>
               <div className="p-6 space-y-2">
                 <span className="text-[10px] uppercase tracking-widest text-earth-orange font-mono font-medium">
-                  Wwise · FMOD · Middleware
+                  Audio Implementation · Wwise
                 </span>
                 <h3 className="font-display text-xl font-bold text-foreground group-hover:text-earth-orange transition-colors">
-                  Interactive Audio Systems
+                  {jazzSystemProject?.title}
                 </h3>
                 <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
-                  RTPC-driven parameters, state switches, spatial attenuation, and dynamic combat mix management.
+                  {jazzSystemProject?.description}
                 </p>
               </div>
             </Link>
+
           </div>
         </section>
 
