@@ -41,6 +41,12 @@ export interface Project {
                      // of the project page and the Work page tab.
                      // Paste a normal YouTube or Vimeo link, e.g.
                      // videoUrl: "https://www.youtube.com/watch?v=XXXXXXXXXXX",
+  videos?: VideoEntry[]; // optional: MULTIPLE video players, one per entry.
+                     // Use this instead of videoUrl when a project has
+                     // several videos, e.g. three compositions:
+                     //   videos: [
+                     //     { title: "Composition 01", url: "https://www.youtube.com/watch?v=XXXXXXXXXXX" },
+                     //   ],
   coverImage: string; // main image (from src/assets)
   images: string[]; // picture gallery, one image per line
 
@@ -63,6 +69,11 @@ export interface Project {
 //    { title: "Weapon Sounds", url: "https://youtu.be/XXXXXXXXXXX" },
 //
 // ---------------------------------------------------------------------
+export interface VideoEntry {
+  title: string; // label shown above the player, e.g. "Composition 01"
+  url: string; // normal YouTube / Vimeo link
+}
+
 export interface AudioDemo {
   title: string; // name shown above the player, e.g. "Main Theme"
   url: string; // normal SoundCloud / YouTube / Spotify link
@@ -122,7 +133,13 @@ export const projects: Project[] = [
     client: "Interactive Composition",
     description:
       "Composition re-design work: existing score material reworked through linear writing and a reusable musical template, with themes and arrangements restructured for new instrumentation and context while keeping the identity of the original music.",
-    videoUrl: "https://www.youtube.com/watch?v=C0TEjgdktdg", // stand-in showreel — swap for this project's own video later
+    videos: [
+      // One player per composition. Rename each "title" and swap each
+      // "url" for that composition's own YouTube link when ready.
+      { title: "Composition 01", url: "https://www.youtube.com/watch?v=C0TEjgdktdg" },
+      { title: "Composition 02", url: "https://www.youtube.com/watch?v=C0TEjgdktdg" },
+      { title: "Composition 03", url: "https://www.youtube.com/watch?v=C0TEjgdktdg" },
+    ],
     coverImage: grisPicture, // GrisPicture — the one picture behind the big title
     images: [],
     implementation: {
