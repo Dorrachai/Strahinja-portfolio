@@ -33,6 +33,10 @@ export interface Project {
   link?: string; // optional: URL to play or listen (itch.io, YouTube, ...)
   linkLabel?: string; // optional: text on that button, e.g. "Play on itch.io"
   audioDemos?: AudioDemo[]; // optional: embedded sound players, see below
+  videoUrl?: string; // optional: video shown in the big player at the top
+                     // of the project page and the Work page tab.
+                     // Paste a normal YouTube or Vimeo link, e.g.
+                     // videoUrl: "https://www.youtube.com/watch?v=XXXXXXXXXXX",
   coverImage: string; // main image (from src/assets)
   images: string[]; // picture gallery, one image per line
 
@@ -72,6 +76,7 @@ export const projects: Project[] = [
       "Game audio for Bony Tony: The Revenge — a 2.5D action-platformer about blasting your way to the top of a skeleton-filled casino to take revenge on your boss. Music, weapons, ambiences and feedback, created from scratch in a custom-built engine during an 8-week student production, later polished for Swedish Game Awards.",
     link: "https://eaxcy.itch.io/bony-tony",
     linkLabel: "Play on itch.io",
+    videoUrl: "https://www.youtube.com/watch?v=C0TEjgdktdg", // TODO: replace with the Bony Tony video link
     coverImage: bonyTony1,
     images: [bonyTony1, bonyTony2, bonyTony3, bonyTony4, bonyTony5, bonyTony6],
     implementation: {
@@ -94,6 +99,7 @@ export const projects: Project[] = [
       "Original field recordings, mechanical Foley, and synthesized impact layers designed for high-impact game feel. Recorded with custom shotgun and contact microphones, cleaned and batch-rendered via REAPER.",
     link: "https://eaxcy.itch.io/bony-tony",
     linkLabel: "View Details",
+    videoUrl: "", // paste the video link here to turn on the player
     coverImage: bonyTony3,
     images: [bonyTony3, bonyTony4],
     implementation: {
@@ -116,6 +122,7 @@ export const projects: Project[] = [
       "Dynamic interactive music composition featuring seamless horizontal re-sequencing and vertical stem layering that responds organically to player health, enemy proximity, and combat intensity.",
     link: "https://eaxcy.itch.io/bony-tony",
     linkLabel: "View Details",
+    videoUrl: "", // paste the video link here to turn on the player
     coverImage: bonyTony5,
     images: [bonyTony5, bonyTony6],
     implementation: {
