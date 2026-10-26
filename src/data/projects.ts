@@ -21,6 +21,9 @@ import bonyTony3 from "@/assets/bony-tony-3.png";
 import bonyTony4 from "@/assets/bony-tony-4.png";
 import bonyTony5 from "@/assets/bony-tony-5.png";
 import bonyTony6 from "@/assets/bony-tony-6.jpg";
+import skylineFeline1 from "@/assets/picture 1.png";
+import skylineFeline2 from "@/assets/picture 2.png";
+import skylineFeline3 from "@/assets/picture 3.png";
 
 export interface Project {
   id: string; // unique short name used in the web address, e.g. /project/bony-tony
@@ -89,24 +92,24 @@ export const projects: Project[] = [
     },
   },
   {
-    id: "foley-sfx-showcase",
-    title: "Tactile Foley & Weapon SFX",
+    id: "skyline-feline",
+    title: "Skyline Feline",
     category: "Sound Design",
-    tags: ["FOLEY RECORDING", "WEAPON SFX", "AUDIO CLEANUP"],
+    tags: ["INTERACTIVE AUDIO", "IMPLEMENTATION", "MUSIC SYSTEM"],
     year: "2026",
     client: "Sound Design & Field Recording",
     description:
       "Original field recordings, mechanical Foley, and synthesized impact layers designed for high-impact game feel. Recorded with custom shotgun and contact microphones, cleaned and batch-rendered via REAPER.",
     videoUrl: "https://www.youtube.com/watch?v=C0TEjgdktdg", // stand-in showreel — swap for this project's own video later
-    coverImage: bonyTony3,
-    images: [bonyTony3, bonyTony4],
+    coverImage: skylineFeline1, // picture 1 — sits behind the big title
+    images: [skylineFeline2, skylineFeline3], // pictures 2 and 3 — the gallery further down the page
     implementation: {
-      title: "Foley & Weapon SFX: Modular Surface Matrix",
+      title: "Skyline Feline: Interactive Audio & Music System",
       category: "Audio Implementation",
-      tags: ["WWISE", "RAYCAST SURFACE DETECT", "OCCLUSION", "UCS NAMING"],
-      client: "Wwise / Engine Integration",
+      tags: ["INTERACTIVE AUDIO", "MUSIC SYSTEM", "IMPLEMENTATION"],
+      client: "Interactive Audio Systems",
       description:
-        "Modular weapon sound design integrated into Wwise. Implemented multi-position raycast occlusion, physical surface switch containers, and automated UCS asset naming pipelines for programmer handoffs.",
+        "Interactive audio implementation for Skyline Feline. Built the in-game music system from layered stems that respond to gameplay state, wired gameplay events to one-shot and looped sound cues, and integrated the recorded Foley and weapon SFX library for consistent surface and movement feedback.",
     },
   },
   {
