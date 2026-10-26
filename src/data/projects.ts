@@ -143,13 +143,13 @@ export const projects: Project[] = [
 
   {
     id: "custom-sound-system-ue5",
-    title: "Custom Sound System — Unreal Engine 5",
+    title: "Custom Sound System in Unreal Engine 5",
     category: "Audio Implementation",
     tags: ["UNREAL ENGINE 5", "CUSTOM AUDIO SYSTEM", "AUDIO PROGRAMMING"],
     year: "2026",
     client: "In-Engine Audio Systems",
     description:
-      "A custom audio system built in Unreal Engine 5: in-engine sound architecture, event-driven cues and mixing, designed and implemented directly in the engine.",
+      "A personal technical sound design project in Unreal Engine built with MetaSounds and Blueprints. The goal was a dynamic gunshot system that automatically adapts to its surrounding environment. Multiple raycasts analyze nearby geometry to determine whether the player is outdoors, inside an enclosed room or in a long corridor, and the gunshot's reverb, reflections and slapback delays adjust accordingly. The project combines sound design with programming and technical problem solving, exploring how real time environmental data can create more immersive and responsive game audio.",
     videoUrl: "https://www.youtube.com/watch?v=BcwoX3IQEq0", // Unreal sound system video
     coverImage: unrealPicture, // unreal picture — sits behind the big title
     images: [],
@@ -163,7 +163,7 @@ export const projects: Project[] = [
     year: "2026",
     client: "Interactive Music Systems",
     description:
-      "An interactive jazz music system: improvised score material arranged into a reactive music setup that shifts with gameplay while keeping the live, swinging feel of the performances.",
+      "The music system and all the music from Skyline Feline, rebuilt so the looping becomes truly forever random. Built in Unity with Wwise and a custom C# script: no instrument can be played again until the main loop of the soundtrack starts again, so the score never repeats the same combination of performances.",
     videoUrl: "https://www.youtube.com/watch?v=gTeM8LSuB4A", // Jazz music system video
     coverImage: wwisePicture, // wwise picture — sits behind the big title
     images: [],
