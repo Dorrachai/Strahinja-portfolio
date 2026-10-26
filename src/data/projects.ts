@@ -129,7 +129,7 @@ export const projects: Project[] = [
     tags: ["COMPOSITION", "LINEAR WRITING", "MUSICAL TEMPLATE"],
     year: "2026",
     description:
-      "Original composition practice written purely to fit visuals. Each trailer was watched on mute before writing, so the music is made to fit the visuals through my own first impressions. It works as interactive storytelling that emphasises what is happening on screen, with transformative writing that pushes the specific emotion of each scene. Odd time signatures fit the fast paced cuts of the videos.",
+      "Each composition was created from scratch to complement the visuals of its respective trailer. Before composing, I watched each trailer without sound, allowing my first impressions to guide the musical direction rather than being influenced by the original soundtrack. My approach focuses on using music as a storytelling tool, shaping harmony, rhythm and instrumentation to reflect the emotions and events unfolding on screen. Through transformative harmony, unconventional time signatures and carefully timed musical changes, I aim to enhance each scene while giving the trailers my own musical interpretation.",
     videos: [
       // One player per composition. Rename each "title" and swap each
       // "url" for that composition's own YouTube link when ready.
