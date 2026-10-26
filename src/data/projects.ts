@@ -34,7 +34,7 @@ export interface Project {
   category: string; // short category shown on cards, e.g. "Game Audio"
   tags: string[]; // small labels, UPPERCASE, e.g. "SOUND DESIGN"
   year: string; // e.g. "2026"
-  client: string; // studio, team or jam name
+  client?: string; // optional: studio, team or jam name. Leave out entirely for a personal / practice project.
   description: string; // 2-4 sentences about your work on it
   link?: string; // optional: URL to play or listen (itch.io, YouTube, ...)
   linkLabel?: string; // optional: text on that button, e.g. "Play on itch.io"
@@ -128,9 +128,8 @@ export const projects: Project[] = [
     category: "Music & Audio",
     tags: ["COMPOSITION", "LINEAR WRITING", "MUSICAL TEMPLATE"],
     year: "2026",
-    client: "Interactive Composition",
     description:
-      "Composition re-design work: existing score material reworked through linear writing and a reusable musical template, with themes and arrangements restructured for new instrumentation and context while keeping the identity of the original music.",
+      "Composition re-design practice where existing score material is reworked through linear writing and a reusable musical template. The music is used as interactive storytelling that emphasises what is happening on screen, with transformative writing that pushes the specific emotion of each scene. Odd time signatures fit the fast paced cuts of the videos while keeping the identity of the original music.",
     videos: [
       // One player per composition. Rename each "title" and swap each
       // "url" for that composition's own YouTube link when ready.
@@ -140,14 +139,6 @@ export const projects: Project[] = [
     ],
     coverImage: grisPicture, // GrisPicture — the one picture behind the big title
     images: [],
-    implementation: {
-      title: "Adaptive Music: FMOD Dynamic State Transitions",
-      category: "Audio Implementation",
-      tags: ["FMOD STUDIO", "MULTI-TRACK STEMS", "INTENSITY RTPCS", "DYNAMIC DUCKING"],
-      client: "FMOD Studio Interactive Systems",
-      description:
-        "Interactive music system built in FMOD Studio. Parameter-driven crossfades and quantized transitions between ambient, tension, and high-intensity boss fight states with automated sidechain ducking.",
-    },
   },
 
   {
