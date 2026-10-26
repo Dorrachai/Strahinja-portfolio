@@ -55,11 +55,14 @@ const Project = () => {
           </div>
         </div>
       </section>
-      {/* Project Video Player — same cinematic player as the landing page showreel */}
-      {project.videoUrl && (
+      {/* Project Video Player(s) — same cinematic player as the landing page showreel.
+          Shows one player per entry when the project has a "videos" list,
+          or the single "videoUrl" player as before. */}
+      {(project.videoUrl || (project.videos && project.videos.length > 0)) && (
         <section className="container-wide pt-12 md:pt-16">
           <ProjectVideoPlayer
             url={project.videoUrl}
+            videos={project.videos}
             title={project.title}
             year={project.year}
             coverImage={project.coverImage}
