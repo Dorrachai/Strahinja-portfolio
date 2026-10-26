@@ -107,19 +107,19 @@ export const projects: Project[] = [
     category: "Sound Design",
     tags: ["INTERACTIVE AUDIO", "IMPLEMENTATION", "MUSIC SYSTEM"],
     year: "2026",
-    client: "Sound Design & Field Recording",
+    client: "The Game Assembly × Audio Production Academy",
     description:
-      "Original field recordings, mechanical Foley, and synthesized impact layers designed for high-impact game feel. Recorded with custom shotgun and contact microphones, cleaned and batch-rendered via REAPER.",
+      "Skyline Feline is a first person parkour game where you play as a cat navigating obstacles, fighting enemies with a water gun and using catnip for speed boosts. The soundtrack is an interactive jazz score performed on live instruments, and the soundscape reacts to the action with distance based enemy audio and punchy water gun feedback.",
     videoUrl: "https://www.youtube.com/watch?v=_6atS0FDk8o", // Skyline Feline trailer
     coverImage: skylineFeline1, // picture 1 — sits behind the big title
     images: [skylineFeline2, skylineFeline3], // pictures 2 and 3 — the gallery further down the page
     implementation: {
-      title: "Skyline Feline: Interactive Audio & Music System",
+      title: "Skyline Feline: Wwise Jazz & Interactive Soundscape",
       category: "Audio Implementation",
-      tags: ["INTERACTIVE AUDIO", "MUSIC SYSTEM", "IMPLEMENTATION"],
-      client: "Interactive Audio Systems",
+      tags: ["WWISE", "INTERACTIVE JAZZ", "RTPC DUCKING"],
+      client: "Wwise Interactive Systems",
       description:
-        "Interactive audio implementation for Skyline Feline. Built the in-game music system from layered stems that respond to gameplay state, wired gameplay events to one-shot and looped sound cues, and integrated the recorded Foley and weapon SFX library for consistent surface and movement feedback.",
+        "Interactive jazz soundtrack and soundscape built in Wwise. A looping music system with solo sections over corresponding backing instruments lets the score evolve with gameplay, while distance based attenuation for enemy turrets and RTPC driven ducking keep the water gun impactful and punchy.",
     },
   },
   {
