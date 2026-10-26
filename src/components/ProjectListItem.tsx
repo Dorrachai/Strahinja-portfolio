@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 interface ProjectListItemProps {
@@ -6,7 +5,6 @@ interface ProjectListItemProps {
   title: string;
   tags: string[];
   year: string;
-  image: string;
   index: number;
 }
 
@@ -15,16 +13,11 @@ export function ProjectListItem({
   title, 
   tags, 
   year, 
-  image,
 }: ProjectListItemProps) {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <Link
       to={`/work/${id}`}
       className="group block border-b border-separator/80 hover:bg-gradient-to-r hover:from-card/80 hover:via-secondary/40 hover:to-transparent hover:border-earth-orange/40 transition-all duration-200"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <div className="container-wide py-4 md:py-5">
         <div className="flex items-center justify-between gap-4">
@@ -50,21 +43,7 @@ export function ProjectListItem({
             {year}
           </span>
 
-          {/* Hover Image — Desktop Only */}
-          <div 
-            className={`hidden lg:block fixed right-12 xl:right-32 top-1/2 -translate-y-1/2 w-64 xl:w-80 aspect-[3/4] pointer-events-none z-40 transition-all duration-300 will-change-[transform,opacity] ${
-              isHovered 
-                ? "opacity-100 translate-x-0 scale-100" 
-                : "opacity-0 translate-x-6 scale-95"
-            }`}
-          >
-            <img
-              src={image}
-              alt={title}
-              loading="lazy"
-              className="w-full h-full object-cover rounded-xl shadow-2xl border border-separator/80"
-            />
-          </div>
+
         </div>
       </div>
     </Link>
