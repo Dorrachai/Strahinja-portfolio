@@ -129,7 +129,7 @@ export const projects: Project[] = [
     tags: ["COMPOSITION", "LINEAR WRITING", "MUSICAL TEMPLATE"],
     year: "2026",
     description:
-      "Composition re-design practice where existing score material is reworked through linear writing and a reusable musical template. The music is used as interactive storytelling that emphasises what is happening on screen, with transformative writing that pushes the specific emotion of each scene. Odd time signatures fit the fast paced cuts of the videos while keeping the identity of the original music.",
+      "Original composition practice written purely to fit visuals. Each trailer was watched on mute before writing, so the music is made to fit the visuals through my own first impressions. It works as interactive storytelling that emphasises what is happening on screen, with transformative writing that pushes the specific emotion of each scene. Odd time signatures fit the fast paced cuts of the videos.",
     videos: [
       // One player per composition. Rename each "title" and swap each
       // "url" for that composition's own YouTube link when ready.
