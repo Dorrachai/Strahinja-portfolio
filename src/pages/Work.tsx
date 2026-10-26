@@ -108,8 +108,7 @@ const Work = () => {
                 title={displayTitle}
                 tags={displayTags}
                 year={project.year}
-                image={project.coverImage}
-                index={index}
+                  index={index}
               />
             </div>
           );
@@ -120,4 +119,3 @@ const Work = () => {
 };
 
 export default Work;
-
