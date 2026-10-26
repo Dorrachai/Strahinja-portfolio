@@ -77,10 +77,12 @@ const Project = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20">
           {/* Details */}
           <div className="space-y-8">
-            <div>
-              <p className="text-label text-earth-orange font-semibold mb-2">Client</p>
-              <p className="font-medium text-foreground">{project.client}</p>
-            </div>
+            {project.client && (
+              <div>
+                <p className="text-label text-earth-orange font-semibold mb-2">Client</p>
+                <p className="font-medium text-foreground">{project.client}</p>
+              </div>
+            )}
             <div>
               <p className="text-label text-earth-orange font-semibold mb-2">Year</p>
               <p className="font-mono text-muted-foreground">{project.year}</p>
